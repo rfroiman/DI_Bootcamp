@@ -14,7 +14,7 @@ print(99**3 * 8)
 5 < 3 #False
 3 == 3 #True
 3 == "3" #False
-#"3" > 3 #Error
+"3" > 3 #Error
 "Hello" == "hello" #False
 
 #Exercise 4: Your computer brand
@@ -61,4 +61,3 @@ if height > 145:
 else:
     print("You need to grow some more to ride the roller coaster.")
 
-    
