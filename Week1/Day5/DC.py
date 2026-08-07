@@ -39,7 +39,7 @@ def longest_word(sentence):
             longest = word
 
     # Step 6: Return the Longest Word
-    return longest
+    return longest  
 
 
 # Tests
