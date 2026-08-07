@@ -134,7 +134,6 @@ while True:
         display_game()
 
         print("\nCongratulations! You guessed the word:", word)
-
         break
 
 
