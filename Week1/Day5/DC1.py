@@ -6,7 +6,6 @@ list_of_numbers = [random.randint(0, 10000) for _ in range(20000)]
 # Target number
 target_number = 3728
 
-
 # Function to find pairs
 def find_pairs(numbers, target):
 
