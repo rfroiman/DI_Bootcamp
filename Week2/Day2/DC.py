@@ -69,7 +69,7 @@ try:
 except ValueError as e:
     print("ValueError")
 
-# Method chaining
+# Method chaining 
 p.first_page().next_page().next_page().next_page()
 
 print(p.get_visible_items())
