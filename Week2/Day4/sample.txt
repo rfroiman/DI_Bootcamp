@@ -1,0 +1,18 @@
+Crie um Pitch Deck profissional para a startup Kadima, uma plataforma de IA para busca inteligente, otimização e gestão de candidaturas profissionais. Storytelling: Problema → Mercado → Solução → Funcionamento → Futuro. Design SaaS premium inspirado em OpenAI, Salesforce e LinkedIn. Usar identidade visual do logo Kadima (azul tecnológico, azul vibrante, verde inovação, branco/cinza). Inserir logo em todos os slides. Formato 16:9, máximo 5 slides, visual moderno com imagens, gráficos e dashboards.
+
+Slide 1: Problema. Título: Finding the right job has become a full-time job. Mostrar profissional perdido entre LinkedIn, Indeed, Glassdoor e documentos. Dores: vagas espalhadas em vários canais; busca por cargo não encontra todas oportunidades; dificuldade de matching com perfil; necessidade de adaptar CV e cover letter para cada vaga; rejeição por sistemas ATS; perda de tempo; dificuldade em controlar candidaturas, documentos, status e entrevistas. Mensagem: Job seekers don't need more job boards. They need intelligence.
+
+Slide 2: Mercado. Título: A massive opportunity in Latin America. Criar mapa da América Latina com Brasil, México, Argentina, Colômbia, Chile e Peru. Mostrar dados reais de desempregados com ensino superior, taxa de desemprego e mercado potencial. Fontes: ILO, World Bank e institutos nacionais.
+
+Slide 3: Solução Kadima. Mostrar dashboard com IA para busca de vagas, matching inteligente, CV otimizado para ATS, cover letter personalizada, gestão de aplicações e preparação para entrevistas.
+
+Slide 4: Funcionamento. Mostrar fluxo: Perfil profissional → IA analisa → encontra vagas → cria documentos personalizados → acompanha candidaturas.
+
+Slide 5: Futuro. Título: The future of intelligent career management. Roadmap: Fase 1 Job Search + ATS + Tracking; Fase 2 Career Intelligence; Fase 3 Expansão global. Criar apresentação premium de startup Seed/Series A com storytelling visual, dados reais e imagens impactantes.
+
+%#$&$#(*#&$(#$(&#($&#($&#($&
+
+AAAbbbbAABABBABBBBAAA
+
+
+global global global global global global 
