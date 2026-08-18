@@ -2,19 +2,19 @@ import anthropic
 
 client = anthropic.Anthropic()
 MODEL="claude-haiku-4-5"
-#PROMPT="Classify the ticket into exactly one category: BILLING, SHIPPING, PRODUCT or OTHER. Reply with the category word only. \n\nTicket: {t}"
-
-PROMPT="Classify the ticket into exactly one category: BILLING, SHIPPING, PRODUCT or OTHER.Reply with the category word only. \n\nTicket: {t}"
+PROMPT="Classify the ticket into exactly one category: BILLING, SHIPPING, PRODUCT or OTHER. Reply with the category word only. \n\nTicket: {t}"
         
 
 tickets= [
-    "My card was charged 3 times for the order #123",
-    "Package was delivered to the wrong address",
-    "My product doesn't work",
-    "Do you have a discount for soldiers?"
+    ("My card was charged 3 times for the order #123", "BILLING"),
+    ("Package was delivered to the wrong address", "SHIPPING"),
+    ("My product doesn't work", "PRODUCT"),
+    ("Do you have a discount for soldiers?", "OTHER")
 ]
 
-for ticket in tickets:
+correct = 0
+
+for ticket, expected in tickets:
     message = client.messages.create(
        model=MODEL,
        max_tokens=10,
@@ -22,4 +22,9 @@ for ticket in tickets:
        messages=[{"role": "user", "content": PROMPT.format(t=ticket)}]
     )
 
-    print(message.content[0].text)
+    got = message.content[0].text.strip().upper()
+    if got == expected:
+        correct += 1
+    print(f"{got:8} expected {expected:8} | {ticket}")
+
+print(f"score: {correct}/{len(tickets)}")
