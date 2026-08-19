@@ -1,0 +1,25 @@
+# Secrets — never commit these
+API_KEY.txt
+.env
+.env.*
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# macOS archive junk (resource forks from unpacked zips)
+__MACOSX/
+._*
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Installers / binaries
+*.exe
+*.msi
