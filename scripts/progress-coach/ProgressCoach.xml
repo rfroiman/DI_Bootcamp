@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<!--
+  Progress Coach Daily Review — Windows Task Scheduler definition.
+
+  This is the raw task definition, an alternative to Register-ProgressCoach.ps1
+  (which builds the same task via the ScheduledTasks cmdlets). Import with:
+
+    schtasks /create /tn "ProgressCoach\Progress Coach Daily Review" /xml "ProgressCoach.xml"
+
+  Before importing, check two things:
+    1. <UserId> matches the account that should run it (currently FROIMAN\rfroi).
+    2. The -File path in <Arguments> matches where this repo actually lives.
+
+  Note: Task Scheduler expects this file as UTF-16. If your editor saved it as
+  UTF-8, schtasks may reject it — either re-save as UTF-16 LE or just use
+  Register-ProgressCoach.ps1, which sidesteps the encoding issue entirely.
+-->
+<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Date>2026-08-18T13:02:23</Date>
+    <Author>FROIMAN\rfroi</Author>
+    <Description>Runs the Student Progress Coach daily review (see CLAUDE.md). Writes PROGRESS.md and .progress/, commits locally, never pushes.</Description>
+    <URI>\ProgressCoach\Progress Coach Daily Review</URI>
+  </RegistrationInfo>
+  <Triggers>
+    <CalendarTrigger>
+      <StartBoundary>2026-08-19T09:03:00</StartBoundary>
+      <Enabled>true</Enabled>
+      <ScheduleByDay>
+        <DaysInterval>1</DaysInterval>
+      </ScheduleByDay>
+    </CalendarTrigger>
+  </Triggers>
+  <Principals>
+    <Principal id="Author">
+      <UserId>FROIMAN\rfroi</UserId>
+      <LogonType>InteractiveToken</LogonType>
+      <RunLevel>LeastPrivilege</RunLevel>
+    </Principal>
+  </Principals>
+  <Settings>
+    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
+    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
+    <AllowHardTerminate>true</AllowHardTerminate>
+    <StartWhenAvailable>true</StartWhenAvailable>
+    <RunOnlyIfNetworkAvailable>true</RunOnlyIfNetworkAvailable>
+    <IdleSettings>
+      <StopOnIdleEnd>false</StopOnIdleEnd>
+      <RestartOnIdle>false</RestartOnIdle>
+    </IdleSettings>
+    <AllowStartOnDemand>true</AllowStartOnDemand>
+    <Enabled>true</Enabled>
+    <Hidden>false</Hidden>
+    <RunOnlyIfIdle>false</RunOnlyIfIdle>
+    <WakeToRun>false</WakeToRun>
+    <ExecutionTimeLimit>PT30M</ExecutionTimeLimit>
+    <Priority>7</Priority>
+    <RestartOnFailure>
+      <Interval>PT10M</Interval>
+      <Count>2</Count>
+    </RestartOnFailure>
+  </Settings>
+  <Actions Context="Author">
+    <Exec>
+      <Command>powershell.exe</Command>
+      <Arguments>-NoProfile -NonInteractive -ExecutionPolicy Bypass -File "D:\Documentos\Developers Institute Projects\DI_Bootcamp\scripts\progress-coach\Run-DailyReview.ps1"</Arguments>
+      <WorkingDirectory>D:\Documentos\Developers Institute Projects\DI_Bootcamp\scripts\progress-coach</WorkingDirectory>
+    </Exec>
+  </Actions>
+</Task>
