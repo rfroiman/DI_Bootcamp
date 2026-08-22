@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kadima - Personal information onboarding step." />
+  <title>Kadima | Personal Information</title>
+  <link rel="stylesheet" href="personal-info.css" />
+</head>
+
+<body>
+  <main class="screen">
+    <aside class="left-panel">
+      <div class="logo-wrap">
+        <img
+          src="assets/kadima-logo-original.jpeg"
+          alt="Kadima"
+          class="logo"
+        />
+      </div>
+
+      <div class="hero-copy">
+        <h1>
+          Your journey<br />
+          to extraordinary<br />
+          <span>opportunities</span><br />
+          starts here.
+        </h1>
+
+        <div class="accent-line"></div>
+
+        <p>
+          Kadima uses smart technology and AI to connect your unique skills
+          with the right opportunities worldwide.
+        </p>
+      </div>
+
+      <div class="journey-art" aria-hidden="true"></div>
+
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 4a3 3 0 0 0-3 3v1a3 3 0 0 0-2 3 3 3 0 0 0 2 3v2a3 3 0 0 0 3 3"/>
+              <path d="M15 4a3 3 0 0 1 3 3v1a3 3 0 0 1 2 3 3 3 0 0 1-2 3v2a3 3 0 0 1-3 3"/>
+              <path d="M9 7v10M15 7v10M9 10h6M9 14h6"/>
+            </svg>
+          </div>
+          <div>
+            <strong>AI-Powered Matching</strong>
+            <span>We analyze your skills and experience to find the best opportunities for you.</span>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon green" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="8"/>
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M17 7l4-4M18 3h3v3"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Personalized Insights</strong>
+            <span>Get tailored recommendations to boost your career.</span>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3 20 6v5c0 5.3-3.4 8.6-8 10-4.6-1.4-8-4.7-8-10V6l8-3Z"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Your Data, Your Control</strong>
+            <span>We protect your data and respect your privacy.</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="content-panel">
+      <header class="content-header">
+        <div class="welcome">
+          <div class="welcome-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3Z"/>
+            </svg>
+          </div>
+
+          <div>
+            <strong>Welcome to Kadima!</strong>
+            <span>Let's build your profile in 6 simple steps.</span>
+          </div>
+        </div>
+
+        <div class="progress" aria-label="Journey progress">
+          <div class="progress-item done">
+            <div class="progress-circle">✓</div>
+            <span>Welcome</span>
+          </div>
+          <div class="progress-line completed"></div>
+
+          <div class="progress-item active">
+            <div class="progress-circle">2</div>
+            <span>Personal</span>
+          </div>
+          <div class="progress-line"></div>
+
+          <div class="progress-item">
+            <div class="progress-circle">3</div>
+            <span>Profile</span>
+          </div>
+          <div class="progress-line"></div>
+
+          <div class="progress-item">
+            <div class="progress-circle">4</div>
+            <span>Experience</span>
+          </div>
+          <div class="progress-line"></div>
+
+          <div class="progress-item">
+            <div class="progress-circle">5</div>
+            <span>Education</span>
+          </div>
+          <div class="progress-line"></div>
+
+          <div class="progress-item">
+            <div class="progress-circle">6</div>
+            <span>Skills</span>
+          </div>
+        </div>
+
+        <button id="skipButton" class="skip-button" type="button">
+          Skip journey
+        </button>
+      </header>
+
+      <div class="content-body">
+        <div class="page-heading">
+          <h2>Let's get to know you</h2>
+          <p>Start with your basic information. 👋</p>
+        </div>
+
+        <div class="main-grid">
+          <section class="form-card">
+            <div class="question-block">
+              <div class="question-header">
+                <div class="round-icon blue" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="3.5"/>
+                    <path d="M5.5 20c.5-4.2 2.7-6.2 6.5-6.2s6 2 6.5 6.2"/>
+                  </svg>
+                </div>
+                <div class="question-number">1</div>
+                <div>
+                  <h3>What's your full name?</h3>
+                  <p>This is how we'll call you.</p>
+                </div>
+              </div>
+
+              <div class="name-grid">
+                <label>
+                  <span class="sr-only">First name</span>
+                  <input
+                    id="firstName"
+                    type="text"
+                    autocomplete="given-name"
+                    placeholder="First name"
+                    maxlength="80"
+                  />
+                </label>
+
+                <label>
+                  <span class="sr-only">Last name</span>
+                  <input
+                    id="lastName"
+                    type="text"
+                    autocomplete="family-name"
+                    placeholder="Last name"
+                    maxlength="80"
+                  />
+                </label>
+              </div>
+
+              <p id="nameError" class="field-message error" aria-live="polite"></p>
+            </div>
+
+            <div class="question-block email-block">
+              <div class="question-header">
+                <div class="round-icon blue" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="5" width="18" height="14" rx="2"/>
+                    <path d="m4 7 8 6 8-6"/>
+                  </svg>
+                </div>
+                <div class="question-number">2</div>
+                <div>
+                  <h3>What's your email address?</h3>
+                  <p>We'll use this to keep in touch and to access your Kadima account.</p>
+                </div>
+              </div>
+
+              <label class="email-input-wrap">
+                <span class="input-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="5" width="18" height="14" rx="2"/>
+                    <path d="m4 7 8 6 8-6"/>
+                  </svg>
+                </span>
+                <input
+                  id="email"
+                  type="email"
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="youremail@example.com"
+                  maxlength="254"
+                />
+              </label>
+
+              <p id="emailError" class="field-message error" aria-live="polite"></p>
+            </div>
+          </section>
+
+          <aside class="why-card">
+            <div class="why-title">
+              <div class="why-main-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3 20 6v5c0 5.3-3.4 8.6-8 10-4.6-1.4-8-4.7-8-10V6l8-3Z"/>
+                  <path d="M12 8v5M12 16h.01"/>
+                </svg>
+              </div>
+              <strong>Why we ask this?</strong>
+            </div>
+
+            <div class="why-items">
+              <div class="why-item">
+                <div class="why-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="3"/>
+                    <path d="M5 20c.5-4 2.9-6 7-6s6.5 2 7 6"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Personalized experience</strong>
+                  <span>We tailor opportunities just for you.</span>
+                </div>
+              </div>
+
+              <div class="why-item">
+                <div class="why-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="6" y="10" width="12" height="10" rx="2"/>
+                    <path d="M8.5 10V7.5A3.5 3.5 0 0 1 12 4a3.5 3.5 0 0 1 3.5 3.5V10"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>100% secure</strong>
+                  <span>Your information is protected.</span>
+                </div>
+              </div>
+
+              <div class="why-item">
+                <div class="why-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M5 19 19 5"/>
+                    <path d="M9 5h10v10"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Faster matches</strong>
+                  <span>Complete profile = better results.</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="bottom-divider"></div>
+
+        <footer class="bottom-bar">
+          <div class="secure-note">
+            <div class="secure-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3 20 6v5c0 5.3-3.4 8.6-8 10-4.6-1.4-8-4.7-8-10V6l8-3Z"/>
+                <path d="m8.5 12 2.2 2.2 4.8-5"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Your data is safe with us</strong>
+              <span>We use secure practices to protect your personal information.</span>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="backButton" class="back-button" type="button">
+              ← <span>Back</span>
+            </button>
+
+            <button id="continueButton" class="continue-button" type="button" disabled>
+              Continue <span>→</span>
+            </button>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="personal-info.js"></script>
+</body>
+</html>
