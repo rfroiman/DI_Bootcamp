@@ -335,3 +335,264 @@ function resetIndexState() {
 }
 
 resetIndexState();
+
+
+/* =========================
+   EXISTING USER LOGIN
+   Additive only: does not change the approved onboarding flow.
+   ========================= */
+
+const loginModal = document.getElementById("loginModal");
+const openLoginButton = document.getElementById("openLoginButton");
+const closeLoginButton = document.getElementById("closeLoginButton");
+const loginEmailStep = document.getElementById("loginEmailStep");
+const loginCodeStep = document.getElementById("loginCodeStep");
+const loginEmail = document.getElementById("loginEmail");
+const verificationCode = document.getElementById("verificationCode");
+const sendCodeButton = document.getElementById("sendCodeButton");
+const verifyCodeButton = document.getElementById("verifyCodeButton");
+const resendCodeButton = document.getElementById("resendCodeButton");
+const changeEmailButton = document.getElementById("changeEmailButton");
+const loginEmailMessage = document.getElementById("loginEmailMessage");
+const verificationMessage = document.getElementById("verificationMessage");
+
+const loginState = {
+  email: "",
+  demoCode: "",
+  codeIssuedAt: 0
+};
+
+function validLoginEmail(value) {
+  const email = value.trim().toLowerCase();
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+}
+
+function openLoginModal() {
+  loginModal.hidden = false;
+  document.body.style.overflow = "hidden";
+  loginEmailStep.hidden = false;
+  loginCodeStep.hidden = true;
+  loginEmailMessage.textContent = "";
+  verificationMessage.textContent = "";
+  loginEmail.focus();
+}
+
+function closeLoginModal() {
+  loginModal.hidden = true;
+  document.body.style.overflow = "";
+}
+
+function generateVerificationCode() {
+  return String(Math.floor(100000 + Math.random() * 900000));
+}
+
+/*
+  Production integration point.
+  Replace this function with a POST request to your backend, for example:
+
+  POST /api/auth/request-code
+  {
+    "email": "user@example.com"
+  }
+
+  The backend must:
+  1. verify whether the email belongs to a registered Kadima user;
+  2. generate the one-time code server-side;
+  3. store a hashed/expiring version of the code;
+  4. send the code by email;
+  5. return the same neutral response whether the email exists or not.
+
+  The frontend should never receive the real code in production.
+*/
+async function requestVerificationCode(email) {
+  /*
+    Current prototype/demo behavior:
+    Generates the code locally so the flow can be tested before the backend
+    and email provider are connected.
+  */
+  loginState.demoCode = generateVerificationCode();
+  loginState.codeIssuedAt = Date.now();
+
+  console.info(
+    `[Kadima demo only] Verification code for ${email}: ${loginState.demoCode}`
+  );
+
+  return {
+    ok: true,
+    message: "If this email is registered, we sent a verification code."
+  };
+}
+
+/*
+  Production integration point.
+  Replace with:
+
+  POST /api/auth/verify-code
+  {
+    "email": "...",
+    "code": "123456"
+  }
+
+  On success the backend should establish a secure authenticated session.
+*/
+async function validateVerificationCode(email, code) {
+  const fiveMinutes = 5 * 60 * 1000;
+  const expired =
+    !loginState.codeIssuedAt ||
+    Date.now() - loginState.codeIssuedAt > fiveMinutes;
+
+  if (expired) {
+    return { ok: false, reason: "expired" };
+  }
+
+  return {
+    ok: email === loginState.email && code === loginState.demoCode,
+    reason: "invalid"
+  };
+}
+
+async function sendLoginCode() {
+  const email = loginEmail.value.trim().toLowerCase();
+
+  if (!validLoginEmail(email)) {
+    loginEmailMessage.textContent = "Please enter a valid email address.";
+    loginEmailMessage.classList.remove("success");
+    loginEmail.focus();
+    return;
+  }
+
+  loginEmailMessage.textContent = "";
+  sendCodeButton.disabled = true;
+  sendCodeButton.textContent = "Sending...";
+
+  try {
+    loginState.email = email;
+    const result = await requestVerificationCode(email);
+
+    if (!result.ok) {
+      loginEmailMessage.textContent =
+        "We could not process your request. Please try again.";
+      return;
+    }
+
+    loginEmailStep.hidden = true;
+    loginCodeStep.hidden = false;
+    verificationCode.value = "";
+    verificationMessage.textContent = "";
+    verificationCode.focus();
+  } finally {
+    sendCodeButton.disabled = false;
+    sendCodeButton.textContent = "Send verification code";
+  }
+}
+
+async function verifyLoginCode() {
+  const code = verificationCode.value.trim();
+
+  if (!/^\d{6}$/.test(code)) {
+    verificationMessage.textContent = "Enter the 6-digit verification code.";
+    verificationMessage.classList.remove("success");
+    verificationCode.focus();
+    return;
+  }
+
+  verifyCodeButton.disabled = true;
+  verifyCodeButton.textContent = "Checking...";
+
+  try {
+    const result = await validateVerificationCode(loginState.email, code);
+
+    if (!result.ok) {
+      verificationMessage.classList.remove("success");
+      verificationMessage.textContent =
+        result.reason === "expired"
+          ? "This code has expired. Please request a new one."
+          : "The verification code is incorrect.";
+      return;
+    }
+
+    verificationMessage.textContent = "Verified. Opening your dashboard...";
+    verificationMessage.classList.add("success");
+
+    /*
+      Future production destination:
+      dashboard.html
+
+      Keep this line commented out until the dashboard exists.
+    */
+    // window.location.href = "dashboard.html";
+
+    showToast("Login verified. Dashboard will open here.");
+  } finally {
+    verifyCodeButton.disabled = false;
+    verifyCodeButton.textContent = "Log in";
+  }
+}
+
+async function resendLoginCode() {
+  if (!loginState.email) {
+    loginCodeStep.hidden = true;
+    loginEmailStep.hidden = false;
+    loginEmail.focus();
+    return;
+  }
+
+  verificationMessage.textContent = "Sending a new code...";
+  verificationMessage.classList.remove("success");
+
+  const result = await requestVerificationCode(loginState.email);
+
+  verificationMessage.textContent = result.ok
+    ? "A new verification code was requested."
+    : "We could not process your request. Please try again.";
+
+  verificationMessage.classList.toggle("success", result.ok);
+  verificationCode.value = "";
+  verificationCode.focus();
+}
+
+function useAnotherEmail() {
+  loginCodeStep.hidden = true;
+  loginEmailStep.hidden = false;
+  verificationCode.value = "";
+  verificationMessage.textContent = "";
+  loginEmailMessage.textContent = "";
+  loginEmail.select();
+}
+
+openLoginButton.addEventListener("click", openLoginModal);
+closeLoginButton.addEventListener("click", closeLoginModal);
+sendCodeButton.addEventListener("click", sendLoginCode);
+verifyCodeButton.addEventListener("click", verifyLoginCode);
+resendCodeButton.addEventListener("click", resendLoginCode);
+changeEmailButton.addEventListener("click", useAnotherEmail);
+
+loginModal.addEventListener("click", (event) => {
+  if (event.target.dataset.closeLogin === "true") {
+    closeLoginModal();
+  }
+});
+
+loginEmail.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    sendLoginCode();
+  }
+});
+
+verificationCode.addEventListener("input", () => {
+  verificationCode.value = verificationCode.value
+    .replace(/\D/g, "")
+    .slice(0, 6);
+});
+
+verificationCode.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    verifyLoginCode();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !loginModal.hidden) {
+    closeLoginModal();
+  }
+});
