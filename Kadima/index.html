@@ -11,7 +11,7 @@
   <main class="screen">
     <aside class="left-panel">
       <div class="logo-wrap">
-        <img src="assets/kadima-logo-original.png" alt="Kadima" class="logo" />
+        <img src="assets/kadima-logo-original.jpeg" alt="Kadima" class="logo" />
       </div>
 
       <div class="hero-copy">
@@ -140,22 +140,44 @@
               </div>
             </div>
 
-            <label class="country-search">
-              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
-              <input id="countryInput" type="text" placeholder="Type the country where you live" autocomplete="country-name" />
-            </label>
+            <div class="country-selector" id="countrySelector">
+              <label class="country-search" for="countryInput">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+                <input
+                  id="countryInput"
+                  type="text"
+                  placeholder="Type or select the country where you live"
+                  autocomplete="off"
+                  aria-autocomplete="list"
+                  aria-controls="countryResults"
+                  aria-expanded="false"
+                />
+              </label>
+
+              <div
+                id="countryResults"
+                class="country-results"
+                role="listbox"
+                aria-label="Valid countries"
+                hidden
+              ></div>
+
+              <p id="countryHint" class="country-hint" aria-live="polite">
+                Select a country from the list to confirm your location.
+              </p>
+            </div>
 
             <div class="popular-label">MOST SELECTED COUNTRIES</div>
 
             <div class="country-grid">
-              <button type="button" class="country-btn" data-country="Brazil">🇧🇷 Brazil</button>
-              <button type="button" class="country-btn" data-country="Mexico">🇲🇽 Mexico</button>
-              <button type="button" class="country-btn" data-country="Argentina">🇦🇷 Argentina</button>
-              <button type="button" class="country-btn" data-country="Colombia">🇨🇴 Colombia</button>
-              <button type="button" class="country-btn" data-country="Chile">🇨🇱 Chile</button>
-              <button type="button" class="country-btn" data-country="Peru">🇵🇪 Peru</button>
-              <button type="button" class="country-btn wide" data-country="United States">🇺🇸 United States</button>
-              <button type="button" class="country-btn wide" data-country="Other">🌐 Other countries</button>
+              <button type="button" class="country-btn" data-country="Brazil" data-code="BR">🇧🇷 Brazil</button>
+              <button type="button" class="country-btn" data-country="Mexico" data-code="MX">🇲🇽 Mexico</button>
+              <button type="button" class="country-btn" data-country="Argentina" data-code="AR">🇦🇷 Argentina</button>
+              <button type="button" class="country-btn" data-country="Colombia" data-code="CO">🇨🇴 Colombia</button>
+              <button type="button" class="country-btn" data-country="Chile" data-code="CL">🇨🇱 Chile</button>
+              <button type="button" class="country-btn" data-country="Peru" data-code="PE">🇵🇪 Peru</button>
+              <button type="button" class="country-btn wide" data-country="United States" data-code="US">🇺🇸 United States</button>
+              <button type="button" class="country-btn wide" id="otherCountriesButton">🌐 Other countries</button>
             </div>
           </section>
         </div>

@@ -47,3 +47,25 @@ English is preselected by default, but the user may choose Portuguese or Spanish
 `assets/journey-visual-reference.png` is now cropped directly from the supplied
 reference screen. It replaces the previous recreated SVG, so the road/map visual
 matches the approved mockup itself rather than an approximation.
+
+
+## Country selector update
+
+The location field now only accepts a country selected from the valid country list.
+
+- Popular-country buttons still select immediately.
+- Clicking **Other countries** opens the searchable country list.
+- Typing filters the list but does **not** validate the location by itself.
+- The user must click a valid country (or use the keyboard and press Enter).
+- `Continue` and `Skip journey` stay disabled until a valid country is selected.
+- The saved onboarding object now also contains `countryCode` (ISO alpha-2), for example:
+
+```json
+{
+  "language": "en",
+  "location": "Israel",
+  "countryCode": "IL"
+}
+```
+
+The `countryCode` will be useful later for geographic job matching.
