@@ -3,185 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Kadima — intelligent career management and job matching." />
-  <title>Kadima | Your Career Journey</title>
+  <meta name="description" content="Kadima intelligent career management and job matching." />
+  <title>Kadima | Start Your Journey</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="app-shell">
-    <aside class="brand-panel">
-      <div class="brand">
-        <img src="assets/kadima-logo.jpeg" alt="Kadima" class="brand-logo" />
+  <main class="screen">
+    <aside class="left-panel">
+      <div class="logo-wrap">
+        <img src="assets/kadima-logo-original.png" alt="Kadima" class="logo" />
       </div>
 
-      <div class="brand-content">
-        <span class="eyebrow">YOUR CAREER. YOUR NEXT MOVE.</span>
-        <h1>Your journey to the right opportunity starts here.</h1>
+      <div class="hero-copy">
+        <h1>Your journey<br>to the best<br><span>opportunities</span></h1>
+        <div class="accent"></div>
         <p>
-          Kadima gets to know your skills, experience, education and goals
-          before connecting you with opportunities that truly fit.
+          We want to get to know you better so we can connect you with
+          opportunities that truly match your profile.
         </p>
+      </div>
 
-        <div class="benefit-list">
-          <div class="benefit">
-            <span class="benefit-icon">✦</span>
-            <div>
-              <strong>Smart matching</strong>
-              <span>Your skills are compared with real job requirements.</span>
-            </div>
+      <div class="journey-art" aria-hidden="true"></div>
+
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon green">
+            <svg viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3v1a3 3 0 0 0-2 3 3 3 0 0 0 2 3v2a3 3 0 0 0 3 3M15 4a3 3 0 0 1 3 3v1a3 3 0 0 1 2 3 3 3 0 0 1-2 3v2a3 3 0 0 1-3 3M9 7v10M15 7v10M9 10h6M9 14h6"/></svg>
           </div>
-          <div class="benefit">
-            <span class="benefit-icon">↗</span>
-            <div>
-              <strong>Less searching, more finding</strong>
-              <span>Discover opportunities you may not find by job title alone.</span>
-            </div>
-          </div>
-          <div class="benefit">
-            <span class="benefit-icon">✓</span>
-            <div>
-              <strong>A profile that evolves</strong>
-              <span>Your information can become a tailored resume and cover letter.</span>
-            </div>
+          <div>
+            <strong>AI that understands you</strong>
+            <span>We analyze your skills and experience to find the right opportunities.</span>
           </div>
         </div>
-      </div>
 
-      <div class="brand-footer">
-        <span>Intelligent career matching</span>
-        <span class="footer-dot"></span>
-        <span>Built for people, not forms</span>
+        <div class="benefit">
+          <div class="benefit-icon blue">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M17 7l4-4M18 3h3v3"/></svg>
+          </div>
+          <div>
+            <strong>Smart matches</strong>
+            <span>We compare your profile with job requirements and calculate your fit.</span>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon green">
+            <svg viewBox="0 0 24 24"><path d="M5 19 19 5"/><path d="M9 5h10v10"/></svg>
+          </div>
+          <div>
+            <strong>Your future, now</strong>
+            <span>Save time and focus on the opportunities that matter.</span>
+          </div>
+        </div>
       </div>
     </aside>
 
-    <section class="journey-panel">
-      <header class="journey-header">
-        <div class="journey-title">
-          <span class="spark">✦</span>
+    <section class="content-panel">
+      <header class="content-header">
+        <div class="welcome">
+          <div class="welcome-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3l1.6 5.2L19 10l-5.4 1.8L12 17l-1.6-5.2L5 10l5.4-1.8L12 3Z"/></svg>
+          </div>
           <div>
-            <strong id="journeyHeading">Welcome to Kadima!</strong>
-            <span id="journeySubheading">Let's start your journey</span>
+            <strong>Welcome to Kadima!</strong>
+            <span>Let's start your journey in 6 steps</span>
           </div>
         </div>
 
-        <div class="progress" aria-label="Onboarding progress">
-          <div class="progress-step active">1</div>
-          <div class="progress-line"></div>
-          <div class="progress-step">2</div>
-          <div class="progress-line"></div>
-          <div class="progress-step">3</div>
-          <div class="progress-line"></div>
-          <div class="progress-step">4</div>
-          <div class="progress-line"></div>
-          <div class="progress-step">5</div>
-          <div class="progress-line"></div>
-          <div class="progress-step">6</div>
+        <div class="progress" aria-label="Journey progress">
+          <div class="p-item active">
+            <div class="circle">1</div>
+            <span>Start</span>
+          </div>
+          <div class="line active-line"></div>
+          <div class="p-item"><div class="circle">2</div><span>Personal</span></div>
+          <div class="line"></div>
+          <div class="p-item"><div class="circle">3</div><span>Profile</span></div>
+          <div class="line"></div>
+          <div class="p-item"><div class="circle">4</div><span>Experience</span></div>
+          <div class="line"></div>
+          <div class="p-item"><div class="circle">5</div><span>Education</span></div>
+          <div class="line"></div>
+          <div class="p-item"><div class="circle">6</div><span>Skills</span></div>
         </div>
 
-        <button id="skipButton" class="skip-button" type="button" disabled>
-          Skip journey
-        </button>
+        <button id="skipButton" class="skip-top" type="button" disabled>Skip journey</button>
       </header>
 
-      <div class="journey-content">
-        <div class="content-heading">
-          <span class="step-label">STEP 1 · LET'S GET STARTED</span>
-          <h2>A couple of quick things first.</h2>
-          <p>
-            These two answers help Kadima understand how to communicate with
-            you and which opportunities can actually be relevant to you.
-          </p>
+      <div class="content-body">
+        <div class="page-intro">
+          <h2>To get started, we need a few basic details</h2>
+          <p>It's quick, simple, and you can edit everything later. Let's go! 🚀</p>
         </div>
 
-        <div class="question-grid">
-          <section class="question-card" aria-labelledby="languageTitle">
-            <div class="question-number blue">1</div>
-            <div class="question-copy">
-              <h3 id="languageTitle">What language would you like to use?</h3>
-              <p>You can change this anytime.</p>
+        <div class="cards-grid">
+          <section class="info-card">
+            <div class="card-title-row">
+              <div class="round-icon blue">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3c-2.4 2.5-3.6 5.5-3.6 9S9.6 18.5 12 21"/></svg>
+              </div>
+              <div class="small-number blue-bg">1</div>
+              <div>
+                <h3>Which language would you like to use?</h3>
+                <p>You can change this at any time.</p>
+              </div>
             </div>
 
-            <div class="choice-list" id="languageChoices">
-              <button class="choice selected" type="button" data-language="en">
-                <span class="choice-flag">🇺🇸</span>
-                <span class="choice-text">
-                  <strong>English</strong>
-                  <small>Let's go! 🚀</small>
-                </span>
-                <span class="choice-check">✓</span>
+            <div class="language-list">
+              <button class="lang-option selected" data-language="en" type="button">
+                <span class="flag">🇺🇸</span>
+                <span class="lang-copy"><strong>English</strong><small>Let's go! 🚀</small></span>
+                <span class="radio">✓</span>
               </button>
-
-              <button class="choice" type="button" data-language="pt">
-                <span class="choice-flag">🇧🇷</span>
-                <span class="choice-text">
-                  <strong>Português</strong>
-                  <small>Vamos nessa! 👋</small>
-                </span>
-                <span class="choice-check">✓</span>
+              <button class="lang-option" data-language="pt" type="button">
+                <span class="flag">🇧🇷</span>
+                <span class="lang-copy"><strong>Português</strong><small>Vamos nessa! 👋</small></span>
+                <span class="radio">✓</span>
               </button>
-
-              <button class="choice" type="button" data-language="es">
-                <span class="choice-flag">🇪🇸</span>
-                <span class="choice-text">
-                  <strong>Español</strong>
-                  <small>¡Vamos allá! 💪</small>
-                </span>
-                <span class="choice-check">✓</span>
+              <button class="lang-option" data-language="es" type="button">
+                <span class="flag">🇪🇸</span>
+                <span class="lang-copy"><strong>Español</strong><small>¡Vamos allá! 💪</small></span>
+                <span class="radio">✓</span>
               </button>
             </div>
           </section>
 
-          <section class="question-card" aria-labelledby="locationTitle">
-            <div class="question-number green">2</div>
-            <div class="question-copy">
-              <h3 id="locationTitle">Where are you currently based?</h3>
-              <p>
-                Your location matters for on-site, hybrid and location-restricted
-                remote opportunities.
-              </p>
+          <section class="info-card">
+            <div class="card-title-row">
+              <div class="round-icon green">
+                <svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              </div>
+              <div class="small-number green-bg">2</div>
+              <div>
+                <h3>Where are you currently located?</h3>
+                <p>This information helps us find the right opportunities for you.</p>
+              </div>
             </div>
 
-            <label class="search-box" for="countryInput">
-              <span>⌕</span>
-              <input
-                id="countryInput"
-                type="text"
-                autocomplete="country-name"
-                placeholder="Type the country where you live"
-              />
+            <label class="country-search">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+              <input id="countryInput" type="text" placeholder="Type the country where you live" autocomplete="country-name" />
             </label>
 
-            <div class="popular-title">Popular choices</div>
-            <div class="country-grid" id="countryChoices">
-              <button class="country-choice" type="button" data-country="Brazil">🇧🇷 Brazil</button>
-              <button class="country-choice" type="button" data-country="Mexico">🇲🇽 Mexico</button>
-              <button class="country-choice" type="button" data-country="Argentina">🇦🇷 Argentina</button>
-              <button class="country-choice" type="button" data-country="Colombia">🇨🇴 Colombia</button>
-              <button class="country-choice" type="button" data-country="Chile">🇨🇱 Chile</button>
-              <button class="country-choice" type="button" data-country="Peru">🇵🇪 Peru</button>
-              <button class="country-choice" type="button" data-country="United States">🇺🇸 United States</button>
-              <button class="country-choice" type="button" data-country="Other">🌎 Other country</button>
+            <div class="popular-label">MOST SELECTED COUNTRIES</div>
+
+            <div class="country-grid">
+              <button type="button" class="country-btn" data-country="Brazil">🇧🇷 Brazil</button>
+              <button type="button" class="country-btn" data-country="Mexico">🇲🇽 Mexico</button>
+              <button type="button" class="country-btn" data-country="Argentina">🇦🇷 Argentina</button>
+              <button type="button" class="country-btn" data-country="Colombia">🇨🇴 Colombia</button>
+              <button type="button" class="country-btn" data-country="Chile">🇨🇱 Chile</button>
+              <button type="button" class="country-btn" data-country="Peru">🇵🇪 Peru</button>
+              <button type="button" class="country-btn wide" data-country="United States">🇺🇸 United States</button>
+              <button type="button" class="country-btn wide" data-country="Other">🌐 Other countries</button>
             </div>
-            <p id="locationFeedback" class="location-feedback" aria-live="polite"></p>
           </section>
         </div>
 
         <div class="security-bar">
-          <div class="security-icon">♢</div>
-          <div>
-            <strong>Your information stays yours.</strong>
-            <p>
-              We use your answers to understand your profile and improve job matching.
-              You can edit or complete your information later.
-            </p>
+          <div class="security-left">
+            <div class="shield">
+              <svg viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5.3-3.4 8.6-8 10-4.6-1.4-8-4.7-8-10V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>
+            </div>
+            <div>
+              <strong>Your information is secure</strong>
+              <span>We protect your personal data and use it only to improve your experience.</span>
+            </div>
           </div>
-        </div>
 
-        <div class="action-row">
-          <div class="requirement-note" id="requirementNote">
-            Select your language and location to unlock the next step.
-          </div>
-          <button id="continueButton" class="primary-button" type="button" disabled>
+          <button id="continueButton" class="continue-btn" type="button" disabled>
             Continue <span>→</span>
           </button>
         </div>

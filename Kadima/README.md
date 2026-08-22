@@ -1,57 +1,49 @@
-# Kadima — Onboarding / Main Page
+# Kadima — Onboarding Screen
 
-This folder contains the first Web onboarding page for Kadima.
+This version follows the approved visual layout supplied in the reference image while keeping the interface in English and using the original Kadima logo.
 
 ## Files
 
-- `index.html` — main onboarding page.
-- `styles.css` — Kadima visual identity and responsive layout.
-- `app.js` — onboarding state, language/location selection, localStorage and navigation rules.
-- `assets/kadima-logo.jpeg` — supplied Kadima logo.
+```text
+Kadima/
+├── index.html
+├── styles.css
+├── app.js
+├── README.md
+└── assets/
+    ├── kadima-logo-original.jpeg
+    └── journey-visual.svg
+```
 
-## Kadima color palette
-
-- Navy: `#0B1F3A`
-- Vibrant blue: `#1677FF`
-- Innovation green: `#00C896`
-- White: `#FFFFFF`
-- Light gray: `#F5F7FA`
-
-## Mandatory first-step rule
+## Main rule
 
 The user cannot:
 
-- Continue to the next onboarding step; or
-- Skip the onboarding journey
+- continue to the next screen; or
+- skip the onboarding journey
 
-until both of these values have been provided:
+until both mandatory values are provided:
 
-1. Communication language
-2. Current country/location
+1. communication language
+2. current physical location
 
-The rule is implemented in `app.js` by `isReady()` and is checked again inside both navigation handlers.
+English is preselected by default, but the user may choose Portuguese or Spanish.
 
-## Local testing
+## Main Kadima colors
 
-Open `index.html` in a browser, or use VS Code Live Server.
+- `#0B1F3A` — main background
+- `#1677FF` — primary blue
+- `#00C896` — innovation green
+- `#FFFFFF` — white
+- `#F5F7FA` — light gray
 
-The selected language and location are stored in the browser's `localStorage` under:
+## Recommended local folder
 
-`kadimaOnboarding`
+`D:\Documentos\Developers Institute Projects\DI_Bootcamp\Kadima`
 
-## Git
 
-Recommended branch:
+## Journey visual correction
 
-`main`
-
-Suggested initial commands:
-
-```bash
-cd "D:\Documentos\Developers Institute Projects\DI_Bootcamp\Kadima"
-git add .
-git commit -m "Create Kadima onboarding main page"
-git push origin main
-```
-
-The next onboarding screen can later be connected to the existing `continueButton` handler in `app.js`.
+`assets/journey-visual-reference.png` is now cropped directly from the supplied
+reference screen. It replaces the previous recreated SVG, so the road/map visual
+matches the approved mockup itself rather than an approximation.
