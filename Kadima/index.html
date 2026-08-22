@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kadima — intelligent career management and job matching." />
+  <title>Kadima | Your Career Journey</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="brand-panel">
+      <div class="brand">
+        <img src="assets/kadima-logo.jpeg" alt="Kadima" class="brand-logo" />
+      </div>
+
+      <div class="brand-content">
+        <span class="eyebrow">YOUR CAREER. YOUR NEXT MOVE.</span>
+        <h1>Your journey to the right opportunity starts here.</h1>
+        <p>
+          Kadima gets to know your skills, experience, education and goals
+          before connecting you with opportunities that truly fit.
+        </p>
+
+        <div class="benefit-list">
+          <div class="benefit">
+            <span class="benefit-icon">✦</span>
+            <div>
+              <strong>Smart matching</strong>
+              <span>Your skills are compared with real job requirements.</span>
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">↗</span>
+            <div>
+              <strong>Less searching, more finding</strong>
+              <span>Discover opportunities you may not find by job title alone.</span>
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">✓</span>
+            <div>
+              <strong>A profile that evolves</strong>
+              <span>Your information can become a tailored resume and cover letter.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-footer">
+        <span>Intelligent career matching</span>
+        <span class="footer-dot"></span>
+        <span>Built for people, not forms</span>
+      </div>
+    </aside>
+
+    <section class="journey-panel">
+      <header class="journey-header">
+        <div class="journey-title">
+          <span class="spark">✦</span>
+          <div>
+            <strong id="journeyHeading">Welcome to Kadima!</strong>
+            <span id="journeySubheading">Let's start your journey</span>
+          </div>
+        </div>
+
+        <div class="progress" aria-label="Onboarding progress">
+          <div class="progress-step active">1</div>
+          <div class="progress-line"></div>
+          <div class="progress-step">2</div>
+          <div class="progress-line"></div>
+          <div class="progress-step">3</div>
+          <div class="progress-line"></div>
+          <div class="progress-step">4</div>
+          <div class="progress-line"></div>
+          <div class="progress-step">5</div>
+          <div class="progress-line"></div>
+          <div class="progress-step">6</div>
+        </div>
+
+        <button id="skipButton" class="skip-button" type="button" disabled>
+          Skip journey
+        </button>
+      </header>
+
+      <div class="journey-content">
+        <div class="content-heading">
+          <span class="step-label">STEP 1 · LET'S GET STARTED</span>
+          <h2>A couple of quick things first.</h2>
+          <p>
+            These two answers help Kadima understand how to communicate with
+            you and which opportunities can actually be relevant to you.
+          </p>
+        </div>
+
+        <div class="question-grid">
+          <section class="question-card" aria-labelledby="languageTitle">
+            <div class="question-number blue">1</div>
+            <div class="question-copy">
+              <h3 id="languageTitle">What language would you like to use?</h3>
+              <p>You can change this anytime.</p>
+            </div>
+
+            <div class="choice-list" id="languageChoices">
+              <button class="choice selected" type="button" data-language="en">
+                <span class="choice-flag">🇺🇸</span>
+                <span class="choice-text">
+                  <strong>English</strong>
+                  <small>Let's go! 🚀</small>
+                </span>
+                <span class="choice-check">✓</span>
+              </button>
+
+              <button class="choice" type="button" data-language="pt">
+                <span class="choice-flag">🇧🇷</span>
+                <span class="choice-text">
+                  <strong>Português</strong>
+                  <small>Vamos nessa! 👋</small>
+                </span>
+                <span class="choice-check">✓</span>
+              </button>
+
+              <button class="choice" type="button" data-language="es">
+                <span class="choice-flag">🇪🇸</span>
+                <span class="choice-text">
+                  <strong>Español</strong>
+                  <small>¡Vamos allá! 💪</small>
+                </span>
+                <span class="choice-check">✓</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="question-card" aria-labelledby="locationTitle">
+            <div class="question-number green">2</div>
+            <div class="question-copy">
+              <h3 id="locationTitle">Where are you currently based?</h3>
+              <p>
+                Your location matters for on-site, hybrid and location-restricted
+                remote opportunities.
+              </p>
+            </div>
+
+            <label class="search-box" for="countryInput">
+              <span>⌕</span>
+              <input
+                id="countryInput"
+                type="text"
+                autocomplete="country-name"
+                placeholder="Type the country where you live"
+              />
+            </label>
+
+            <div class="popular-title">Popular choices</div>
+            <div class="country-grid" id="countryChoices">
+              <button class="country-choice" type="button" data-country="Brazil">🇧🇷 Brazil</button>
+              <button class="country-choice" type="button" data-country="Mexico">🇲🇽 Mexico</button>
+              <button class="country-choice" type="button" data-country="Argentina">🇦🇷 Argentina</button>
+              <button class="country-choice" type="button" data-country="Colombia">🇨🇴 Colombia</button>
+              <button class="country-choice" type="button" data-country="Chile">🇨🇱 Chile</button>
+              <button class="country-choice" type="button" data-country="Peru">🇵🇪 Peru</button>
+              <button class="country-choice" type="button" data-country="United States">🇺🇸 United States</button>
+              <button class="country-choice" type="button" data-country="Other">🌎 Other country</button>
+            </div>
+            <p id="locationFeedback" class="location-feedback" aria-live="polite"></p>
+          </section>
+        </div>
+
+        <div class="security-bar">
+          <div class="security-icon">♢</div>
+          <div>
+            <strong>Your information stays yours.</strong>
+            <p>
+              We use your answers to understand your profile and improve job matching.
+              You can edit or complete your information later.
+            </p>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <div class="requirement-note" id="requirementNote">
+            Select your language and location to unlock the next step.
+          </div>
+          <button id="continueButton" class="primary-button" type="button" disabled>
+            Continue <span>→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
