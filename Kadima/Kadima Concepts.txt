@@ -1,0 +1,255 @@
+Concordo com a direção geral, mas faria uma correção importante: **Profile e Skills não podem virar duas etapas perguntando essencialmente a mesma coisa**.
+
+Eu daria a cada uma uma missão muito clara:
+
+**Profile = entender a identidade e o contexto profissional.**
+**Skills = inventariar e validar capacidades específicas.**
+
+Então, na Tela 3, eu evitaria perguntas como “Which tools do you know?”, “Which programming languages?”, “Which methodologies?” etc. Isso pertence à etapa Skills. Aqui queremos descobrir **como o usuário se posiciona profissionalmente** para que, depois, Skills aprofunde o que foi descoberto.
+
+### Uma experiência mais interessante para Profile
+
+Depois dos dados cadastrais — telefone e links — eu começaria com:
+
+**“Let's understand where you are in your career.”**
+
+E apresentaria escolhas rápidas:
+
+`Experienced professional`
+`Early-career professional`
+`Student`
+`Looking for my first job`
+`Changing careers`
+`Returning to the job market`
+
+Isso não é só informação cadastral. Essa resposta muda o **tipo de conversa que a IA terá com aquela pessoa**.
+
+A próxima pergunta seria uma das mais importantes:
+
+**“What best describes the professional world you belong to?”**
+
+Mas aqui eu evitaria uma lista gigantesca de profissões.
+
+Poderíamos mostrar grandes universos:
+
+`Technology` `Sales & Business` `Finance` `Healthcare` `Engineering` `Marketing` `Operations` `Education` `Legal` `Creative` `Hospitality` `Other`
+
+E permitir até 2 ou 3 escolhas.
+
+### Aí começa a parte inteligente
+
+Suponha que alguém escolha:
+
+`Technology + Sales & Business`
+
+Kadima poderia responder visualmente:
+
+> **Got it. Let's narrow that down.**
+
+E apresentar:
+
+`Enterprise Sales`
+`Business Development`
+`Account Management`
+`Customer Success`
+`Pre-Sales`
+`Sales Operations`
+`Partnerships`
+`Sales Leadership`
+
+Isso já começa a produzir keywords importantes sem perguntar cargo.
+
+E aqui existe uma diferença conceitual que considero muito importante para o Kadima:
+
+> **Não perguntar primeiro “What is your job title?”**
+
+Job title é justamente uma das coisas que queremos deixar de usar como principal mecanismo de matching.
+
+Uma pessoa pode ter sido `Account Executive`, mas possuir atributos para vagas chamadas `Business Development Manager`, `Enterprise Account Manager`, `Sales Executive`, `Partnership Manager` etc.
+
+Então o Kadima deveria descobrir primeiro **o que a pessoa representa profissionalmente**, e não como a empresa anterior resolveu chamar seu cargo.
+
+---
+
+### Uma pergunta que eu acrescentaria e que acho mais valiosa que “tell us about yourself”
+
+Depois:
+
+**“What kind of work do you spend most of your time doing?”**
+
+E a IA gera alternativas baseadas nas respostas anteriores.
+
+Para Sales:
+
+`Finding new customers`
+`Managing existing accounts`
+`Closing complex deals`
+`Growing customer revenue`
+`Building partnerships`
+`Leading sales teams`
+`Supporting technical sales`
+`Planning sales strategy`
+
+Para um estudante de software:
+
+`Building applications`
+`Working with data`
+`Creating websites`
+`Learning AI`
+`Solving coding problems`
+`Building personal projects`
+
+Para um enfermeiro seriam outras completamente diferentes.
+
+Essa pergunta começa a revelar **função real**, não título.
+
+---
+
+## Eu colocaria uma pergunta sobre contexto
+
+Há um tipo de informação que Skills sozinho não captura bem:
+
+**“What kind of environments have you worked in?”**
+
+Exemplos adaptativos:
+
+`B2B` `B2C` `Enterprise` `SMB` `Startup` `Multinational` `Public sector` `Regulated industry`
+
+Para outras profissões a IA pode produzir contextos completamente diferentes.
+
+Isso é valioso para matching.
+
+Uma vaga pode pedir:
+
+> “Experience selling enterprise SaaS solutions to financial institutions.”
+
+Não basta encontrar:
+
+`Sales + SaaS`
+
+Teríamos potencialmente:
+
+`Enterprise + B2B + SaaS + Financial Services`
+
+Profile começa a fornecer contexto sem pedir um parágrafo.
+
+---
+
+## E eu faria algo diferente na pergunta sobre carreira futura
+
+Eu **não perguntaria “What job are you looking for?”**.
+
+Isso voltaria ao paradigma que queremos combater.
+
+Perguntaria:
+
+### **“What would you like to do more of in your next opportunity?”**
+
+A IA oferece escolhas baseadas no perfil:
+
+`Work with larger customers`
+`Lead people`
+`Close complex deals`
+`Work with technology`
+`Build products`
+`Work internationally`
+`Analyze data`
+`Manage projects`
+
+Essa informação é extremamente interessante porque posteriormente podemos ter dois scores:
+
+**Qualification Match** — consigo fazer esse trabalho?
+
+**Career Fit** — esse trabalho me leva para onde quero ir?
+
+Esse segundo indicador poderia se tornar outro diferencial do Kadima.
+
+Uma vaga pode ter:
+
+**92% Qualification Match**
+
+mas apenas:
+
+**54% Career Direction Fit**
+
+Isso é mais sofisticado do que simplesmente dizer “Você combina 87% com esta vaga”.
+
+---
+
+## Onde Profile deve terminar
+
+Eu faria a IA buscar cinco blocos — e parar:
+
+```text
+CAREER STAGE
+     ✓
+
+PROFESSIONAL DOMAIN
+     ✓
+
+FUNCTIONAL IDENTITY
+     ✓
+
+WORK CONTEXT
+     ✓
+
+CAREER DIRECTION
+     ✓
+```
+
+Quando os cinco estiverem suficientemente definidos, **Profile acabou**.
+
+Não precisamos perseguir artificialmente “80%”, nem necessariamente fazer oito perguntas. Pode acontecer em quatro perguntas para uma pessoa e seis para outra.
+
+O critério deveria ser:
+
+> **“Já consigo descrever onde essa pessoa está profissionalmente, o que ela faz e para onde quer ir?”**
+
+Se sim → acabou.
+
+Skills entra depois perguntando:
+
+> **“Now let's discover what you know how to do.”**
+
+E aí sim aprofundamos hard skills, ferramentas, tecnologias, metodologias, conhecimentos específicos, soft skills relevantes etc.
+
+### Um detalhe de CX que eu gostaria de experimentar
+
+Em vez de mostrar:
+
+**Question 3 of 7**
+
+eu não mostraria quantidade de perguntas, porque a jornada é adaptativa.
+
+Mostraria uma espécie de mapa sendo completado:
+
+**Kadima is building your professional fingerprint**
+
+`Identity ✓` → `Context ✓` → `Direction ●` → `Profile`
+
+Conforme responde, partes do “fingerprint” aparecem.
+
+No final:
+
+### **Your Professional Fingerprint**
+
+`Technology`
+`Enterprise Sales`
+`B2B`
+`SaaS`
+`International Markets`
+`Account Growth`
+`Complex Deals`
+
+E:
+
+**“Does this feel like you?”**
+
+`Yes, that's me`
+`Almost — adjust it`
+
+Isso é muito mais interessante do que terminar a etapa mostrando um formulário preenchido.
+
+E o **Professional Fingerprint não é ainda o currículo**. É uma representação estruturada da identidade profissional que posteriormente será concatenada com **Experience + Education + Skills** para formar o verdadeiro perfil inteligente do Kadima.
+
+Acho que aqui começamos a chegar em algo que realmente se distancia de LinkedIn/Indeed: **Kadima não pergunta ao usuário qual vaga ele procura; progressivamente descobre o que ele sabe fazer, em que contexto fez isso e para onde quer ir.**

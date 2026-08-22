@@ -20,8 +20,289 @@ const toast = document.getElementById("toast");
 let activeResultIndex = -1;
 let renderedCountries = [];
 
+/* =========================================================
+   TRANSLATIONS
+   Translation changes text only. It NEVER changes location,
+   countryCode, readiness, or country-selection event handlers.
+   ========================================================= */
+
+const uiText = {
+  en: {
+    heroTitle: 'Your journey<br>to the best<br><span>opportunities</span>',
+    heroDescription: 'We want to get to know you better so we can connect you with opportunities that truly match your profile.',
+    benefit1Title: 'AI that understands you',
+    benefit1Text: 'We analyze your skills and experience to find the right opportunities.',
+    benefit2Title: 'Smart matches',
+    benefit2Text: 'We compare your profile with job requirements and calculate your fit.',
+    benefit3Title: 'Your future, now',
+    benefit3Text: 'Save time and focus on the opportunities that matter.',
+    welcomeTitle: 'Welcome to Kadima!',
+    welcomeSubtitle: "Let's start your journey in 6 steps",
+    progress: ['Start', 'Personal', 'Profile', 'Experience', 'Education', 'Skills'],
+    skip: 'Skip journey',
+    introTitle: 'To get started, we need a few basic details',
+    introSubtitle: "It's quick, simple, and you can edit everything later. Let's go! 🚀",
+    languageTitle: 'Which language would you like to use?',
+    languageHelp: 'You can change this at any time.',
+    locationTitle: 'Where are you currently located?',
+    locationHelp: 'This information helps us find the right opportunities for you.',
+    countryPlaceholder: 'Type or select the country where you live',
+    countryHint: 'Select a country from the list to confirm your location.',
+    popular: 'MOST SELECTED COUNTRIES',
+    otherCountries: '🌐 Other countries',
+    securityTitle: 'Your information is secure',
+    securityText: 'We protect your personal data and use it only to improve your experience.',
+    continue: 'Continue',
+    existing: 'Already have an account?',
+    login: 'Log in',
+    noCountry: 'No valid country found. Try another search.',
+    chooseCountry: 'Choose your country from the valid country list below.',
+    selectCountry: 'Select one of the valid countries shown below.',
+    countrySelected: name => `✓ ${name} selected`,
+    invalidLocation: 'Please select your language and a valid country first.',
+    basicSaved: 'Basic information saved. You can complete the journey later.',
+    loginTitle: 'Welcome back',
+    loginIntro: 'Enter the email address connected to your Kadima account.',
+    emailLabel: 'Email address',
+    sendCode: 'Send verification code',
+    checkEmail: 'Check your email',
+    codeIntro: 'If this email is registered, we sent a 6-digit verification code.',
+    codeLabel: 'Verification code',
+    resend: 'Resend code',
+    anotherEmail: 'Use another email',
+    invalidEmail: 'Please enter a valid email address.',
+    enterCode: 'Enter the 6-digit verification code.',
+    expired: 'This code has expired. Please request a new one.',
+    wrongCode: 'The verification code is incorrect.',
+    verified: 'Verified. Opening your dashboard...',
+    dashboardPending: 'Login verified. Dashboard will open here.',
+    requestFailed: 'We could not process your request. Please try again.',
+    sending: 'Sending...',
+    checking: 'Checking...',
+    sendingNew: 'Sending a new code...',
+    newCode: 'A new verification code was requested.'
+  },
+  pt: {
+    heroTitle: 'Sua jornada<br>para as melhores<br><span>oportunidades</span>',
+    heroDescription: 'Queremos conhecer você melhor para conectá-lo a oportunidades que realmente combinam com o seu perfil.',
+    benefit1Title: 'IA que entende você',
+    benefit1Text: 'Analisamos suas habilidades e experiências para encontrar as oportunidades certas.',
+    benefit2Title: 'Matches inteligentes',
+    benefit2Text: 'Comparamos seu perfil com os requisitos das vagas e calculamos sua compatibilidade.',
+    benefit3Title: 'Seu futuro, agora',
+    benefit3Text: 'Economize tempo e foque nas oportunidades que realmente importam.',
+    welcomeTitle: 'Bem-vindo ao Kadima!',
+    welcomeSubtitle: 'Vamos começar sua jornada em 6 etapas',
+    progress: ['Início', 'Pessoal', 'Perfil', 'Experiência', 'Educação', 'Habilidades'],
+    skip: 'Pular jornada',
+    introTitle: 'Para começar, precisamos de algumas informações básicas',
+    introSubtitle: 'É rápido, simples e você poderá editar tudo depois. Vamos nessa! 🚀',
+    languageTitle: 'Em que idioma você quer usar a plataforma?',
+    languageHelp: 'Você pode alterar isso a qualquer momento.',
+    locationTitle: 'Onde você está localizado atualmente?',
+    locationHelp: 'Essa informação nos ajuda a encontrar as oportunidades certas para você.',
+    countryPlaceholder: 'Digite ou selecione o país onde você mora',
+    countryHint: 'Selecione um país da lista para confirmar sua localização.',
+    popular: 'PAÍSES MAIS SELECIONADOS',
+    otherCountries: '🌐 Outros países',
+    securityTitle: 'Suas informações estão seguras',
+    securityText: 'Protegemos seus dados pessoais e os usamos apenas para melhorar sua experiência.',
+    continue: 'Continuar',
+    existing: 'Já possui uma conta?',
+    login: 'Entrar',
+    noCountry: 'Nenhum país válido encontrado. Tente outra busca.',
+    chooseCountry: 'Escolha seu país na lista de países válidos abaixo.',
+    selectCountry: 'Selecione um dos países válidos exibidos abaixo.',
+    countrySelected: name => `✓ ${name} selecionado`,
+    invalidLocation: 'Selecione seu idioma e um país válido primeiro.',
+    basicSaved: 'Informações básicas salvas. Você pode concluir a jornada depois.',
+    loginTitle: 'Bem-vindo de volta',
+    loginIntro: 'Informe o e-mail associado à sua conta Kadima.',
+    emailLabel: 'Endereço de e-mail',
+    sendCode: 'Enviar código de verificação',
+    checkEmail: 'Verifique seu e-mail',
+    codeIntro: 'Se este e-mail estiver cadastrado, enviamos um código de verificação de 6 dígitos.',
+    codeLabel: 'Código de verificação',
+    resend: 'Reenviar código',
+    anotherEmail: 'Usar outro e-mail',
+    invalidEmail: 'Informe um endereço de e-mail válido.',
+    enterCode: 'Digite o código de verificação de 6 dígitos.',
+    expired: 'Este código expirou. Solicite um novo código.',
+    wrongCode: 'O código de verificação está incorreto.',
+    verified: 'Verificado. Abrindo seu dashboard...',
+    dashboardPending: 'Login verificado. O dashboard será aberto aqui.',
+    requestFailed: 'Não foi possível processar sua solicitação. Tente novamente.',
+    sending: 'Enviando...',
+    checking: 'Verificando...',
+    sendingNew: 'Enviando um novo código...',
+    newCode: 'Um novo código de verificação foi solicitado.'
+  },
+  es: {
+    heroTitle: 'Tu camino<br>hacia las mejores<br><span>oportunidades</span>',
+    heroDescription: 'Queremos conocerte mejor para conectarte con oportunidades que realmente encajen con tu perfil.',
+    benefit1Title: 'IA que te entiende',
+    benefit1Text: 'Analizamos tus habilidades y experiencia para encontrar las oportunidades adecuadas.',
+    benefit2Title: 'Matches inteligentes',
+    benefit2Text: 'Comparamos tu perfil con los requisitos de las vacantes y calculamos tu compatibilidad.',
+    benefit3Title: 'Tu futuro, ahora',
+    benefit3Text: 'Ahorra tiempo y concéntrate en las oportunidades que realmente importan.',
+    welcomeTitle: '¡Bienvenido a Kadima!',
+    welcomeSubtitle: 'Comencemos tu camino en 6 pasos',
+    progress: ['Inicio', 'Personal', 'Perfil', 'Experiencia', 'Educación', 'Habilidades'],
+    skip: 'Saltar recorrido',
+    introTitle: 'Para comenzar, necesitamos algunos datos básicos',
+    introSubtitle: 'Es rápido, sencillo y podrás editar todo más adelante. ¡Vamos! 🚀',
+    languageTitle: '¿En qué idioma quieres usar la plataforma?',
+    languageHelp: 'Puedes cambiarlo en cualquier momento.',
+    locationTitle: '¿Dónde estás ubicado actualmente?',
+    locationHelp: 'Esta información nos ayuda a encontrar las oportunidades adecuadas para ti.',
+    countryPlaceholder: 'Escribe o selecciona el país donde vives',
+    countryHint: 'Selecciona un país de la lista para confirmar tu ubicación.',
+    popular: 'PAÍSES MÁS SELECCIONADOS',
+    otherCountries: '🌐 Otros países',
+    securityTitle: 'Tu información está segura',
+    securityText: 'Protegemos tus datos personales y los usamos únicamente para mejorar tu experiencia.',
+    continue: 'Continuar',
+    existing: '¿Ya tienes una cuenta?',
+    login: 'Iniciar sesión',
+    noCountry: 'No se encontró un país válido. Intenta otra búsqueda.',
+    chooseCountry: 'Elige tu país de la lista de países válidos.',
+    selectCountry: 'Selecciona uno de los países válidos que aparecen abajo.',
+    countrySelected: name => `✓ ${name} seleccionado`,
+    invalidLocation: 'Selecciona primero tu idioma y un país válido.',
+    basicSaved: 'Información básica guardada. Puedes completar el recorrido más tarde.',
+    loginTitle: 'Bienvenido de nuevo',
+    loginIntro: 'Ingresa el correo electrónico asociado a tu cuenta de Kadima.',
+    emailLabel: 'Correo electrónico',
+    sendCode: 'Enviar código de verificación',
+    checkEmail: 'Revisa tu correo',
+    codeIntro: 'Si este correo está registrado, enviamos un código de verificación de 6 dígitos.',
+    codeLabel: 'Código de verificación',
+    resend: 'Reenviar código',
+    anotherEmail: 'Usar otro correo',
+    invalidEmail: 'Ingresa un correo electrónico válido.',
+    enterCode: 'Ingresa el código de verificación de 6 dígitos.',
+    expired: 'Este código ha expirado. Solicita uno nuevo.',
+    wrongCode: 'El código de verificación es incorrecto.',
+    verified: 'Verificado. Abriendo tu dashboard...',
+    dashboardPending: 'Inicio de sesión verificado. El dashboard se abrirá aquí.',
+    requestFailed: 'No pudimos procesar tu solicitud. Inténtalo de nuevo.',
+    sending: 'Enviando...',
+    checking: 'Verificando...',
+    sendingNew: 'Enviando un nuevo código...',
+    newCode: 'Se solicitó un nuevo código de verificación.'
+  }
+};
+
+function t() {
+  return uiText[state.language] || uiText.en;
+}
+
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
+function setHTML(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = value;
+}
+
+function applyLanguage(language) {
+  const text = uiText[language] || uiText.en;
+
+  document.documentElement.lang =
+    language === "pt" ? "pt-BR" : language === "es" ? "es" : "en";
+
+  setHTML("heroTitle", text.heroTitle);
+  setText("heroDescription", text.heroDescription);
+  setText("benefit1Title", text.benefit1Title);
+  setText("benefit1Text", text.benefit1Text);
+  setText("benefit2Title", text.benefit2Title);
+  setText("benefit2Text", text.benefit2Text);
+  setText("benefit3Title", text.benefit3Title);
+  setText("benefit3Text", text.benefit3Text);
+  setText("welcomeTitle", text.welcomeTitle);
+  setText("welcomeSubtitle", text.welcomeSubtitle);
+  setText("pageIntroTitle", text.introTitle);
+  setText("pageIntroSubtitle", text.introSubtitle);
+  setText("languageQuestionTitle", text.languageTitle);
+  setText("languageQuestionHelp", text.languageHelp);
+  setText("locationQuestionTitle", text.locationTitle);
+  setText("locationQuestionHelp", text.locationHelp);
+  setText("popularCountriesLabel", text.popular);
+  setText("securityTitle", text.securityTitle);
+  setText("securityText", text.securityText);
+  setText("existingUserText", text.existing);
+
+  const progressLabels = document.querySelectorAll(".progress .p-item > span");
+  progressLabels.forEach((label, index) => {
+    if (text.progress[index]) {
+      label.textContent = text.progress[index];
+    }
+  });
+
+  if (countryInput) countryInput.placeholder = text.countryPlaceholder;
+  if (otherCountriesButton) otherCountriesButton.textContent = text.otherCountries;
+  if (skipButton) skipButton.textContent = text.skip;
+
+  if (continueButton) {
+    continueButton.innerHTML = `${text.continue} <span>→</span>`;
+  }
+
+  if (!state.location && countryHint) {
+    countryHint.textContent = text.countryHint;
+    countryHint.className = "country-hint";
+  } else if (state.location && countryHint) {
+    countryHint.textContent = text.countrySelected(state.location);
+  }
+
+  const openLoginButton = document.getElementById("openLoginButton");
+  if (openLoginButton) openLoginButton.textContent = text.login;
+
+  const loginTitle = document.getElementById("loginTitle");
+  if (loginTitle) loginTitle.textContent = text.loginTitle;
+
+  const emailStep = document.getElementById("loginEmailStep");
+  if (emailStep) {
+    const intro = emailStep.querySelector(":scope > p");
+    const label = emailStep.querySelector(".login-field > span");
+    if (intro) intro.textContent = text.loginIntro;
+    if (label) label.textContent = text.emailLabel;
+  }
+
+  const codeStep = document.getElementById("loginCodeStep");
+  if (codeStep) {
+    const h2 = codeStep.querySelector("h2");
+    const label = codeStep.querySelector(".login-field > span");
+    if (h2) h2.textContent = text.checkEmail;
+    if (label) label.textContent = text.codeLabel;
+    setText("codeInstruction", text.codeIntro);
+  }
+
+  const sendCodeButton = document.getElementById("sendCodeButton");
+  const verifyCodeButton = document.getElementById("verifyCodeButton");
+  const resendCodeButton = document.getElementById("resendCodeButton");
+  const changeEmailButton = document.getElementById("changeEmailButton");
+
+  if (sendCodeButton && !sendCodeButton.disabled) sendCodeButton.textContent = text.sendCode;
+  if (verifyCodeButton && !verifyCodeButton.disabled) verifyCodeButton.textContent = text.login;
+  if (resendCodeButton) resendCodeButton.textContent = text.resend;
+  if (changeEmailButton) changeEmailButton.textContent = text.anotherEmail;
+}
+
+/* =========================================================
+   ONBOARDING STATE / COUNTRY SELECTION
+   This is based on the last version where both popular and
+   "Other countries" selections were confirmed working.
+   ========================================================= */
+
 function ready() {
-  return Boolean(state.language && state.location && state.countryCode);
+  return Boolean(
+    state.language &&
+    state.location.trim() &&
+    state.countryCode.trim()
+  );
 }
 
 function saveState() {
@@ -35,6 +316,8 @@ function refreshActions() {
 }
 
 function selectLanguage(language) {
+  if (!["en", "pt", "es"].includes(language)) return;
+
   state.language = language;
 
   languageButtons.forEach((button) => {
@@ -44,31 +327,40 @@ function selectLanguage(language) {
     );
   });
 
-  saveState();
+  /*
+    IMPORTANT:
+    Translation only changes text. It does not clear or rewrite location.
+  */
   applyLanguage(language);
+  saveState();
   refreshActions();
 }
 
 function setCountry(name, code, source = "list") {
-  state.location = name;
-  state.countryCode = code;
-  countryInput.value = name;
+  if (!name || !code) return;
+
+  state.location = String(name).trim();
+  state.countryCode = String(code).trim().toUpperCase();
+
+  countryInput.value = state.location;
+
+  const isPopular = Array.from(countryButtons).some(
+    (button) => button.dataset.country === state.location
+  );
 
   countryButtons.forEach((button) => {
     button.classList.toggle(
       "selected",
-      button.dataset.country === name
+      button.dataset.country === state.location
     );
   });
 
   otherCountriesButton.classList.toggle(
     "selected",
-    source === "other" || !Array.from(countryButtons).some(
-      (button) => button.dataset.country === name
-    )
+    source === "other" || !isPopular
   );
 
-  countryHint.textContent = currentText().selected(name);
+  countryHint.textContent = t().countrySelected(state.location);
   countryHint.className = "country-hint valid";
 
   closeCountryResults();
@@ -76,14 +368,14 @@ function setCountry(name, code, source = "list") {
   refreshActions();
 }
 
-function clearCountrySelection(message = "Select a country from the list to confirm your location.") {
+function clearCountrySelection(message) {
   state.location = "";
   state.countryCode = "";
 
   countryButtons.forEach((button) => button.classList.remove("selected"));
   otherCountriesButton.classList.remove("selected");
 
-  countryHint.textContent = message;
+  countryHint.textContent = message || t().countryHint;
   countryHint.className = "country-hint invalid";
 
   saveState();
@@ -91,15 +383,13 @@ function clearCountrySelection(message = "Select a country from the list to conf
 }
 
 function normalize(value) {
-  return value.trim().toLocaleLowerCase();
+  return String(value || "").trim().toLocaleLowerCase();
 }
 
 function filterCountries(query) {
   const q = normalize(query);
 
-  if (!q) {
-    return countries;
-  }
+  if (!q) return countries;
 
   const startsWith = countries.filter((country) =>
     normalize(country.name).startsWith(q)
@@ -121,7 +411,7 @@ function renderCountryResults(query = "") {
   if (!renderedCountries.length) {
     const empty = document.createElement("div");
     empty.className = "country-empty";
-    empty.textContent = currentText().noCountry;
+    empty.textContent = t().noCountry;
     countryResults.appendChild(empty);
     openCountryResults();
     return;
@@ -144,10 +434,12 @@ function renderCountryResults(query = "") {
     button.append(name, code);
 
     button.addEventListener("mousedown", (event) => {
-      // Prevent input blur before the selection is processed.
       event.preventDefault();
     });
 
+    /*
+      Keep the original proven direct handler for dynamic country results.
+    */
     button.addEventListener("click", () => {
       setCountry(country.name, country.code, "other");
     });
@@ -181,24 +473,26 @@ function updateActiveResult() {
   }
 }
 
+/* Language */
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => {
     selectLanguage(button.dataset.language);
   });
 });
 
+/* Popular countries */
 countryButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    setCountry(
-      button.dataset.country,
-      button.dataset.code,
-      "popular"
-    );
+    const name = button.dataset.country;
+    const code = button.dataset.code;
+
+    setCountry(name, code, "popular");
   });
 });
 
+/* Other countries */
 otherCountriesButton.addEventListener("click", () => {
-  clearCountrySelection(currentText().chooseValid);
+  clearCountrySelection(t().chooseCountry);
   otherCountriesButton.classList.add("selected");
   countryInput.value = "";
   countryInput.focus();
@@ -212,13 +506,17 @@ countryInput.addEventListener("focus", () => {
 countryInput.addEventListener("input", (event) => {
   const typedValue = event.target.value;
 
-  // Typing alone is not accepted as a valid location.
+  /*
+    Typing is a search only.
+    It must NOT become a valid country until the user selects a result.
+  */
   state.location = "";
   state.countryCode = "";
+
   countryButtons.forEach((button) => button.classList.remove("selected"));
   otherCountriesButton.classList.add("selected");
 
-  countryHint.textContent = currentText().selectValid;
+  countryHint.textContent = t().selectCountry;
   countryHint.className = "country-hint invalid";
 
   saveState();
@@ -231,13 +529,16 @@ countryInput.addEventListener("keydown", (event) => {
 
   if (event.key === "ArrowDown") {
     event.preventDefault();
+
     if (countryResults.hidden) {
       renderCountryResults(countryInput.value);
     }
+
     activeResultIndex = Math.min(
       activeResultIndex + 1,
-      resultButtons.length - 1
+      Math.max(resultButtons.length - 1, 0)
     );
+
     updateActiveResult();
   }
 
@@ -250,6 +551,7 @@ countryInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && activeResultIndex >= 0) {
     event.preventDefault();
     const country = renderedCountries[activeResultIndex];
+
     if (country) {
       setCountry(country.name, country.code, "other");
     }
@@ -261,14 +563,18 @@ countryInput.addEventListener("keydown", (event) => {
 });
 
 document.addEventListener("click", (event) => {
-  if (!countrySelector.contains(event.target) && event.target !== otherCountriesButton) {
+  if (
+    countrySelector &&
+    !countrySelector.contains(event.target) &&
+    event.target !== otherCountriesButton
+  ) {
     closeCountryResults();
   }
 });
 
 continueButton.addEventListener("click", () => {
   if (!ready()) {
-    showToast(currentText().invalidLocation);
+    showToast(t().invalidLocation);
     return;
   }
 
@@ -278,14 +584,14 @@ continueButton.addEventListener("click", () => {
 
 skipButton.addEventListener("click", () => {
   if (!ready()) {
-    showToast(currentText().invalidLocation);
+    showToast(t().invalidLocation);
     return;
   }
 
   saveState();
-  showToast(currentText().basicSaved);
+  showToast(t().basicSaved);
 
-  // Dashboard will be connected here later.
+  // Future:
   // window.location.href = "dashboard.html";
 });
 
@@ -299,12 +605,10 @@ function showToast(message) {
   }, 2600);
 }
 
+/*
+  Every fresh call to index.html starts clean, as previously defined.
+*/
 function resetIndexState() {
-  /*
-    Kadima rule:
-    Every time index.html is opened, Step 1 starts clean.
-    Previous onboarding / personal data must not repopulate this screen.
-  */
   localStorage.removeItem("kadimaOnboarding");
   localStorage.removeItem("kadimaPersonalInfo");
 
@@ -327,21 +631,18 @@ function resetIndexState() {
 
   otherCountriesButton.classList.remove("selected");
 
-  countryHint.textContent =
-    "Select a country from the list to confirm your location.";
+  countryHint.textContent = uiText.en.countryHint;
   countryHint.className = "country-hint";
 
   closeCountryResults();
+  applyLanguage("en");
   refreshActions();
 }
 
-resetIndexState();
-
-
-/* =========================
+/* =========================================================
    EXISTING USER LOGIN
-   Additive only: does not change the approved onboarding flow.
-   ========================= */
+   Prototype only. Real email delivery/verification moves to backend.
+   ========================================================= */
 
 const loginModal = document.getElementById("loginModal");
 const openLoginButton = document.getElementById("openLoginButton");
@@ -364,21 +665,26 @@ const loginState = {
 };
 
 function validLoginEmail(value) {
-  const email = value.trim().toLowerCase();
-  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(
+    String(value || "").trim().toLowerCase()
+  );
 }
 
 function openLoginModal() {
+  if (!loginModal) return;
+
   loginModal.hidden = false;
   document.body.style.overflow = "hidden";
   loginEmailStep.hidden = false;
   loginCodeStep.hidden = true;
   loginEmailMessage.textContent = "";
   verificationMessage.textContent = "";
+  applyLanguage(state.language);
   loginEmail.focus();
 }
 
 function closeLoginModal() {
+  if (!loginModal) return;
   loginModal.hidden = true;
   document.body.style.overflow = "";
 }
@@ -387,30 +693,7 @@ function generateVerificationCode() {
   return String(Math.floor(100000 + Math.random() * 900000));
 }
 
-/*
-  Production integration point.
-  Replace this function with a POST request to your backend, for example:
-
-  POST /api/auth/request-code
-  {
-    "email": "user@example.com"
-  }
-
-  The backend must:
-  1. verify whether the email belongs to a registered Kadima user;
-  2. generate the one-time code server-side;
-  3. store a hashed/expiring version of the code;
-  4. send the code by email;
-  5. return the same neutral response whether the email exists or not.
-
-  The frontend should never receive the real code in production.
-*/
 async function requestVerificationCode(email) {
-  /*
-    Current prototype/demo behavior:
-    Generates the code locally so the flow can be tested before the backend
-    and email provider are connected.
-  */
   loginState.demoCode = generateVerificationCode();
   loginState.codeIssuedAt = Date.now();
 
@@ -418,24 +701,9 @@ async function requestVerificationCode(email) {
     `[Kadima demo only] Verification code for ${email}: ${loginState.demoCode}`
   );
 
-  return {
-    ok: true,
-    message: "If this email is registered, we sent a verification code."
-  };
+  return { ok: true };
 }
 
-/*
-  Production integration point.
-  Replace with:
-
-  POST /api/auth/verify-code
-  {
-    "email": "...",
-    "code": "123456"
-  }
-
-  On success the backend should establish a secure authenticated session.
-*/
 async function validateVerificationCode(email, code) {
   const fiveMinutes = 5 * 60 * 1000;
   const expired =
@@ -456,7 +724,7 @@ async function sendLoginCode() {
   const email = loginEmail.value.trim().toLowerCase();
 
   if (!validLoginEmail(email)) {
-    loginEmailMessage.textContent = currentText().invalidEmail;
+    loginEmailMessage.textContent = t().invalidEmail;
     loginEmailMessage.classList.remove("success");
     loginEmail.focus();
     return;
@@ -464,15 +732,14 @@ async function sendLoginCode() {
 
   loginEmailMessage.textContent = "";
   sendCodeButton.disabled = true;
-  sendCodeButton.textContent = currentText().sending;
+  sendCodeButton.textContent = t().sending;
 
   try {
     loginState.email = email;
     const result = await requestVerificationCode(email);
 
     if (!result.ok) {
-      loginEmailMessage.textContent =
-        currentText().requestFailed;
+      loginEmailMessage.textContent = t().requestFailed;
       return;
     }
 
@@ -483,7 +750,7 @@ async function sendLoginCode() {
     verificationCode.focus();
   } finally {
     sendCodeButton.disabled = false;
-    sendCodeButton.textContent = currentText().sendCode;
+    sendCodeButton.textContent = t().sendCode;
   }
 }
 
@@ -491,14 +758,14 @@ async function verifyLoginCode() {
   const code = verificationCode.value.trim();
 
   if (!/^\d{6}$/.test(code)) {
-    verificationMessage.textContent = currentText().enterCode;
+    verificationMessage.textContent = t().enterCode;
     verificationMessage.classList.remove("success");
     verificationCode.focus();
     return;
   }
 
   verifyCodeButton.disabled = true;
-  verifyCodeButton.textContent = currentText().checking;
+  verifyCodeButton.textContent = t().checking;
 
   try {
     const result = await validateVerificationCode(loginState.email, code);
@@ -506,27 +773,20 @@ async function verifyLoginCode() {
     if (!result.ok) {
       verificationMessage.classList.remove("success");
       verificationMessage.textContent =
-        result.reason === "expired"
-          ? currentText().expired
-          : currentText().wrongCode;
+        result.reason === "expired" ? t().expired : t().wrongCode;
       return;
     }
 
-    verificationMessage.textContent = currentText().verified;
+    verificationMessage.textContent = t().verified;
     verificationMessage.classList.add("success");
 
-    /*
-      Future production destination:
-      dashboard.html
-
-      Keep this line commented out until the dashboard exists.
-    */
+    // Future:
     // window.location.href = "dashboard.html";
 
-    showToast(currentText().dashboardPending);
+    showToast(t().dashboardPending);
   } finally {
     verifyCodeButton.disabled = false;
-    verifyCodeButton.textContent = currentText().login;
+    verifyCodeButton.textContent = t().login;
   }
 }
 
@@ -538,14 +798,13 @@ async function resendLoginCode() {
     return;
   }
 
-  verificationMessage.textContent = currentText().sendingNew;
+  verificationMessage.textContent = t().sendingNew;
   verificationMessage.classList.remove("success");
 
   const result = await requestVerificationCode(loginState.email);
 
-  verificationMessage.textContent = result.ok
-    ? currentText().newCode
-    : currentText().requestFailed;
+  verificationMessage.textContent =
+    result.ok ? t().newCode : t().requestFailed;
 
   verificationMessage.classList.toggle("success", result.ok);
   verificationCode.value = "";
@@ -561,311 +820,71 @@ function useAnotherEmail() {
   loginEmail.select();
 }
 
-openLoginButton.addEventListener("click", openLoginModal);
-closeLoginButton.addEventListener("click", closeLoginModal);
-sendCodeButton.addEventListener("click", sendLoginCode);
-verifyCodeButton.addEventListener("click", verifyLoginCode);
-resendCodeButton.addEventListener("click", resendLoginCode);
-changeEmailButton.addEventListener("click", useAnotherEmail);
-
-loginModal.addEventListener("click", (event) => {
-  if (event.target.dataset.closeLogin === "true") {
-    closeLoginModal();
-  }
-});
-
-loginEmail.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    sendLoginCode();
-  }
-});
-
-verificationCode.addEventListener("input", () => {
-  verificationCode.value = verificationCode.value
-    .replace(/\D/g, "")
-    .slice(0, 6);
-});
-
-verificationCode.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    verifyLoginCode();
-  }
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && !loginModal.hidden) {
-    closeLoginModal();
-  }
-});
-
-
-/* =========================
-   KADIMA UI LANGUAGE
-   The selected language controls the current screen immediately and is saved
-   in kadimaOnboarding for all following screens.
-   ========================= */
-
-const uiText = {
-  en: {
-    heroTitle: 'Your journey<br>to the best<br><span>opportunities</span>',
-    heroDescription: 'We want to get to know you better so we can connect you with opportunities that truly match your profile.',
-    benefit1Title: 'AI that understands you',
-    benefit1Text: 'We analyze your skills and experience to find the right opportunities.',
-    benefit2Title: 'Smart matches',
-    benefit2Text: 'We compare your profile with job requirements and calculate your fit.',
-    benefit3Title: 'Your future, now',
-    benefit3Text: 'Save time and focus on the opportunities that matter.',
-    welcomeTitle: 'Welcome to Kadima!',
-    welcomeSubtitle: "Let's start your journey in 6 steps",
-    progress: ['Start','Personal','Profile','Experience','Education','Skills'],
-    skip: 'Skip journey',
-    introTitle: 'To get started, we need a few basic details',
-    introSubtitle: "It's quick, simple, and you can edit everything later. Let's go! 🚀",
-    languageTitle: 'Which language would you like to use?',
-    languageHelp: 'You can change this at any time.',
-    locationTitle: 'Where are you currently located?',
-    locationHelp: 'This information helps us find the right opportunities for you.',
-    countryPlaceholder: 'Type or select the country where you live',
-    countryHint: 'Select a country from the list to confirm your location.',
-    popular: 'MOST SELECTED COUNTRIES',
-    otherCountries: '🌐 Other countries',
-    securityTitle: 'Your information is secure',
-    securityText: 'We protect your personal data and use it only to improve your experience.',
-    continue: 'Continue',
-    existing: 'Already have an account?',
-    login: 'Log in',
-    loginTitle: 'Welcome back',
-    loginIntro: 'Enter the email address connected to your Kadima account.',
-    emailLabel: 'Email address',
-    sendCode: 'Send verification code',
-    checkEmail: 'Check your email',
-    codeIntro: 'If this email is registered, we sent a 6-digit verification code.',
-    codeLabel: 'Verification code',
-    resend: 'Resend code',
-    anotherEmail: 'Use another email',
-    closeLogin: 'Close login',
-    selectValid: 'Select one of the valid countries shown below.',
-    chooseValid: 'Choose your country from the valid country list below.',
-    noCountry: 'No valid country found. Try another search.',
-    selected: name => currentText().selected(name),
-    invalidLocation: 'Please select your language and a valid country first.',
-    basicSaved: 'Basic information saved. You can complete the journey later.',
-    invalidEmail: 'Please enter a valid email address.',
-    requestFailed: 'We could not process your request. Please try again.',
-    enterCode: 'Enter the 6-digit verification code.',
-    expired: 'This code has expired. Please request a new one.',
-    wrongCode: 'The verification code is incorrect.',
-    verified: 'Verified. Opening your dashboard...',
-    dashboardPending: 'Login verified. Dashboard will open here.',
-    sending: 'Sending...',
-    checking: 'Checking...',
-    newCode: 'A new verification code was requested.',
-    sendingNew: 'Sending a new code...'
-  },
-  pt: {
-    heroTitle: 'Sua jornada<br>para as melhores<br><span>oportunidades</span>',
-    heroDescription: 'Queremos conhecer você melhor para conectá-lo a oportunidades que realmente combinam com o seu perfil.',
-    benefit1Title: 'IA que entende você',
-    benefit1Text: 'Analisamos suas habilidades e experiências para encontrar as oportunidades certas.',
-    benefit2Title: 'Matches inteligentes',
-    benefit2Text: 'Comparamos seu perfil com os requisitos das vagas e calculamos sua compatibilidade.',
-    benefit3Title: 'Seu futuro, agora',
-    benefit3Text: 'Economize tempo e foque nas oportunidades que realmente importam.',
-    welcomeTitle: 'Bem-vindo ao Kadima!',
-    welcomeSubtitle: 'Vamos começar sua jornada em 6 etapas',
-    progress: ['Início','Pessoal','Perfil','Experiência','Educação','Habilidades'],
-    skip: 'Pular jornada',
-    introTitle: 'Para começar, precisamos de algumas informações básicas',
-    introSubtitle: 'É rápido, simples e você poderá editar tudo depois. Vamos nessa! 🚀',
-    languageTitle: 'Em que idioma você quer usar a plataforma?',
-    languageHelp: 'Você pode alterar isso a qualquer momento.',
-    locationTitle: 'Onde você está localizado atualmente?',
-    locationHelp: 'Essa informação nos ajuda a encontrar as oportunidades certas para você.',
-    countryPlaceholder: 'Digite ou selecione o país onde você mora',
-    countryHint: 'Selecione um país da lista para confirmar sua localização.',
-    popular: 'PAÍSES MAIS SELECIONADOS',
-    otherCountries: '🌐 Outros países',
-    securityTitle: 'Suas informações estão seguras',
-    securityText: 'Protegemos seus dados pessoais e os usamos apenas para melhorar sua experiência.',
-    continue: 'Continuar',
-    existing: 'Já possui uma conta?',
-    login: 'Entrar',
-    loginTitle: 'Bem-vindo de volta',
-    loginIntro: 'Informe o e-mail associado à sua conta Kadima.',
-    emailLabel: 'Endereço de e-mail',
-    sendCode: 'Enviar código de verificação',
-    checkEmail: 'Verifique seu e-mail',
-    codeIntro: 'Se este e-mail estiver cadastrado, enviamos um código de verificação de 6 dígitos.',
-    codeLabel: 'Código de verificação',
-    resend: 'Reenviar código',
-    anotherEmail: 'Usar outro e-mail',
-    closeLogin: 'Fechar login',
-    selectValid: 'Selecione um dos países válidos exibidos abaixo.',
-    chooseValid: 'Escolha seu país na lista de países válidos abaixo.',
-    noCountry: 'Nenhum país válido encontrado. Tente outra busca.',
-    selected: name => `✓ ${name} selecionado`,
-    invalidLocation: 'Selecione seu idioma e um país válido primeiro.',
-    basicSaved: 'Informações básicas salvas. Você pode concluir a jornada depois.',
-    invalidEmail: 'Informe um endereço de e-mail válido.',
-    requestFailed: 'Não foi possível processar sua solicitação. Tente novamente.',
-    enterCode: 'Digite o código de verificação de 6 dígitos.',
-    expired: 'Este código expirou. Solicite um novo código.',
-    wrongCode: 'O código de verificação está incorreto.',
-    verified: 'Verificado. Abrindo seu dashboard...',
-    dashboardPending: 'Login verificado. O dashboard será aberto aqui.',
-    sending: 'Enviando...',
-    checking: 'Verificando...',
-    newCode: 'Um novo código de verificação foi solicitado.',
-    sendingNew: 'Enviando um novo código...'
-  },
-  es: {
-    heroTitle: 'Tu camino<br>hacia las mejores<br><span>oportunidades</span>',
-    heroDescription: 'Queremos conocerte mejor para conectarte con oportunidades que realmente encajen con tu perfil.',
-    benefit1Title: 'IA que te entiende',
-    benefit1Text: 'Analizamos tus habilidades y experiencia para encontrar las oportunidades adecuadas.',
-    benefit2Title: 'Matches inteligentes',
-    benefit2Text: 'Comparamos tu perfil con los requisitos de las vacantes y calculamos tu compatibilidad.',
-    benefit3Title: 'Tu futuro, ahora',
-    benefit3Text: 'Ahorra tiempo y concéntrate en las oportunidades que realmente importan.',
-    welcomeTitle: '¡Bienvenido a Kadima!',
-    welcomeSubtitle: 'Comencemos tu camino en 6 pasos',
-    progress: ['Inicio','Personal','Perfil','Experiencia','Educación','Habilidades'],
-    skip: 'Saltar recorrido',
-    introTitle: 'Para comenzar, necesitamos algunos datos básicos',
-    introSubtitle: 'Es rápido, sencillo y podrás editar todo más adelante. ¡Vamos! 🚀',
-    languageTitle: '¿En qué idioma quieres usar la plataforma?',
-    languageHelp: 'Puedes cambiarlo en cualquier momento.',
-    locationTitle: '¿Dónde estás ubicado actualmente?',
-    locationHelp: 'Esta información nos ayuda a encontrar las oportunidades adecuadas para ti.',
-    countryPlaceholder: 'Escribe o selecciona el país donde vives',
-    countryHint: 'Selecciona un país de la lista para confirmar tu ubicación.',
-    popular: 'PAÍSES MÁS SELECCIONADOS',
-    otherCountries: '🌐 Otros países',
-    securityTitle: 'Tu información está segura',
-    securityText: 'Protegemos tus datos personales y los usamos únicamente para mejorar tu experiencia.',
-    continue: 'Continuar',
-    existing: '¿Ya tienes una cuenta?',
-    login: 'Iniciar sesión',
-    loginTitle: 'Bienvenido de nuevo',
-    loginIntro: 'Ingresa el correo electrónico asociado a tu cuenta de Kadima.',
-    emailLabel: 'Correo electrónico',
-    sendCode: 'Enviar código de verificación',
-    checkEmail: 'Revisa tu correo',
-    codeIntro: 'Si este correo está registrado, enviamos un código de verificación de 6 dígitos.',
-    codeLabel: 'Código de verificación',
-    resend: 'Reenviar código',
-    anotherEmail: 'Usar otro correo',
-    closeLogin: 'Cerrar inicio de sesión',
-    selectValid: 'Selecciona uno de los países válidos que aparecen abajo.',
-    chooseValid: 'Elige tu país de la lista de países válidos.',
-    noCountry: 'No se encontró un país válido. Intenta otra búsqueda.',
-    selected: name => `✓ ${name} seleccionado`,
-    invalidLocation: 'Selecciona primero tu idioma y un país válido.',
-    basicSaved: 'Información básica guardada. Puedes completar el recorrido más tarde.',
-    invalidEmail: 'Ingresa un correo electrónico válido.',
-    requestFailed: 'No pudimos procesar tu solicitud. Inténtalo de nuevo.',
-    enterCode: 'Ingresa el código de verificación de 6 dígitos.',
-    expired: 'Este código ha expirado. Solicita uno nuevo.',
-    wrongCode: 'El código de verificación es incorrecto.',
-    verified: 'Verificado. Abriendo tu dashboard...',
-    dashboardPending: 'Inicio de sesión verificado. El dashboard se abrirá aquí.',
-    sending: 'Enviando...',
-    checking: 'Verificando...',
-    newCode: 'Se solicitó un nuevo código de verificación.',
-    sendingNew: 'Enviando un nuevo código...'
-  }
-};
-
-function currentText() {
-  return uiText[state.language] || uiText.en;
+if (openLoginButton) {
+  openLoginButton.addEventListener("click", openLoginModal);
 }
 
-function applyLanguage(language) {
-  const t = uiText[language] || uiText.en;
-  document.documentElement.lang = language === 'pt' ? 'pt-BR' : language === 'es' ? 'es' : 'en';
+if (closeLoginButton) {
+  closeLoginButton.addEventListener("click", closeLoginModal);
+}
 
-  const setText = (id, value) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = value;
-  };
-  const setHTML = (id, value) => {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = value;
-  };
+if (sendCodeButton) {
+  sendCodeButton.addEventListener("click", sendLoginCode);
+}
 
-  setHTML('heroTitle', t.heroTitle);
-  setText('heroDescription', t.heroDescription);
-  setText('benefit1Title', t.benefit1Title);
-  setText('benefit1Text', t.benefit1Text);
-  setText('benefit2Title', t.benefit2Title);
-  setText('benefit2Text', t.benefit2Text);
-  setText('benefit3Title', t.benefit3Title);
-  setText('benefit3Text', t.benefit3Text);
-  setText('welcomeTitle', t.welcomeTitle);
-  setText('welcomeSubtitle', t.welcomeSubtitle);
-  setText('pageIntroTitle', t.introTitle);
-  setText('pageIntroSubtitle', t.introSubtitle);
-  setText('languageQuestionTitle', t.languageTitle);
-  setText('languageQuestionHelp', t.languageHelp);
-  setText('locationQuestionTitle', t.locationTitle);
-  setText('locationQuestionHelp', t.locationHelp);
-  setText('popularCountriesLabel', t.popular);
-  setText('securityTitle', t.securityTitle);
-  setText('securityText', t.securityText);
-  setText('existingUserText', t.existing);
+if (verifyCodeButton) {
+  verifyCodeButton.addEventListener("click", verifyLoginCode);
+}
 
-  countryInput.placeholder = t.countryPlaceholder;
-  if (!state.location) {
-    countryHint.textContent = t.countryHint;
-    countryHint.className = 'country-hint';
-  } else {
-    countryHint.textContent = t.selected(state.location);
-  }
+if (resendCodeButton) {
+  resendCodeButton.addEventListener("click", resendLoginCode);
+}
 
-  const progressLabels = document.querySelectorAll('.progress .p-item > span');
-  progressLabels.forEach((el, i) => {
-    if (t.progress[i]) el.textContent = t.progress[i];
+if (changeEmailButton) {
+  changeEmailButton.addEventListener("click", useAnotherEmail);
+}
+
+if (loginModal) {
+  loginModal.addEventListener("click", (event) => {
+    if (event.target.dataset.closeLogin === "true") {
+      closeLoginModal();
+    }
+  });
+}
+
+if (loginEmail) {
+  loginEmail.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      sendLoginCode();
+    }
+  });
+}
+
+if (verificationCode) {
+  verificationCode.addEventListener("input", () => {
+    verificationCode.value = verificationCode.value
+      .replace(/\D/g, "")
+      .slice(0, 6);
   });
 
-  skipButton.textContent = t.skip;
-  continueButton.firstChild.textContent = t.continue + ' ';
-  otherCountriesButton.textContent = t.otherCountries;
-
-  const existingLogin = document.getElementById('openLoginButton');
-  if (existingLogin) existingLogin.textContent = t.login;
-
-  const loginTitleEl = document.getElementById('loginTitle');
-  if (loginTitleEl) loginTitleEl.textContent = t.loginTitle;
-
-  const emailStep = document.getElementById('loginEmailStep');
-  if (emailStep) {
-    emailStep.querySelector(':scope > p').textContent = t.loginIntro;
-    emailStep.querySelector('.login-field > span').textContent = t.emailLabel;
-  }
-
-  const codeStep = document.getElementById('loginCodeStep');
-  if (codeStep) {
-    codeStep.querySelector('h2').textContent = t.checkEmail;
-    document.getElementById('codeInstruction').textContent = t.codeIntro;
-    codeStep.querySelector('.login-field > span').textContent = t.codeLabel;
-  }
-
-  const send = document.getElementById('sendCodeButton');
-  const verify = document.getElementById('verifyCodeButton');
-  const resend = document.getElementById('resendCodeButton');
-  const change = document.getElementById('changeEmailButton');
-  const close = document.getElementById('closeLoginButton');
-
-  if (send && !send.disabled) send.textContent = t.sendCode;
-  if (verify && !verify.disabled) verify.textContent = t.login;
-  if (resend) resend.textContent = t.resend;
-  if (change) change.textContent = t.anotherEmail;
-  if (close) close.setAttribute('aria-label', t.closeLogin);
+  verificationCode.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      verifyLoginCode();
+    }
+  });
 }
 
+document.addEventListener("keydown", (event) => {
+  if (
+    event.key === "Escape" &&
+    loginModal &&
+    !loginModal.hidden
+  ) {
+    closeLoginModal();
+  }
+});
 
 /*
-  Initial UI translation must run only after uiText and applyLanguage()
-  have been initialized. This avoids stopping the entire onboarding script.
+  Initialize only after ALL functions, dictionaries and event handlers exist.
 */
-applyLanguage(state.language);
+resetIndexState();
