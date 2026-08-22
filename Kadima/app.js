@@ -272,8 +272,6 @@ continueButton.addEventListener("click", () => {
   }
 
   saveState();
-
-  // Screen 2 is already part of the Kadima onboarding journey.
   window.location.href = "personal-info.html";
 });
 
@@ -300,68 +298,40 @@ function showToast(message) {
   }, 2600);
 }
 
-function restoreState() {
-  const saved = localStorage.getItem("kadimaOnboarding");
+function resetIndexState() {
+  /*
+    Kadima rule:
+    Every time index.html is opened, Step 1 starts clean.
+    Previous onboarding / personal data must not repopulate this screen.
+  */
+  localStorage.removeItem("kadimaOnboarding");
+  localStorage.removeItem("kadimaPersonalInfo");
 
-  if (!saved) {
-    refreshActions();
-    return;
-  }
-
-  try {
-    const parsed = JSON.parse(saved);
-
-    if (["en", "pt", "es"].includes(parsed.language)) {
-      state.language = parsed.language;
-    }
-
-    const savedName = typeof parsed.location === "string" ? parsed.location : "";
-    const savedCode = typeof parsed.countryCode === "string" ? parsed.countryCode : "";
-
-    // Compatibility with older Kadima Screen 1 saves that only stored the country name.
-    let matchedCountry = countries.find(
-      (country) => normalize(country.name) === normalize(savedName)
-    );
-
-    if (!matchedCountry && savedCode) {
-      matchedCountry = countries.find((country) => country.code === savedCode);
-    }
-
-    if (matchedCountry) {
-      state.location = matchedCountry.name;
-      state.countryCode = matchedCountry.code;
-    }
-  } catch (error) {
-    console.warn("Kadima onboarding state could not be restored.", error);
-  }
+  state.language = "en";
+  state.location = "";
+  state.countryCode = "";
 
   languageButtons.forEach((button) => {
     button.classList.toggle(
       "selected",
-      button.dataset.language === state.language
+      button.dataset.language === "en"
     );
   });
 
-  if (state.location && state.countryCode) {
-    countryInput.value = state.location;
+  countryInput.value = "";
 
-    const popularMatch = Array.from(countryButtons).find(
-      (button) => button.dataset.country === state.location
-    );
+  countryButtons.forEach((button) => {
+    button.classList.remove("selected");
+  });
 
-    countryButtons.forEach((button) => {
-      button.classList.toggle(
-        "selected",
-        button.dataset.country === state.location
-      );
-    });
+  otherCountriesButton.classList.remove("selected");
 
-    otherCountriesButton.classList.toggle("selected", !popularMatch);
-    countryHint.textContent = `✓ ${state.location} selected`;
-    countryHint.className = "country-hint valid";
-  }
+  countryHint.textContent =
+    "Select a country from the list to confirm your location.";
+  countryHint.className = "country-hint";
 
+  closeCountryResults();
   refreshActions();
 }
 
-restoreState();
+resetIndexState();

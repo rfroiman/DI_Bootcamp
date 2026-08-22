@@ -1,7 +1,7 @@
-/* Kadima Screen 2
-   This file intentionally does NOT redefine the left panel.
-   The approved Screen 1 stylesheet (styles.css) controls the entire shared shell
-   and left-side visual, ensuring both screens remain identical there.
+/* Kadima Screen 2 — right side only.
+   IMPORTANT:
+   The shared shell and the entire left panel are controlled exclusively by styles.css.
+   Do not redefine .screen, .left-panel, .logo, .hero-copy, .journey-art or .benefits here.
 */
 
 /* RIGHT SIDE */
@@ -566,4 +566,7 @@
     flex: 1;
   }
 
+  
+
+  
 }
