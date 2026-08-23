@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kadima | Profile</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="profile.css" />
+</head>
+<body>
+  <main class="screen">
+    <aside class="left-panel">
+      <div class="logo-wrap"><img src="assets/kadima-logo-original.png" alt="Kadima" class="logo" /></div>
+      <div class="hero-copy">
+        <h1 id="heroTitle">Your journey<br>to the best<br><span>opportunities</span></h1>
+        <div class="accent"></div>
+        <p id="heroDescription">We want to get to know you better so we can connect you with opportunities that truly match your profile.</p>
+      </div>
+      <div class="journey-art" aria-hidden="true"></div>
+      <div class="benefits">
+        <div class="benefit"><div class="benefit-icon green"><svg viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3v1a3 3 0 0 0-2 3 3 3 0 0 0 2 3v2a3 3 0 0 0 3 3M15 4a3 3 0 0 1 3 3v1a3 3 0 0 1 2 3 3 3 0 0 1-2 3v2a3 3 0 0 1-3 3M9 7v10M15 7v10M9 10h6M9 14h6"/></svg></div><div><strong id="benefit1Title">AI that understands you</strong><span id="benefit1Text">We analyze your skills and experience to find the right opportunities.</span></div></div>
+        <div class="benefit"><div class="benefit-icon blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M17 7l4-4M18 3h3v3"/></svg></div><div><strong id="benefit2Title">Smart matches</strong><span id="benefit2Text">We compare your profile with job requirements and calculate your fit.</span></div></div>
+        <div class="benefit"><div class="benefit-icon green"><svg viewBox="0 0 24 24"><path d="M5 19 19 5"/><path d="M9 5h10v10"/></svg></div><div><strong id="benefit3Title">Your future, now</strong><span id="benefit3Text">Save time and focus on the opportunities that matter.</span></div></div>
+      </div>
+    </aside>
+
+    <section class="content-panel">
+      <header class="content-header">
+        <div class="welcome"><div class="welcome-icon"><svg viewBox="0 0 24 24"><path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3Z"/></svg></div><div><strong id="welcomeTitle">Welcome to Kadima!</strong><span id="welcomeSubtitle">Let's build your profile in 6 simple steps.</span></div></div>
+        <div class="progress" aria-label="Journey progress">
+          <div class="progress-item done"><div class="progress-circle">✓</div><span data-progress-label="0">Welcome</span></div><div class="progress-line completed"></div>
+          <div class="progress-item done"><div class="progress-circle">✓</div><span data-progress-label="1">Personal</span></div><div class="progress-line completed"></div>
+          <div class="progress-item active"><div class="progress-circle">3</div><span data-progress-label="2">Profile</span></div><div class="progress-line"></div>
+          <div class="progress-item"><div class="progress-circle">4</div><span data-progress-label="3">Experience</span></div><div class="progress-line"></div>
+          <div class="progress-item"><div class="progress-circle">5</div><span data-progress-label="4">Education</span></div><div class="progress-line"></div>
+          <div class="progress-item"><div class="progress-circle">6</div><span data-progress-label="5">Skills</span></div>
+        </div>
+        <button id="skipButton" class="skip-button" type="button">Skip journey</button>
+      </header>
+
+      <div class="profile-body">
+        <div class="profile-heading">
+          <div>
+            <span id="profileEyebrow" class="profile-eyebrow">PROFILE · STEP 3</span>
+            <h2 id="profileTitle">Let's discover your professional fingerprint.</h2>
+            <p id="profileSubtitle">Short, guided questions. No long forms. Kadima adapts the journey as it learns about you.</p>
+          </div>
+          <button id="backToDetailsButton" class="top-details-button" type="button">← Back to profile details</button>
+        </div>
+<section id="contactPanel" class="profile-stage-card">
+          <div class="stage-kicker"><span class="stage-profile-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <circle cx="8" cy="8" r="3"/>
+        <path d="M3.5 19c.4-3.8 2-5.6 4.5-5.6s4.1 1.8 4.5 5.6"/>
+        <path d="M15 8h6M15 12h6M15 16h4"/>
+      </svg>
+    </span><div><strong>A few profile details first</strong><span>These are contact details, not part of your matching score.</span></div></div>
+          <div class="contact-grid">
+            <div class="contact-field"><label for="phoneInput">Phone</label><div class="phone-wrap">
+  <div class="dial-code-picker" id="dialCodePicker">
+    <button id="dialCodeButton" class="dial-code-button" type="button" aria-expanded="false" aria-haspopup="listbox">
+      <span id="dialFlag" class="dial-flag">🌐</span>
+      <span id="dialCode">+</span>
+      <span class="dial-chevron">▾</span>
+    </button>
+
+    <div id="dialCodeMenu" class="dial-code-menu" hidden>
+      <div class="dial-search-wrap">
+        <input id="dialSearchInput" type="text" autocomplete="off" placeholder="Search country or prefix" />
+      </div>
+      <div id="dialCodeResults" class="dial-code-results" role="listbox"></div>
+    </div>
+  </div>
+
+  <input id="phoneInput" type="tel" autocomplete="tel" placeholder="Phone number" />
+</div><label class="check-row"><input id="emailOnly" type="checkbox"><span>I prefer to be contacted by email only</span></label></div>
+            <div class="contact-field"><label for="linkedinInput">LinkedIn</label><input id="linkedinInput" type="url" placeholder="https://linkedin.com/in/..."></div>
+            <div class="contact-field"><label for="githubInput">GitHub</label><input id="githubInput" type="url" placeholder="https://github.com/..."></div>
+            <div class="contact-field"><label for="otherLinkInput">Other professional link</label><input id="otherLinkInput" type="url" placeholder="Portfolio, website, Behance..."></div>
+          </div>
+          <div class="contact-footer"><span>All fields in this block are optional.</span><button id="startDiscoveryButton" class="primary-inline" type="button">Start profile discovery <span>→</span></button></div>
+        </section>
+
+        <section id="discoveryPanel" class="discovery-layout" hidden>
+          <div class="question-card">
+<div class="question-meta"><div><span class="question-stage-label">Kadima is learning about you</span><h3 id="questionText"></h3><p id="questionHelp"></p></div><span id="questionCounter" class="question-counter"></span></div>
+            <div id="answerOptions" class="answer-options"></div>
+            <div id="otherAnswerWrap" class="other-answer-wrap" hidden><label for="otherAnswerInput">Tell Kadima in a few words</label><div class="other-answer-row"><input id="otherAnswerInput" type="text" maxlength="80"><button id="addOtherAnswerButton" type="button">Add</button></div></div>
+            <div class="question-actions"><button id="previousQuestionButton" class="secondary-inline" type="button">← Previous</button><button id="nextQuestionButton" class="primary-inline" type="button" disabled>Continue →</button></div>
+          </div>
+
+          <aside class="fingerprint-card">
+            <div class="fingerprint-header"><div><span>LIVE PREVIEW</span><h3>Your Professional Fingerprint</h3></div><div class="fingerprint-icon" aria-hidden="true">
+  <svg viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="8"/>
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+  </svg>
+</div></div>
+            <div class="fingerprint-dimensions">
+              <div class="fingerprint-dimension"><span>Identity</span><div id="fpIdentity" class="fingerprint-values empty">To be discovered</div></div>
+              <div class="fingerprint-dimension"><span>Career paths</span><div id="fpPaths" class="fingerprint-values empty">To be discovered</div></div>
+              <div class="fingerprint-dimension"><span>Context</span><div id="fpContext" class="fingerprint-values empty">To be discovered</div></div>
+              <div class="fingerprint-dimension"><span>Direction</span><div id="fpDirection" class="fingerprint-values empty">To be discovered</div></div>
+              <div class="fingerprint-dimension"><span>Transferable value</span><div id="fpTransferable" class="fingerprint-values empty">To be discovered</div></div>
+            </div>
+          </aside>
+        </section>
+
+        <section id="reviewPanel" class="review-card" hidden>
+          <div class="review-icon">✓</div><span>PROFILE FOUNDATION COMPLETE</span><h3>Here's what Kadima has discovered about you so far.</h3><p>This is your professional fingerprint so far. It captures how you see your career today and where you want to go next. We'll continue enriching it as you move through your journey.</p>
+          <div id="profileCompletionState" class="profile-completion-state" hidden>
+            <div class="completion-check">✓</div>
+            <div>
+              <strong id="completionStateTitle">Profile foundation completed</strong>
+              <span id="completionStateText">Your current professional direction has been saved. Kadima will keep enriching your fingerprint throughout the journey.</span>
+            </div>
+          </div>
+
+          <section id="careerPathOverview" class="career-path-overview">
+            <div class="career-path-title-row">
+              <div>
+                <span class="career-path-eyebrow">CAREER PATH OVERVIEW</span>
+                <h4>How Kadima currently sees your professional paths</h4>
+              </div>
+            </div>
+            <div id="careerPathCards" class="career-path-cards"></div>
+          </section>
+
+          <div id="reviewFingerprint" class="review-fingerprint"></div>
+          <div class="review-actions"><button id="adjustButton" class="secondary-inline" type="button">Adjust something</button><button id="finishProfileButton" class="primary-inline" type="button">Looks right →</button></div>
+        </section>
+
+        <footer class="profile-footer">
+          <div class="profile-footer-note">
+            <div class="secure-mini-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3 20 6v5c0 5.3-3.4 8.6-8 10-4.6-1.4-8-4.7-8-10V6l8-3Z"/>
+                <path d="m8.5 12 2.2 2.2 4.8-5"/>
+              </svg>
+            </div>
+            <div>
+              <strong id="footerNoteTitle">Your profile stays flexible</strong>
+              <span id="footerNoteText">You can edit or refine these details later.</span>
+            </div>
+          </div>
+
+          <div class="profile-actions">
+            <button id="backButton" class="back-button" type="button">← <span>Back</span></button>
+            <button id="continueToExperienceButton" class="continue-button" type="button" disabled><span>Continue</span> →</button>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="profile.js"></script>
+</body>
+</html>

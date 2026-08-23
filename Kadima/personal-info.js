@@ -211,14 +211,8 @@ continueButton.addEventListener("click", () => {
 
   savePersonalInfo();
   showToast(pt().saved);
-
-  /*
-    Screen 3 will be connected here later.
-
-    Example:
-    window.location.href = "profile.html";
-  */
-});
+  window.location.href = "profile.html";
+  });
 
 backButton.addEventListener("click", () => {
   window.location.href = "index.html";

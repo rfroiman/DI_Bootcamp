@@ -948,4 +948,74 @@ vai crescendo conforme as respostas
 
 Isso é provavelmente a estrutura visual que devemos desenhar antes do código: **não uma fotografia da primeira pergunta, mas o modelo da Tela 3 capaz de acomodar toda a conversa adaptativa.**
 
+Sim — e aqui eu faria uma pequena revisão de UX antes de mexer no código, porque você apontou três coisas diferentes: navegação dentro da etapa, estado de conclusão e leitura do Career Path.
+
+Sobre o **← Back to profile details**, concordo. Ele deve sair de dentro do card de perguntas e virar um botão discreto no **canto superior direito da área principal**, alinhado horizontalmente com:
+
+**Let's discover your professional fingerprint.**
+
+Assim ele funciona como navegação da própria etapa, não como parte da pergunta atual.
+
+Quando chegarmos a **PROFILE FOUNDATION COMPLETE**, os botões **Previous** e **Continue** das perguntas não deveriam apenas ficar desabilitados; eu prefiro que o card de perguntas saia do estado de edição e entre em estado concluído. Algo como:
+
+> **Profile discovery completed ✓**
+> Kadima has enough information to define your profile foundation.
+
+Aí os botões de navegação daquela conversa desaparecem. Isso deixa claro que aquele fluxo terminou.
+
+Para **Adjust something**, manteria exatamente como opção de reentrada. Ao clicar, voltamos ao último ponto editável ou, melhor ainda, mostramos os blocos do fingerprint para o usuário escolher o que quer revisar:
+
+`Identity` · `Career Paths` · `Context` · `Direction` · `Transferable Value`
+
+Isso é melhor do que simplesmente voltar para a última pergunta.
+
+E quando clicar em **Looks right**, eu faria uma transição visual de estado. O bloco mudaria para algo como:
+
+> **Profile foundation completed ✓**
+> Your current professional direction has been saved. Kadima will keep enriching your fingerprint throughout the journey.
+
+Os botões **Adjust something** e **Looks right** desaparecem. No lugar pode aparecer apenas:
+
+`✓ Completed`
+
+e o botão global **Continue** para a próxima etapa fica claramente habilitado.
+
+Isso evita a sensação de “cliquei em Looks right e nada aconteceu”.
+
+Sobre o **Career Path**, concordo que está faltando uma leitura explícita. Hoje temos `Career paths` dentro do fingerprint, mas não estamos avaliando suficientemente a relação entre histórico e direção futura.
+
+Eu acrescentaria um bloco específico no fechamento chamado algo como:
+
+**Career Path Overview**
+
+Exemplo para alguém com uma trajetória única:
+
+`Established Path`
+**Enterprise Sales → Account Management → Business Development**
+
+Exemplo para mudança/expansão de carreira:
+
+`Established Path`
+**Technology Sales**
+
+`Emerging Path`
+**Full Stack & AI**
+
+`Transferable Bridge`
+**Technical background · Business understanding · Customer-facing experience**
+
+Isso é mais útil do que apenas uma lista de tags porque mostra **como os caminhos se relacionam**.
+
+Eu inclusive usaria três classificações:
+
+`Established` — trajetória com evidência profissional forte.
+`Emerging` — nova direção em formação.
+`Exploring` — interesse ainda sem evidência suficiente.
+
+Isso prepara muito bem o sistema para depois mostrar matches diferentes por caminho.
+
+Então eu ajustaria a Tela 3 nestes pontos: mover **Back to profile details** para o header da etapa; transformar o fim da conversa em estado concluído; fazer `Looks right` finalizar visualmente a etapa; fazer `Adjust something` permitir revisar uma dimensão específica; e adicionar um **Career Path Overview** mostrando caminhos Established/Emerging/Exploring e a ponte entre eles.
+
+Essa seria uma evolução real de CX, não só uma correção visual.
+
 
