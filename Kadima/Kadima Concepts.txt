@@ -617,3 +617,335 @@ A partir daí, o currículo deixa de ser o perfil do candidato. **O currículo p
 
 Esse, para mim, é um conceito que vale preservar como princípio central do Kadima.
 
+Exatamente — e aqui está o ponto central: **a Tela 3 não deve ser uma tela estática com todas as perguntas previamente desenhadas**. Ela deve funcionar como um **container de conversa adaptativa**, mantendo o mesmo layout visual das Telas 1 e 2, mas trocando o conteúdo central a cada resposta.
+
+O fluxo seria assim:
+
+```text
+Tela 3 — Profile
+        ↓
+Pergunta 1
+"Which situation best describes you today?"
+        ↓
+usuário responde
+        ↓
+Kadima interpreta
+        ↓
+gera Pergunta 2 específica
+        ↓
+usuário responde
+        ↓
+Kadima atualiza Professional Fingerprint
+        ↓
+gera Pergunta 3 específica
+        ↓
+...
+        ↓
+Profile sufficiently understood
+        ↓
+Review do Professional Fingerprint
+        ↓
+Continue → Experience
+```
+
+Visualmente, **não precisamos trocar de página a cada pergunta**. Continuamos em `profile.html`.
+
+A parte central da tela poderia ter sempre o mesmo bloco:
+
+```text
+┌─────────────────────────────────────────┐
+│  Kadima is getting to know you          │
+│                                         │
+│  [ pergunta atual ]                     │
+│                                         │
+│  [ opções sugeridas pela IA ]           │
+│                                         │
+│  + Something else                       │
+│                                         │
+└─────────────────────────────────────────┘
+```
+
+Quando a pessoa responde, esse card faz uma transição suave e apresenta a próxima pergunta.
+
+Enquanto isso, uma área menor mostra o que já foi descoberto:
+
+```text
+YOUR PROFESSIONAL FINGERPRINT
+
+Identity
+Technology Sales
+
+Career paths
+✓ Enterprise Sales
+✓ Full Stack & AI — Emerging
+
+Context
+B2B
+Enterprise
+Technology
+
+Direction
+Sales opportunities
+Software Development opportunities
+```
+
+Esse preview vai sendo construído progressivamente.
+
+### Como decidir a próxima pergunta no protótipo
+
+Agora, sem backend, fazemos uma **árvore adaptativa em JavaScript**.
+
+Por exemplo, se o usuário escolher:
+
+```text
+Changing careers
+```
+
+a próxima pergunta pode ser:
+
+> **Are you leaving your previous field, or would you like to keep both paths open?**
+
+Opções:
+
+`Focus only on my new field`
+`Keep both paths open`
+`I'm still exploring`
+
+Se escolher:
+
+`Keep both paths open`
+
+Kadima pergunta:
+
+> **Which professional areas represent your existing background?**
+
+A pessoa pode selecionar:
+
+`Sales & Business`
+`Technology`
+`Finance`
+`Operations`
+`Other`
+
+Depois:
+
+> **And which new professional direction are you preparing for?**
+
+Por exemplo:
+
+`Software Development`
+`Data & AI`
+`Cybersecurity`
+`Product`
+`Other`
+
+Então começamos a formar dois Career Paths.
+
+---
+
+Para alguém que selecionar:
+
+`Experienced professional`
+
+o fluxo seria outro.
+
+A próxima pergunta poderia ser:
+
+> **Which areas best represent your professional background?**
+
+Depois:
+
+> **What kind of work have you spent most of your time doing?**
+
+E depois:
+
+> **What would you like to continue doing in your next opportunity?**
+
+Então a árvore se adapta sem passar pela lógica de career transition.
+
+---
+
+Para `Student`:
+
+> **What are you studying or preparing for?**
+
+Depois:
+
+> **What kind of opportunities are you interested in starting with?**
+
+Depois:
+
+> **Do you already have projects, internships or practical experience related to this direction?**
+
+Com respostas rápidas.
+
+### E se nenhuma opção representar a pessoa?
+
+Sempre teremos:
+
+`+ Something else`
+
+Mas eu não abriria imediatamente um grande textarea.
+
+Ao clicar, mostraríamos algo curto como:
+
+> **Tell Kadima in a few words.**
+
+`[ e.g. "Dental laboratory management" ]`
+
+A IA depois transforma isso em opções estruturadas para confirmação.
+
+Na fase de protótipo podemos simular:
+
+```text
+You wrote:
+"Clinical research"
+
+Did you mean:
+
+Clinical Research
+Healthcare
+Life Sciences
+Medical Research
+
+[ Select ]
+```
+
+Isso preserva a ideia de **não depender de textos longos**.
+
+---
+
+## Como ficará quando tivermos IA real
+
+O frontend não decide a próxima pergunta.
+
+Ele envia o estado atual:
+
+```json
+{
+  "stage": "profile",
+  "careerPaths": [
+    {
+      "type": "existing",
+      "domain": "Sales & Business"
+    },
+    {
+      "type": "emerging",
+      "domain": "Software Development"
+    }
+  ],
+  "answers": [...]
+}
+```
+
+O backend pergunta ao modelo:
+
+> Com base no fingerprint atual, qual é a informação mais importante que ainda falta para entender o Profile desse usuário?
+
+E a IA responde de forma estruturada:
+
+```json
+{
+  "status": "continue",
+  "question": {
+    "id": "career_direction",
+    "text": "Which paths would you like Kadima to consider for future opportunities?",
+    "type": "multi_select",
+    "options": [
+      {
+        "id": "sales",
+        "label": "Continue in Sales"
+      },
+      {
+        "id": "software",
+        "label": "Explore Software Development"
+      },
+      {
+        "id": "both",
+        "label": "Keep both paths open"
+      }
+    ]
+  }
+}
+```
+
+O frontend apenas renderiza.
+
+Isso é importante porque permite que o mesmo componente exiba:
+
+* single choice;
+* multiple choice;
+* chips;
+* yes/no;
+* ranking;
+* short input;
+* confirmation.
+
+Sem criar uma página diferente para cada pergunta.
+
+### E como a IA sabe que terminou?
+
+O backend mantém um **Profile Completion State**.
+
+Por exemplo:
+
+```text
+Career situation       ✓
+Career paths           ✓
+Functional identity    ✓
+Work context           ✓
+Career direction       ✓
+Transition context     ✓
+```
+
+Para uma pessoa sem transição:
+
+```text
+Transition context     N/A
+```
+
+Quando os elementos obrigatórios para aquele fingerprint estiverem suficientemente definidos, a IA não retorna outra pergunta.
+
+Retorna:
+
+```json
+{
+  "status": "complete",
+  "fingerprint": {...}
+}
+```
+
+E a interface muda para:
+
+> **Here's what Kadima understood about you.**
+
+Mostra o fingerprint.
+
+`Looks right ✓`
+
+`Adjust something`
+
+Só depois o usuário avança para Experience.
+
+---
+
+Há também uma mudança visual que eu faria em relação à imagem que gerei: **eu não mostraria seis cards fixos ocupando a tela inteira como se fossem a Tela 3 completa**. Aquilo deveria representar somente **o primeiro estado da Tela 3**.
+
+Depois da primeira resposta, o mesmo espaço se transforma.
+
+Ou seja, a Tela 3 deve ter três áreas permanentes:
+
+```text
+HEADER / JOURNEY
+igual às Telas 1 e 2
+
+CURRENT QUESTION
+dinâmica
+
+PROFESSIONAL FINGERPRINT
+vai crescendo conforme as respostas
+```
+
+Isso é provavelmente a estrutura visual que devemos desenhar antes do código: **não uma fotografia da primeira pergunta, mas o modelo da Tela 3 capaz de acomodar toda a conversa adaptativa.**
+
+
