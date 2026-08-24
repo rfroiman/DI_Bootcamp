@@ -733,3 +733,250 @@
     width:100%;
   }
 }
+
+
+/* =========================================================
+   Editable Professional Fingerprint
+   ========================================================= */
+
+.fingerprint-dimension{
+  position:relative;
+}
+
+.fingerprint-values{
+  align-items:center;
+}
+
+.fp-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  border:1px solid #D6E2F2;
+  cursor:pointer;
+  transition:.15s ease;
+}
+
+.fp-chip:hover{
+  border-color:#9FC3FF;
+  color:var(--blue);
+  background:#F7FAFF;
+}
+
+.fp-chip .fp-edit-mark{
+  opacity:.55;
+  font-size:8px;
+}
+
+.fp-add-button{
+  display:inline-flex;
+  align-items:center;
+  min-height:25px;
+  padding:4px 7px;
+  border:1px dashed #B9C9DF;
+  border-radius:10px;
+  color:#62758D;
+  background:transparent;
+  font-size:8px;
+  font-weight:800;
+}
+
+.fp-add-button:hover{
+  border-color:var(--blue);
+  color:var(--blue);
+  background:#F7FAFF;
+}
+
+.fingerprint-editor{
+  margin-top:16px;
+  padding:14px;
+  border:1px solid #CFE0F5;
+  border-radius:11px;
+  background:#FFFFFF;
+  box-shadow:0 10px 28px rgba(11,31,58,.08);
+}
+
+.fingerprint-editor[hidden]{
+  display:none;
+}
+
+.fingerprint-editor-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:11px;
+}
+
+.fingerprint-editor-head strong{
+  color:#20304A;
+  font-size:11px;
+}
+
+.fingerprint-editor-head button{
+  width:26px;
+  height:26px;
+  border:0;
+  border-radius:50%;
+  color:#64748B;
+  background:#F5F7FA;
+  font-size:16px;
+}
+
+.fingerprint-editor > label{
+  display:block;
+  margin-bottom:6px;
+  color:#56657A;
+  font-size:9px;
+  font-weight:800;
+}
+
+.fingerprint-editor > input{
+  width:100%;
+  height:39px;
+  padding:0 10px;
+  border:1px solid #DDE5EF;
+  border-radius:8px;
+  outline:none;
+  font-size:10px;
+}
+
+.fingerprint-editor > input:focus{
+  border-color:#9FC3FF;
+  box-shadow:0 0 0 3px rgba(22,119,255,.05);
+}
+
+.fingerprint-editor > p{
+  margin:6px 0 0;
+  color:#8391A5;
+  font-size:8px;
+}
+
+.fingerprint-editor-actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:12px;
+}
+
+.fingerprint-editor-actions > div{
+  display:flex;
+  gap:7px;
+}
+
+.fingerprint-delete-button,
+.fingerprint-cancel-button,
+.fingerprint-save-button{
+  min-height:34px;
+  padding:0 10px;
+  border-radius:7px;
+  font-size:9px;
+  font-weight:800;
+}
+
+.fingerprint-delete-button{
+  border:1px solid #F1CACA;
+  color:#B54848;
+  background:#FFF8F8;
+}
+
+.fingerprint-cancel-button{
+  border:1px solid #DDE5EF;
+  color:#56657A;
+  background:#FFFFFF;
+}
+
+.fingerprint-save-button{
+  border:0;
+  color:#FFFFFF;
+  background:var(--blue);
+}
+
+/* Something Else multi-value field */
+.other-answer-wrap label{
+  line-height:1.45;
+}
+
+.other-answer-row input{
+  min-width:0;
+}
+
+/* Adjust a specific fingerprint dimension */
+.adjust-menu{
+  max-width:700px;
+  margin:20px auto 0;
+  padding:14px;
+  border:1px solid #DCE6F2;
+  border-radius:11px;
+  background:#F8FBFF;
+  text-align:left;
+}
+
+.adjust-menu[hidden]{
+  display:none;
+}
+
+.adjust-menu > strong{
+  display:block;
+  margin-bottom:10px;
+  color:#344257;
+  font-size:10px;
+}
+
+.adjust-menu-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+.adjust-menu-options button{
+  min-height:34px;
+  padding:0 10px;
+  border:1px solid #D7E2EF;
+  border-radius:8px;
+  color:#405069;
+  background:#FFFFFF;
+  font-size:9px;
+  font-weight:800;
+}
+
+.adjust-menu-options button:hover{
+  border-color:#9FC3FF;
+  color:var(--blue);
+}
+
+/* Once Looks right is confirmed, navigation back disappears. */
+body.profile-confirmed #backButton,
+body.profile-confirmed #backToDetailsButton{
+  display:none !important;
+}
+
+body.profile-confirmed .profile-actions{
+  margin-left:auto;
+}
+
+/* Fingerprint empty-state typography */
+.fp-empty-text,
+.fingerprint-values.empty{
+  color:#96A2B2;
+  font-family:inherit;
+  font-size:8px;
+  font-weight:600;
+  line-height:1.35;
+  letter-spacing:0;
+  text-transform:none;
+}
+
+/* Complete multilingual Profile typography normalization */
+.fp-empty-text{
+  display:inline-flex;
+  align-items:center;
+  min-height:25px;
+  color:#96A2B2;
+  font-family:inherit;
+  font-size:8px;
+  font-weight:600;
+  line-height:1.35;
+  letter-spacing:0;
+  text-transform:none;
+}

@@ -1019,3 +1019,424 @@ Então eu ajustaria a Tela 3 nestes pontos: mover **Back to profile details** pa
 Essa seria uma evolução real de CX, não só uma correção visual.
 
 
+EXEMPLO DE PROMPT DE PESQUISA
+
+Pesquise vagas novas em Israel na área de tecnologia que sejam relevantes para profissionais que falam português do Brasil ou de Portugal, ou que trabalhem com Brazil, Brasil, LATAM, Latin America ou Portugal. Priorize posições de implementação de sistemas, Account Management, Customer Success, Customer Support, vendas B2B de tecnologia/SaaS, Business Development, Partnerships, Channel/Alliance Management, Technical Account Management, Solutions Consulting e Professional Services. Considere diferentes títulos equivalentes e empresas israelenses com clientes, parceiros ou expansão no Brasil/LATAM, mesmo quando 'Portuguese' não estiver no título. Notifique-me apenas sobre vagas novas e realmente relevantes, incluindo empresa, cargo, localização, por que combina com o perfil buscado e link para candidatura.
+
+Esses cinco ajustes fazem sentido e, juntos, melhoram bastante a lógica do onboarding. Eu só faria uma mudança conceitual importante para evitar problemas futuros: a partir da Tela 2 precisamos separar **“dados temporários da jornada”** de **“dados persistentes da conta”**.
+
+### 1. `Skip journey` somente depois que a conta existir
+
+Na **Tela 1**, o `Skip journey` deve ficar permanentemente desabilitado. Mesmo depois de selecionar idioma e país, o usuário ainda não forneceu informação suficiente para termos uma conta.
+
+Na **Tela 2**, depois de termos:
+
+`Language + Country + First Name + Last Name + valid Email`
+
+temos o mínimo necessário para criar a conta.
+
+Eu faria o fluxo assim:
+
+```text
+SCREEN 1
+Language + Country
+        ↓
+Continue
+        ↓
+SCREEN 2
+Name + Email
+        ↓
+validation OK
+        ↓
+CREATE ACCOUNT
+        ↓
+accountCreated = true
+        ↓
+Continue → Profile
+ou
+Skip Journey → Dashboard
+```
+
+A partir daí, nas Telas 3, 4, 5 e 6, `Skip journey` fica disponível porque tudo que o usuário já respondeu estará associado à conta.
+
+Isso também significa que precisamos abandonar gradualmente a lógica de “abrir o index e apagar todos os dados”. O **index pode continuar visualmente limpo**, mas futuramente não poderá apagar dados persistentes de uma conta criada. No protótipo podemos separar, por exemplo:
+
+```javascript
+kadimaOnboarding
+kadimaAccount
+kadimaProfile
+```
+
+E no backend isso vira naturalmente registros da conta.
+
+---
+
+## 2. `Something else` passa a aceitar vários valores
+
+Concordo totalmente.
+
+Em vez de:
+
+> Tell Kadima in a few words
+
+eu colocaria:
+
+> **Add anything Kadima missed**
+> You can add as many as you want. Separate them with commas.
+
+Exemplo:
+
+```text
+Banking, Fintech, Payment Systems, Open Finance
+```
+
+Ao clicar em **Add**, fazemos:
+
+```javascript
+input
+.split(",")
+.map(item => item.trim())
+.filter(item => item !== "")
+```
+
+E imediatamente o Live Preview recebe:
+
+```text
+Banking
+Fintech
+Payment Systems
+Open Finance
+```
+
+Cada um como um item independente.
+
+Também devemos eliminar duplicados. Se já existir `Fintech` e o usuário escrever `fintech`, não criamos outro.
+
+---
+
+## 3. `Something else` precisa persistir
+
+Sim.
+
+Se naquela pergunta o usuário criou:
+
+```text
+Banking
+Fintech
+Payment Systems
+```
+
+e posteriormente voltar à pergunta, deve encontrar:
+
+**Something else ✓**
+
+e o campo:
+
+```text
+Banking, Fintech, Payment Systems
+```
+
+Isso é importante porque não podemos fazer o usuário achar que perdeu o que escreveu.
+
+Tecnicamente, em vez de armazenar apenas:
+
+```javascript
+answers.context = ["enterprise", "b2b"]
+```
+
+passamos a ter algo mais estruturado:
+
+```javascript
+answers.context = {
+  selected: [
+    "enterprise",
+    "b2b"
+  ],
+
+  custom: [
+    "Banking",
+    "Fintech",
+    "Payment Systems"
+  ]
+}
+```
+
+Isso vai facilitar muito o backend depois.
+
+---
+
+# 4. Live Preview passa a ser editável
+
+Esse ajuste é especialmente importante.
+
+Até agora o Live Preview era apenas **feedback visual**.
+
+Agora ele passa a ser também uma espécie de **editor do Professional Fingerprint**.
+
+Imagine:
+
+### CONTEXT
+
+`Enterprise ×`
+`B2B ×`
+`Fintech ×`
+`Banking ×`
+
+Ao clicar em `Fintech`, podemos abrir um pequeno popover:
+
+```text
+Edit item
+
+[ Fintech                     ]
+
+Save
+Delete
+```
+
+E abaixo de cada dimensão:
+
+```text
++ Add another
+```
+
+Ao clicar:
+
+```text
+Add to Context
+
+[ Banking, Payments, Open Finance ]
+
+Add
+```
+
+E novamente criamos três chips.
+
+Isso elimina uma limitação importante: o usuário não fica preso às alternativas que nós apresentamos.
+
+### Mas eu acrescentaria uma regra estrutural importante
+
+Precisamos saber **de onde veio cada item**.
+
+Não armazenaria simplesmente:
+
+```javascript
+["Enterprise Sales", "Fintech", "B2B"]
+```
+
+Eu começaria a estruturar assim:
+
+```javascript
+{
+  id: "fp_104",
+
+  label: "Fintech",
+
+  dimension: "context",
+
+  source: "question",
+
+  originQuestion: "work_context",
+
+  custom: true,
+
+  userEdited: false
+}
+```
+
+Se o usuário adicionar diretamente no Live Preview:
+
+```javascript
+{
+  id: "fp_105",
+
+  label: "Payment Systems",
+
+  dimension: "context",
+
+  source: "live_preview",
+
+  originQuestion: null,
+
+  custom: true,
+
+  userEdited: true
+}
+```
+
+Isso será extremamente importante quando colocarmos IA no backend.
+
+A IA poderá sugerir coisas, mas **o que o usuário editou manualmente terá prioridade**.
+
+Eu criaria desde já o princípio:
+
+> **User confirmation overrides AI inference.**
+
+Isso deve ser uma regra estrutural do Kadima.
+
+---
+
+# 5. Depois de `Looks right`, não existe mais Back
+
+Concordo.
+
+Hoje existe uma pequena contradição:
+
+```text
+Profile Foundation Complete
+✓ Looks right
+
+mas ainda:
+← Back
+```
+
+Depois que o usuário confirmou **Looks right**, eu transformaria o rodapé.
+
+Antes:
+
+```text
+← Back                         Continue →
+```
+
+Depois:
+
+```text
+✓ Profile completed             Continue →
+```
+
+Sem `Back`.
+
+E também removeria:
+
+`← Back to profile details`
+
+porque nesse momento Profile está fechado.
+
+Se quiser modificar alguma coisa posteriormente, ele não precisa voltar na jornada. Poderá editar pelo Dashboard/Profile Editor.
+
+---
+
+# Eu melhoraria também o comportamento de `Adjust something`
+
+Agora que o Live Preview será editável, acho que não faz mais sentido `Adjust something` simplesmente jogar o usuário para a última pergunta.
+
+Eu faria:
+
+> **What would you like to adjust?**
+
+E mostraria:
+
+```text
+Identity
+Career Paths
+Context
+Direction
+Transferable Value
+```
+
+Selecionou `Career Paths`?
+
+Kadima volta diretamente à pergunta ou conjunto de perguntas responsável por Career Paths.
+
+Isso transforma `Adjust something` em uma navegação inteligente.
+
+---
+
+# A Tela 3 passa então a ter três estados claros
+
+### STATE 1 — Profile Details
+
+```text
+Phone
+LinkedIn
+GitHub
+Other links
+
+Start Profile Discovery →
+```
+
+### STATE 2 — Adaptive Discovery
+
+```text
+Question
+
+[ options ]
+
+Something else
+[ item, item, item ]
+
+                   LIVE PROFESSIONAL FINGERPRINT
+                   Identity
+                   Career paths
+                   Context
+                   Direction
+                   Transferable value
+```
+
+O Live Preview já é editável.
+
+### STATE 3 — Foundation Review
+
+```text
+PROFILE FOUNDATION COMPLETE
+
+Career Path Overview
+
+Established
+...
+
+Emerging
+...
+
+Transferable Bridge
+...
+
+Professional Fingerprint
+...
+
+Adjust something        Looks right
+```
+
+Depois de `Looks right`:
+
+```text
+✓ PROFILE FOUNDATION SAVED
+
+Your professional foundation is ready.
+Kadima will continue enriching it throughout your journey.
+
+                                      Continue →
+```
+
+Nenhum Back. Nenhum Adjust. Nenhum Looks Right.
+
+---
+
+## E há uma implicação importante para a Tela 4
+
+Com esse modelo, quando entrarmos em **Experience**, não começamos vazios.
+
+Kadima já sabe, por exemplo:
+
+```text
+Established Path
+Enterprise Sales
+
+Emerging Path
+Software Development
+
+Context
+B2B
+Enterprise
+Technology
+
+Transferable Value
+Technical Background
+Business Understanding
+Customer-facing Experience
+```
+
+Então, ao cadastrar uma experiência, a IA pode fazer perguntas muito mais inteligentes sobre **o que daquela experiência fortalece cada Career Path**.
+
+Esse é exatamente o tipo de continuidade que pode fazer a jornada inteira parecer uma conversa com um sistema que realmente está aprendendo sobre a pessoa, em vez de seis formulários independentes.
+
+

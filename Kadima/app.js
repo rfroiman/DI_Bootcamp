@@ -15,6 +15,10 @@ const countryResults = document.getElementById("countryResults");
 const countryHint = document.getElementById("countryHint");
 const continueButton = document.getElementById("continueButton");
 const skipButton = document.getElementById("skipButton");
+
+if (skipButton) {
+  skipButton.remove(); // Screen 1 has no Skip Journey
+}
 const toast = document.getElementById("toast");
 
 let activeResultIndex = -1;
@@ -311,8 +315,11 @@ function saveState() {
 
 function refreshActions() {
   const enabled = ready();
+
+  // Screen 1 is mandatory. The user may continue after language + country,
+  // but cannot skip the journey before the basic account data in Screen 2 exists.
   continueButton.disabled = !enabled;
-  skipButton.disabled = !enabled;
+  skipButton.disabled = true;
 }
 
 function selectLanguage(language) {
@@ -583,16 +590,13 @@ continueButton.addEventListener("click", () => {
 });
 
 skipButton.addEventListener("click", () => {
-  if (!ready()) {
-    showToast(t().invalidLocation);
-    return;
-  }
-
-  saveState();
-  showToast(t().basicSaved);
-
-  // Future:
-  // window.location.href = "dashboard.html";
+  showToast(
+    state.language === "pt"
+      ? "Complete primeiro as informações básicas da próxima etapa."
+      : state.language === "es"
+        ? "Completa primero la información básica de la siguiente etapa."
+        : "Complete the basic information in the next step before skipping the journey."
+  );
 });
 
 function showToast(message) {
@@ -609,8 +613,9 @@ function showToast(message) {
   Every fresh call to index.html starts clean, as previously defined.
 */
 function resetIndexState() {
+  // Start Screen 1 visually clean, but do not delete persisted account data.
+  // Account/profile persistence will later move to the backend.
   localStorage.removeItem("kadimaOnboarding");
-  localStorage.removeItem("kadimaPersonalInfo");
 
   state.language = "en";
   state.location = "";

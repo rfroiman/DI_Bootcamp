@@ -14,6 +14,10 @@ const emailError = document.getElementById("emailError");
 const continueButton = document.getElementById("continueButton");
 const backButton = document.getElementById("backButton");
 const skipButton = document.getElementById("skipButton");
+
+if (skipButton) {
+  skipButton.remove(); // Screen 2 has no Skip Journey
+}
 const toast = document.getElementById("toast");
 
 
@@ -38,7 +42,7 @@ const personalText = {
     nameRequired:'First name and last name are required.', fullName:'Please enter your full name.',
     emailRequired:'Email address is required.', validEmail:'Please enter a valid email address.',
     complete:'Please complete your full name and enter a valid email.', saved:'Personal information saved.',
-    step1:'Complete language and location before skipping the journey.', later:'You can complete your profile later.'
+    step1:'Complete language and location before skipping the journey.', later:'You can complete your profile later.', accountReady:'Your Kadima account is ready. Your progress will be saved.'
   },
   pt: {
     heroTitle:'Sua jornada<br>para as melhores<br><span>oportunidades</span>',
@@ -58,7 +62,7 @@ const personalText = {
     nameRequired:'Nome e sobrenome são obrigatórios.', fullName:'Informe seu nome completo.',
     emailRequired:'O endereço de e-mail é obrigatório.', validEmail:'Informe um endereço de e-mail válido.',
     complete:'Preencha seu nome completo e informe um e-mail válido.', saved:'Informações pessoais salvas.',
-    step1:'Preencha idioma e localização antes de pular a jornada.', later:'Você pode completar seu perfil depois.'
+    step1:'Preencha idioma e localização antes de pular a jornada.', later:'Você pode completar seu perfil depois.', accountReady:'Sua conta Kadima está pronta. Seu progresso será salvo.'
   },
   es: {
     heroTitle:'Tu camino<br>hacia las mejores<br><span>oportunidades</span>',
@@ -78,7 +82,7 @@ const personalText = {
     nameRequired:'El nombre y el apellido son obligatorios.', fullName:'Ingresa tu nombre completo.',
     emailRequired:'El correo electrónico es obligatorio.', validEmail:'Ingresa un correo electrónico válido.',
     complete:'Completa tu nombre e ingresa un correo válido.', saved:'Información personal guardada.',
-    step1:'Completa idioma y ubicación antes de saltar el recorrido.', later:'Puedes completar tu perfil más tarde.'
+    step1:'Completa idioma y ubicación antes de saltar el recorrido.', later:'Puedes completar tu perfil más tarde.', accountReady:'Tu cuenta Kadima está lista. Tu progreso se guardará.'
   }
 };
 
@@ -148,12 +152,129 @@ function savePersonalInfo() {
   localStorage.setItem("kadimaPersonalInfo", JSON.stringify(personalInfo));
 }
 
+
+function getOnboardingData() {
+  try {
+    return JSON.parse(localStorage.getItem("kadimaOnboarding") || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function onboardingReady() {
+  const onboarding = getOnboardingData();
+
+  return Boolean(
+    onboarding.language &&
+    String(onboarding.location || "").trim() &&
+    String(onboarding.countryCode || "").trim()
+  );
+}
+
+function generatePrototypeAccountId() {
+  if (window.crypto && typeof window.crypto.randomUUID === "function") {
+    return window.crypto.randomUUID();
+  }
+
+  return `kadima_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+}
+
+/*
+  PROTOTYPE ACCOUNT CREATION
+
+  In production this becomes a backend call after Screen 1 + Screen 2
+  have been validated. The backend will create the real account and return
+  an authenticated account/user ID.
+*/
+function ensureKadimaAccount() {
+  if (!onboardingReady() || !pageReady()) {
+    return null;
+  }
+
+  const onboarding = getOnboardingData();
+  const email = clean(state.email).toLowerCase();
+
+  let account = null;
+
+  try {
+    account = JSON.parse(localStorage.getItem("kadimaAccount") || "null");
+  } catch {
+    account = null;
+  }
+
+  // Do not silently reuse a different account just because it exists
+  // in this browser's prototype storage.
+  if (!account || account.email !== email) {
+    account = {
+      accountId: generatePrototypeAccountId(),
+      email,
+      createdAt: new Date().toISOString()
+    };
+  }
+
+  account.firstName = clean(state.firstName);
+  account.lastName = clean(state.lastName);
+  account.fullName = `${account.firstName} ${account.lastName}`.trim();
+  account.language = onboarding.language;
+  account.location = onboarding.location;
+  account.countryCode = onboarding.countryCode;
+  account.updatedAt = new Date().toISOString();
+  account.status = "onboarding";
+
+  localStorage.setItem("kadimaAccount", JSON.stringify(account));
+
+  // Associate the active journey with this account.
+  onboarding.accountId = account.accountId;
+  onboarding.accountCreated = true;
+  localStorage.setItem("kadimaOnboarding", JSON.stringify(onboarding));
+
+  return account;
+}
+
+function accountReady() {
+  // An old account in localStorage must never unlock Skip on a fresh Screen 2.
+  if (!pageReady() || !onboardingReady()) {
+    return false;
+  }
+
+  const onboarding = getOnboardingData();
+
+  if (!onboarding.accountCreated || !onboarding.accountId) {
+    return false;
+  }
+
+  try {
+    const account = JSON.parse(localStorage.getItem("kadimaAccount") || "null");
+
+    return Boolean(
+      account &&
+      account.accountId === onboarding.accountId &&
+      clean(account.firstName) === clean(state.firstName) &&
+      clean(account.lastName) === clean(state.lastName) &&
+      clean(account.email).toLowerCase() === clean(state.email).toLowerCase()
+    );
+  } catch {
+    return false;
+  }
+}
+
 function updateValidation(showErrors = false) {
   const firstName = clean(state.firstName);
   const lastName = clean(state.lastName);
   const email = clean(state.email);
 
-  continueButton.disabled = !pageReady();
+  const basicsReady = pageReady() && onboardingReady();
+
+  continueButton.disabled = !basicsReady;
+
+  // Skip is locked until ALL mandatory Screen 2 fields are valid.
+  if (!basicsReady) {
+    skipButton.disabled = true;
+    return;
+  }
+
+  ensureKadimaAccount();
+  skipButton.disabled = !accountReady();
 
   if (showErrors || firstName || lastName) {
     if (!firstName || !lastName) {
@@ -204,68 +325,50 @@ continueButton.addEventListener("click", () => {
   syncState();
   updateValidation(true);
 
-  if (!pageReady()) {
+  if (!pageReady() || !onboardingReady()) {
     showToast(pt().complete);
     return;
   }
 
   savePersonalInfo();
-  showToast(pt().saved);
+
+  const account = ensureKadimaAccount();
+
+  if (!account) {
+    showToast(pt().complete);
+    return;
+  }
+
+  showToast(pt().accountReady);
   window.location.href = "profile.html";
-  });
+});
 
 backButton.addEventListener("click", () => {
   window.location.href = "index.html";
 });
 
 skipButton.addEventListener("click", () => {
-  /*
-    Skip is allowed from Step 2 only because Step 1 is mandatory.
-    We verify that Step 1 was actually completed before skipping.
-  */
-  const onboardingRaw = localStorage.getItem("kadimaOnboarding");
-
-  if (!onboardingRaw) {
-    showToast(pt().step1);
-    setTimeout(() => {
-      window.location.href = "index.html";
-    }, 900);
-    return;
-  }
-
-  try {
-    const onboarding = JSON.parse(onboardingRaw);
-
-    if (!onboarding.language || !String(onboarding.location || "").trim()) {
-      showToast(pt().step1);
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 900);
-      return;
-    }
-  } catch {
-    showToast(pt().step1);
-    setTimeout(() => {
-      window.location.href = "index.html";
-    }, 900);
-    return;
-  }
-
   syncState();
+  updateValidation(true);
 
-  /*
-    Save any valid data already entered, even if the user skips.
-  */
-  if (pageReady()) {
-    savePersonalInfo();
+  if (!pageReady() || !onboardingReady()) {
+    showToast(pt().complete);
+    return;
+  }
+
+  savePersonalInfo();
+
+  const account = ensureKadimaAccount();
+
+  if (!account) {
+    showToast(pt().complete);
+    return;
   }
 
   showToast(pt().later);
 
   /*
-    Dashboard will be connected here later.
-
-    Example:
+    Future:
     window.location.href = "dashboard.html";
   */
 });
@@ -281,6 +384,16 @@ function showToast(message) {
 }
 
 function restorePersonalInfo() {
+  const onboarding = getOnboardingData();
+
+  // A fresh Screen 1 journey should open Screen 2 empty.
+  // We only restore Screen 2 data when this journey is already attached
+  // to the same created account.
+  if (!onboarding.accountId) {
+    updateValidation(false);
+    return;
+  }
+
   const saved = localStorage.getItem("kadimaPersonalInfo");
 
   if (!saved) {
@@ -315,4 +428,9 @@ function loadSelectedLanguage() {
 }
 
 loadSelectedLanguage();
+
+if (skipButton) {
+  skipButton.disabled = true;
+}
+
 restorePersonalInfo();

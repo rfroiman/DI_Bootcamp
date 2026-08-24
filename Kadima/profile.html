@@ -45,7 +45,7 @@
             <h2 id="profileTitle">Let's discover your professional fingerprint.</h2>
             <p id="profileSubtitle">Short, guided questions. No long forms. Kadima adapts the journey as it learns about you.</p>
           </div>
-          <button id="backToDetailsButton" class="top-details-button" type="button">← Back to profile details</button>
+          <button id="backToDetailsButton" class="top-details-button" type="button">← <span id="backToDetailsText">Back to profile details</span></button>
         </div>
 <section id="contactPanel" class="profile-stage-card">
           <div class="stage-kicker"><span class="stage-profile-icon" aria-hidden="true">
@@ -54,9 +54,9 @@
         <path d="M3.5 19c.4-3.8 2-5.6 4.5-5.6s4.1 1.8 4.5 5.6"/>
         <path d="M15 8h6M15 12h6M15 16h4"/>
       </svg>
-    </span><div><strong>A few profile details first</strong><span>These are contact details, not part of your matching score.</span></div></div>
+    </span><div><strong id="contactTitle">A few profile details first</strong><span id="contactSubtitle">These are contact details, not part of your matching score.</span></div></div>
           <div class="contact-grid">
-            <div class="contact-field"><label for="phoneInput">Phone</label><div class="phone-wrap">
+            <div class="contact-field"><label id="phoneLabel" for="phoneInput">Phone</label><div class="phone-wrap">
   <div class="dial-code-picker" id="dialCodePicker">
     <button id="dialCodeButton" class="dial-code-button" type="button" aria-expanded="false" aria-haspopup="listbox">
       <span id="dialFlag" class="dial-flag">🌐</span>
@@ -73,24 +73,24 @@
   </div>
 
   <input id="phoneInput" type="tel" autocomplete="tel" placeholder="Phone number" />
-</div><label class="check-row"><input id="emailOnly" type="checkbox"><span>I prefer to be contacted by email only</span></label></div>
-            <div class="contact-field"><label for="linkedinInput">LinkedIn</label><input id="linkedinInput" type="url" placeholder="https://linkedin.com/in/..."></div>
-            <div class="contact-field"><label for="githubInput">GitHub</label><input id="githubInput" type="url" placeholder="https://github.com/..."></div>
-            <div class="contact-field"><label for="otherLinkInput">Other professional link</label><input id="otherLinkInput" type="url" placeholder="Portfolio, website, Behance..."></div>
+</div><label class="check-row"><input id="emailOnly" type="checkbox"><span id="emailOnlyText">I prefer to be contacted by email only</span></label></div>
+            <div class="contact-field"><label id="linkedinLabel" for="linkedinInput">LinkedIn</label><input id="linkedinInput" type="url" placeholder="https://linkedin.com/in/..."></div>
+            <div class="contact-field"><label id="githubLabel" for="githubInput">GitHub</label><input id="githubInput" type="url" placeholder="https://github.com/..."></div>
+            <div class="contact-field"><label id="otherLinkLabel" for="otherLinkInput">Other professional link</label><input id="otherLinkInput" type="url" placeholder="Portfolio, website, Behance..."></div>
           </div>
-          <div class="contact-footer"><span>All fields in this block are optional.</span><button id="startDiscoveryButton" class="primary-inline" type="button">Start profile discovery <span>→</span></button></div>
+          <div class="contact-footer"><span id="contactOptionalText">All fields in this block are optional.</span><button id="startDiscoveryButton" class="primary-inline" type="button"><span id="startDiscoveryText">Start profile discovery</span> <span>→</span></button></div>
         </section>
 
         <section id="discoveryPanel" class="discovery-layout" hidden>
           <div class="question-card">
-<div class="question-meta"><div><span class="question-stage-label">Kadima is learning about you</span><h3 id="questionText"></h3><p id="questionHelp"></p></div><span id="questionCounter" class="question-counter"></span></div>
+<div class="question-meta"><div><span id="questionStageLabel" class="question-stage-label">Kadima is learning about you</span><h3 id="questionText"></h3><p id="questionHelp"></p></div><span id="questionCounter" class="question-counter"></span></div>
             <div id="answerOptions" class="answer-options"></div>
-            <div id="otherAnswerWrap" class="other-answer-wrap" hidden><label for="otherAnswerInput">Tell Kadima in a few words</label><div class="other-answer-row"><input id="otherAnswerInput" type="text" maxlength="80"><button id="addOtherAnswerButton" type="button">Add</button></div></div>
-            <div class="question-actions"><button id="previousQuestionButton" class="secondary-inline" type="button">← Previous</button><button id="nextQuestionButton" class="primary-inline" type="button" disabled>Continue →</button></div>
+            <div id="otherAnswerWrap" class="other-answer-wrap" hidden><label id="otherAnswerLabel" for="otherAnswerInput">Add anything Kadima missed. You can add as many as you want, separated by commas.</label><div class="other-answer-row"><input id="otherAnswerInput" type="text" maxlength="400" placeholder="e.g. Fintech, Payments, Open Finance"><button id="addOtherAnswerButton" type="button">Add</button></div></div>
+            <div class="question-actions"><button id="previousQuestionButton" class="secondary-inline" type="button">← <span id="previousQuestionText">Previous</span></button><button id="nextQuestionButton" class="primary-inline" type="button" disabled><span id="nextQuestionText">Continue</span> →</button></div>
           </div>
 
           <aside class="fingerprint-card">
-            <div class="fingerprint-header"><div><span>LIVE PREVIEW</span><h3>Your Professional Fingerprint</h3></div><div class="fingerprint-icon" aria-hidden="true">
+            <div class="fingerprint-header"><div><span id="livePreviewLabel">LIVE PREVIEW</span><h3 id="fingerprintTitle">Your Professional Fingerprint</h3></div><div class="fingerprint-icon" aria-hidden="true">
   <svg viewBox="0 0 24 24">
     <circle cx="12" cy="12" r="8"/>
     <circle cx="12" cy="12" r="3"/>
@@ -98,17 +98,37 @@
   </svg>
 </div></div>
             <div class="fingerprint-dimensions">
-              <div class="fingerprint-dimension"><span>Identity</span><div id="fpIdentity" class="fingerprint-values empty">To be discovered</div></div>
-              <div class="fingerprint-dimension"><span>Career paths</span><div id="fpPaths" class="fingerprint-values empty">To be discovered</div></div>
-              <div class="fingerprint-dimension"><span>Context</span><div id="fpContext" class="fingerprint-values empty">To be discovered</div></div>
-              <div class="fingerprint-dimension"><span>Direction</span><div id="fpDirection" class="fingerprint-values empty">To be discovered</div></div>
-              <div class="fingerprint-dimension"><span>Transferable value</span><div id="fpTransferable" class="fingerprint-values empty">To be discovered</div></div>
+              <div class="fingerprint-dimension"><span id="fpIdentityLabel">Identity</span><div id="fpIdentity" class="fingerprint-values empty"></div></div>
+              <div class="fingerprint-dimension"><span id="fpPathsLabel">Career paths</span><div id="fpPaths" class="fingerprint-values empty"></div></div>
+              <div class="fingerprint-dimension"><span id="fpContextLabel">Context</span><div id="fpContext" class="fingerprint-values empty"></div></div>
+              <div class="fingerprint-dimension"><span id="fpDirectionLabel">Direction</span><div id="fpDirection" class="fingerprint-values empty"></div></div>
+              <div class="fingerprint-dimension"><span id="fpTransferableLabel">Transferable value</span><div id="fpTransferable" class="fingerprint-values empty"></div></div>
+            </div>
+
+            <div id="fingerprintEditor" class="fingerprint-editor" hidden>
+              <div class="fingerprint-editor-head">
+                <strong id="fingerprintEditorTitle">Edit fingerprint item</strong>
+                <button id="closeFingerprintEditorButton" type="button" aria-label="Close">×</button>
+              </div>
+
+              <label id="fingerprintEditorLabel" for="fingerprintEditorInput">Item</label>
+              <input id="fingerprintEditorInput" type="text" maxlength="400" />
+
+              <p id="fingerprintEditorHint">You can add multiple items separated by commas.</p>
+
+              <div class="fingerprint-editor-actions">
+                <button id="deleteFingerprintItemButton" class="fingerprint-delete-button" type="button">Delete</button>
+                <div>
+                  <button id="cancelFingerprintEditorButton" class="fingerprint-cancel-button" type="button">Cancel</button>
+                  <button id="saveFingerprintItemButton" class="fingerprint-save-button" type="button">Save</button>
+                </div>
+              </div>
             </div>
           </aside>
         </section>
 
         <section id="reviewPanel" class="review-card" hidden>
-          <div class="review-icon">✓</div><span>PROFILE FOUNDATION COMPLETE</span><h3>Here's what Kadima has discovered about you so far.</h3><p>This is your professional fingerprint so far. It captures how you see your career today and where you want to go next. We'll continue enriching it as you move through your journey.</p>
+          <div class="review-icon">✓</div><span id="reviewEyebrow">PROFILE FOUNDATION COMPLETE</span><h3 id="reviewTitle">Here's what Kadima has discovered about you so far.</h3><p id="reviewSubtitle">This is your professional fingerprint so far. It captures how you see your career today and where you want to go next. We'll continue enriching it as you move through your journey.</p>
           <div id="profileCompletionState" class="profile-completion-state" hidden>
             <div class="completion-check">✓</div>
             <div>
@@ -120,15 +140,26 @@
           <section id="careerPathOverview" class="career-path-overview">
             <div class="career-path-title-row">
               <div>
-                <span class="career-path-eyebrow">CAREER PATH OVERVIEW</span>
-                <h4>How Kadima currently sees your professional paths</h4>
+                <span id="careerPathEyebrow" class="career-path-eyebrow">CAREER PATH OVERVIEW</span>
+                <h4 id="careerPathTitle">How Kadima currently sees your professional paths</h4>
               </div>
             </div>
             <div id="careerPathCards" class="career-path-cards"></div>
           </section>
 
           <div id="reviewFingerprint" class="review-fingerprint"></div>
-          <div class="review-actions"><button id="adjustButton" class="secondary-inline" type="button">Adjust something</button><button id="finishProfileButton" class="primary-inline" type="button">Looks right →</button></div>
+          <div id="adjustMenu" class="adjust-menu" hidden>
+            <strong id="adjustMenuTitle">What would you like to adjust?</strong>
+            <div class="adjust-menu-options">
+              <button type="button" data-adjust-dimension="identity" id="adjustIdentity">Identity</button>
+              <button type="button" data-adjust-dimension="paths" id="adjustPaths">Career Paths</button>
+              <button type="button" data-adjust-dimension="context" id="adjustContext">Context</button>
+              <button type="button" data-adjust-dimension="direction" id="adjustDirection">Direction</button>
+              <button type="button" data-adjust-dimension="transferable" id="adjustTransferable">Transferable Value</button>
+            </div>
+          </div>
+
+          <div class="review-actions"><button id="adjustButton" class="secondary-inline" type="button"><span id="adjustButtonText">Adjust something</span></button><button id="finishProfileButton" class="primary-inline" type="button"><span id="finishProfileText">Looks right</span> →</button></div>
         </section>
 
         <footer class="profile-footer">
@@ -146,8 +177,8 @@
           </div>
 
           <div class="profile-actions">
-            <button id="backButton" class="back-button" type="button">← <span>Back</span></button>
-            <button id="continueToExperienceButton" class="continue-button" type="button" disabled><span>Continue</span> →</button>
+            <button id="backButton" class="back-button" type="button">← <span id="backButtonText">Back</span></button>
+            <button id="continueToExperienceButton" class="continue-button" type="button" disabled><span id="continueExperienceText">Continue</span> →</button>
           </div>
         </footer>
       </div>
