@@ -1,15 +1,49 @@
-const taskForm = document.getElementById("taskForm");
+const taskForm =
+  document.getElementById("taskForm");
 
-const taskInput = document.getElementById("taskInput");
+const taskInput =
+  document.getElementById("taskInput");
 
 const listTasks =
   document.querySelector(".listTasks");
 
+const clearAllButton =
+  document.getElementById("clearAll");
 
-// BONUS I
-// Array of task objects
+
+// -----------------------------
+// ARRAY OF TASKS
+// -----------------------------
 
 const tasks = [];
+
+
+// We use this variable so every task
+// keeps a unique ID even after deleting
+// other tasks.
+
+let nextTaskId = 0;
+
+
+// -----------------------------
+// UPDATE CLEAR BUTTON
+// -----------------------------
+
+function updateClearButton() {
+
+  if (tasks.length > 0) {
+
+    clearAllButton.style.display = "block";
+
+  }
+
+  else {
+
+    clearAllButton.style.display = "none";
+
+  }
+
+}
 
 
 // -----------------------------
@@ -40,7 +74,7 @@ function addTask(event) {
 
   const newTask = {
 
-    task_id: tasks.length,
+    task_id: nextTaskId,
 
     text: taskText,
 
@@ -49,12 +83,19 @@ function addTask(event) {
   };
 
 
-  // Add object to array
+  // Increase ID for next task
+
+  nextTaskId++;
+
+
+  // Add task to array
 
   tasks.push(newTask);
 
 
-  // Create task div
+  // -----------------------------
+  // CREATE TASK DIV
+  // -----------------------------
 
   const taskDiv =
     document.createElement("div");
@@ -63,7 +104,7 @@ function addTask(event) {
   taskDiv.classList.add("task");
 
 
-  // data-task-id
+  // Add data-task-id
 
   taskDiv.dataset.taskId =
     newTask.task_id;
@@ -121,7 +162,7 @@ function addTask(event) {
     newTask.text;
 
 
-  // Add elements to task div
+  // Add elements to task
 
   taskDiv.appendChild(
     deleteButton
@@ -143,9 +184,14 @@ function addTask(event) {
   );
 
 
-  // Clear input
+  // Clear text input
 
   taskInput.value = "";
+
+
+  // Show Clear All button
+
+  updateClearButton();
 
 
   console.log(tasks);
@@ -174,7 +220,7 @@ function doneTask(event) {
     );
 
 
-  // Find task object
+  // Find task inside array
 
   const task =
     tasks.find(
@@ -191,7 +237,7 @@ function doneTask(event) {
   }
 
 
-  // Change DOM appearance
+  // Change appearance in DOM
 
   if (checkbox.checked) {
 
@@ -216,13 +262,11 @@ function doneTask(event) {
 
 
 // -----------------------------
-// DELETE TASK
+// DELETE ONE TASK
 // BONUS II
 // -----------------------------
 
 function deleteTask(event) {
-
-  // currentTarget = button
 
   const deleteButton =
     event.currentTarget;
@@ -238,7 +282,7 @@ function deleteTask(event) {
     );
 
 
-  // Find task position
+  // Find task index
 
   const taskIndex =
     tasks.findIndex(
@@ -264,16 +308,61 @@ function deleteTask(event) {
   taskDiv.remove();
 
 
+  // Hide Clear All if array is empty
+
+  updateClearButton();
+
+
   console.log(tasks);
 
 }
 
 
 // -----------------------------
-// FORM EVENT
+// CLEAR ALL TASKS
+// -----------------------------
+
+function clearAllTasks() {
+
+  // Remove all tasks from array
+
+  tasks.splice(
+    0,
+    tasks.length
+  );
+
+
+  // Remove all tasks from DOM
+
+  listTasks.innerHTML = "";
+
+
+  // Hide Clear All button
+
+  updateClearButton();
+
+
+  console.log(tasks);
+
+}
+
+
+// -----------------------------
+// EVENTS
 // -----------------------------
 
 taskForm.addEventListener(
   "submit",
   addTask
 );
+
+
+clearAllButton.addEventListener(
+  "click",
+  clearAllTasks
+);
+
+
+// Make sure button starts hidden
+
+updateClearButton();
