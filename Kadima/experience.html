@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kadima | Experience</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="experience.css" />
+</head>
+<body>
+  <main class="screen">
+    <!-- Same approved left panel structure used on Screens 1–3 -->
+    <aside class="left-panel">
+      <div class="logo-wrap">
+        <img src="assets/kadima-logo-original.png" alt="Kadima" class="logo" />
+      </div>
+
+      <div class="hero-copy">
+        <h1 id="heroTitle">Your journey<br>to the best<br><span>opportunities</span></h1>
+        <div class="accent"></div>
+        <p id="heroDescription">
+          We want to get to know you better so we can connect you with opportunities that truly match your profile.
+        </p>
+      </div>
+
+      <div class="journey-art" aria-hidden="true"></div>
+
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon green">
+            <svg viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3v1a3 3 0 0 0-2 3 3 3 0 0 0 2 3v2a3 3 0 0 0 3 3M15 4a3 3 0 0 1 3 3v1a3 3 0 0 1 2 3 3 3 0 0 1-2 3v2a3 3 0 0 1-3 3M9 7v10M15 7v10M9 10h6M9 14h6"/></svg>
+          </div>
+          <div>
+            <strong id="benefit1Title">AI that understands you</strong>
+            <span id="benefit1Text">We analyze your skills and experience to find the right opportunities.</span>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon blue">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M17 7l4-4M18 3h3v3"/></svg>
+          </div>
+          <div>
+            <strong id="benefit2Title">Smart matches</strong>
+            <span id="benefit2Text">We compare your profile with job requirements and calculate your fit.</span>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon green">
+            <svg viewBox="0 0 24 24"><path d="M5 19 19 5"/><path d="M9 5h10v10"/></svg>
+          </div>
+          <div>
+            <strong id="benefit3Title">Your future, now</strong>
+            <span id="benefit3Text">Save time and focus on the opportunities that matter.</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="content-panel">
+      <!-- Same journey/header pattern as previous approved screens -->
+      <header class="content-header">
+        <div class="welcome">
+          <div class="welcome-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3Z"/></svg>
+          </div>
+          <div>
+            <strong id="welcomeTitle">Welcome to Kadima!</strong>
+            <span id="welcomeSubtitle">Let's build your profile in 6 simple steps.</span>
+          </div>
+        </div>
+
+        <div class="progress" aria-label="Journey progress">
+          <div class="progress-item done">
+            <div class="progress-circle">✓</div>
+            <span data-progress-label="0">Welcome</span>
+          </div>
+          <div class="progress-line completed"></div>
+
+          <div class="progress-item done">
+            <div class="progress-circle">✓</div>
+            <span data-progress-label="1">Personal</span>
+          </div>
+          <div class="progress-line completed"></div>
+
+          <div class="progress-item done">
+            <div class="progress-circle">✓</div>
+            <span data-progress-label="2">Profile</span>
+          </div>
+          <div class="progress-line completed"></div>
+
+          <div class="progress-item active">
+            <div class="progress-circle">4</div>
+            <span data-progress-label="3">Experience</span>
+          </div>
+          <div class="progress-line"></div>
+
+          <div class="progress-item">
+            <div class="progress-circle">5</div>
+            <span data-progress-label="4">Education</span>
+          </div>
+          <div class="progress-line"></div>
+
+          <div class="progress-item">
+            <div class="progress-circle">6</div>
+            <span data-progress-label="5">Skills</span>
+          </div>
+        </div>
+
+        <button id="skipButton" class="skip-button" type="button">Skip journey</button>
+      </header>
+
+      <div class="experience-body">
+        <div class="experience-heading">
+          <div>
+            <span id="experienceEyebrow" class="experience-eyebrow">EXPERIENCE · STEP 4</span>
+            <h2 id="experienceTitle">Let's understand what you've actually done.</h2>
+            <p id="experienceSubtitle">No job descriptions to write. Kadima will capture what matters from each experience.</p>
+          </div>
+        </div>
+
+        <div class="experience-layout">
+          <section class="experience-main">
+            <div class="experience-choice-card">
+              <div class="card-heading">
+                <div class="experience-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5h6v2M4 11h16"/></svg>
+                </div>
+                <div>
+                  <h3 id="hasExperienceTitle">Do you have professional experience?</h3>
+                  <p id="hasExperienceHelp">This can include full-time, part-time, contract, freelance, internships or volunteer work.</p>
+                </div>
+              </div>
+
+              <div class="experience-choice-grid">
+                <button id="hasExperienceYes" class="choice-card" type="button" data-choice="yes">
+                  <span class="choice-check">✓</span>
+                  <strong id="hasExperienceYesText">Yes, I have experience</strong>
+                </button>
+                <button id="hasExperienceNo" class="choice-card" type="button" data-choice="no">
+                  <span class="choice-radio"></span>
+                  <strong id="hasExperienceNoText">Not yet</strong>
+                </button>
+              </div>
+            </div>
+
+            <section id="experienceFormSection" class="experience-form-card" hidden>
+              <div class="section-header">
+                <div>
+                  <span id="experienceEntryLabel" class="section-eyebrow">EXPERIENCE 1</span>
+                  <h3 id="experienceEntryTitle">Let's add your experience</h3>
+                  <p id="experienceEntryHelp">Start with the basic facts. We'll discover the meaningful details next.</p>
+                </div>
+                <span id="experienceCountBadge" class="count-badge">0 added</span>
+              </div>
+
+              <div class="experience-fields">
+                <div class="field-group">
+                  <label id="companyLabel" for="companyInput">Company <span>*</span></label>
+                  <input id="companyInput" type="text" autocomplete="organization" placeholder="e.g. Kadima Technologies" />
+                </div>
+
+                <div class="field-group">
+                  <label id="jobTitleLabel" for="jobTitleInput">Job title <span>*</span></label>
+                  <input id="jobTitleInput" type="text" placeholder="e.g. Account Manager" />
+                </div>
+
+                <div class="field-group">
+                  <label id="locationLabel" for="locationInput">Location</label>
+                  <input id="locationInput" type="text" placeholder="e.g. São Paulo, Brazil" />
+                </div>
+
+                <div class="date-fields">
+                  <div class="field-group">
+                    <label id="startDateLabel" for="startDateInput">Start date <span>*</span></label>
+                    <input id="startDateInput" type="month" />
+                  </div>
+
+                  <div class="field-group">
+                    <label id="endDateLabel" for="endDateInput">End date</label>
+                    <input id="endDateInput" type="month" />
+                  </div>
+
+                  <label class="present-check">
+                    <input id="presentCheckbox" type="checkbox" />
+                    <span id="presentText">Present</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="experience-type-block">
+                <div class="field-label-row">
+                  <strong id="experienceTypeTitle">What type of experience was this?</strong>
+                  <span id="experienceTypeHelp">Choose one</span>
+                </div>
+
+                <div id="experienceTypeOptions" class="experience-type-options">
+                  <button type="button" data-type="fulltime">Full-time</button>
+                  <button type="button" data-type="parttime">Part-time</button>
+                  <button type="button" data-type="contract">Contract</button>
+                  <button type="button" data-type="freelance">Freelance</button>
+                  <button type="button" data-type="internship">Internship</button>
+                  <button type="button" data-type="volunteer">Volunteer</button>
+                  <button type="button" data-type="other">Other</button>
+                </div>
+              </div>
+
+              <div class="relevance-block">
+                <div class="field-label-row">
+                  <div>
+                    <strong id="relevanceTitle">How important is this experience to where you want to go next?</strong>
+                    <span id="relevanceHelp">This helps Kadima decide how deeply to explore it.</span>
+                  </div>
+                </div>
+
+                <div id="relevanceOptions" class="relevance-options">
+                  <button type="button" data-relevance="core">
+                    <strong id="relevanceCoreTitle">Core experience</strong>
+                    <span id="relevanceCoreText">Explore this experience in depth</span>
+                  </button>
+
+                  <button type="button" data-relevance="relevant">
+                    <strong id="relevanceRelevantTitle">Relevant background</strong>
+                    <span id="relevanceRelevantText">Capture the most useful parts</span>
+                  </button>
+
+                  <button type="button" data-relevance="supporting">
+                    <strong id="relevanceSupportingTitle">Supporting experience</strong>
+                    <span id="relevanceSupportingText">Keep it concise</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="experience-form-actions">
+                <button id="clearExperienceButton" class="secondary-inline" type="button">
+                  <span id="clearExperienceText">Clear</span>
+                </button>
+
+                <button id="saveExperienceButton" class="primary-inline" type="button" disabled>
+                  <span id="saveExperienceText">Save and continue</span> →
+                </button>
+              </div>
+            </section>
+
+            <section id="savedExperiencesSection" class="saved-experiences-section" hidden>
+              <div class="saved-experiences-header">
+                <div>
+                  <span id="savedExperiencesEyebrow" class="section-eyebrow">YOUR EXPERIENCE</span>
+                  <h3 id="savedExperiencesTitle">Experiences added</h3>
+                </div>
+                <button id="addAnotherExperienceButton" class="add-experience-button" type="button">
+                  + <span id="addAnotherExperienceText">Add another experience</span>
+                </button>
+              </div>
+
+              <div id="savedExperiencesList" class="saved-experiences-list"></div>
+            </section>
+
+            <section id="noExperiencePanel" class="no-experience-panel" hidden>
+              <div class="no-experience-icon">✓</div>
+              <h3 id="noExperienceTitle">That's completely fine.</h3>
+              <p id="noExperienceText">Kadima will use your education, projects and skills to build the rest of your fingerprint.</p>
+            </section>
+          </section>
+
+          <aside class="experience-preview-card fingerprint-panel">
+            <div class="preview-header">
+              <div>
+                <span id="previewEyebrow">LIVE PROFESSIONAL FINGERPRINT</span>
+                <h3 id="previewTitle">Your Professional Fingerprint</h3>
+              </div>
+              <span class="live-badge">● <span id="liveText">Live</span></span>
+            </div>
+
+            <div class="fingerprint-summary">
+              <div class="fingerprint-group">
+                <span id="fpIdentityLabel">Identity</span>
+                <div id="fpIdentityValues" class="preview-values"></div>
+              </div>
+
+              <div class="fingerprint-group">
+                <span id="fpPathsLabel">Career paths</span>
+                <div id="fpPathsValues" class="preview-values"></div>
+              </div>
+
+              <div class="fingerprint-group">
+                <span id="fpContextLabel">Context</span>
+                <div id="fpContextValues" class="preview-values"></div>
+              </div>
+
+              <div class="fingerprint-group">
+                <span id="fpDirectionLabel">Direction</span>
+                <div id="fpDirectionValues" class="preview-values"></div>
+              </div>
+
+              <div class="fingerprint-group">
+                <span id="fpTransferableLabel">Transferable value</span>
+                <div id="fpTransferableValues" class="preview-values"></div>
+              </div>
+            </div>
+
+            <div id="fingerprintEditor" class="fingerprint-editor" hidden>
+              <div class="fingerprint-editor-head">
+                <strong id="fingerprintEditorTitle">Edit fingerprint item</strong>
+                <button id="closeFingerprintEditorButton" type="button" aria-label="Close">×</button>
+              </div>
+
+              <label id="fingerprintEditorLabel" for="fingerprintEditorInput">Item</label>
+              <input id="fingerprintEditorInput" type="text" maxlength="500" />
+
+              <p id="fingerprintEditorHint">You can add multiple items separated by commas.</p>
+
+              <div class="fingerprint-editor-actions">
+                <button id="deleteFingerprintItemButton" class="fingerprint-delete-button" type="button">Delete</button>
+
+                <div>
+                  <button id="cancelFingerprintEditorButton" class="fingerprint-cancel-button" type="button">Cancel</button>
+                  <button id="saveFingerprintItemButton" class="fingerprint-save-button" type="button">Save</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="career-path-mini">
+              <strong id="careerPathMiniTitle">Career Path Evolution</strong>
+              <div id="careerPathMiniCards"></div>
+            </div>
+
+            <div class="preview-note">
+              <strong id="previewNoteTitle">Growing with every answer</strong>
+              <span id="previewNoteText">Your experience will enrich the fingerprint you built in Profile.</span>
+            </div>
+          </aside>
+        </div>
+
+
+        <section id="experienceDiscoverySection" class="experience-discovery-section" hidden>
+          <div class="discovery-heading">
+            <div>
+              <span id="discoveryEyebrow" class="section-eyebrow">EXPERIENCE DISCOVERY</span>
+              <h3 id="discoveryTitle">Let's understand this experience in more depth.</h3>
+              <p id="discoverySubtitle">Kadima will ask only what is useful for this experience and your career paths.</p>
+            </div>
+            <span id="discoveryProgress" class="count-badge"></span>
+          </div>
+
+          <div class="discovery-experience-context">
+            <strong id="discoveryCompany"></strong>
+            <span id="discoveryRole"></span>
+          </div>
+
+          <div class="discovery-question-card">
+            <span id="discoveryQuestionCategory" class="question-category"></span>
+            <h4 id="discoveryQuestionText"></h4>
+            <p id="discoveryQuestionHelp"></p>
+
+            <div id="discoveryAnswerOptions" class="discovery-answer-options"></div>
+
+            <div id="discoveryOtherWrap" class="other-answer-wrap" hidden>
+              <label id="discoveryOtherLabel" for="discoveryOtherInput">Add anything Kadima missed. Separate multiple items with commas.</label>
+              <div class="other-answer-row">
+                <input id="discoveryOtherInput" type="text" maxlength="400" />
+                <button id="discoveryOtherAddButton" type="button">Add</button>
+              </div>
+            </div>
+
+            <div class="question-actions">
+              <button id="discoveryPreviousButton" class="secondary-inline" type="button">← <span id="discoveryPreviousText">Previous</span></button>
+              <button id="discoveryNextButton" class="primary-inline" type="button" disabled><span id="discoveryNextText">Continue</span> →</button>
+            </div>
+          </div>
+        </section>
+
+        <footer class="experience-footer">
+          <div class="experience-footer-note">
+            <div class="secure-mini-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5.3-3.4 8.6-8 10-4.6-1.4-8-4.7-8-10V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>
+            </div>
+            <div>
+              <strong id="footerNoteTitle">Your progress is saved</strong>
+              <span id="footerNoteText">You can return to your experience later.</span>
+            </div>
+          </div>
+
+          <div class="experience-actions">
+<button id="continueButton" class="continue-button" type="button" disabled>
+              <span id="continueButtonText">Continue</span> →
+            </button>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="experience.js"></script>
+</body>
+</html>

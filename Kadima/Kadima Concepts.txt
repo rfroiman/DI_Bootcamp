@@ -1439,4 +1439,260 @@ Então, ao cadastrar uma experiência, a IA pode fazer perguntas muito mais inte
 
 Esse é exatamente o tipo de continuidade que pode fazer a jornada inteira parecer uma conversa com um sistema que realmente está aprendendo sobre a pessoa, em vez de seis formulários independentes.
 
+Vamos para a **Tela 4 — Experience**, mas eu não começaria pelo visual ainda. Primeiro precisamos fechar a lógica de CX, porque esta provavelmente será a etapa mais importante para o matching do Kadima.
+
+O princípio deve ser o mesmo que definimos no Profile: **não pedir ao usuário que escreva a descrição do emprego**. O Kadima deve descobrir a experiência por meio de perguntas estruturadas e depois ter dados suficientes para a IA gerar descrições diferentes para cada oportunidade.
+
+### Como eu desenharia a experiência
+
+Ao entrar na Tela 4, o usuário veria algo como:
+
+**EXPERIENCE · STEP 4**
+**Let's understand what you've actually done.**
+
+> *No job descriptions to write. Kadima will capture what matters from each experience.*
+
+Primeiro, precisamos descobrir se há experiência para cadastrar:
+
+**Do you have professional experience?**
+
+`Yes` · `Not yet`
+
+Se for estudante ou alguém buscando primeiro emprego, **Not yet não é um problema**. O Kadima pode considerar internships, academic projects, freelance, volunteering etc. Mas isso não deve ser artificialmente chamado de employment.
+
+### 1. Cadastrar a experiência básica
+
+Para cada experiência:
+
+**Company**
+**Job title**
+**Location**
+**Start date → End date / Present**
+
+E eu acrescentaria algo importante:
+
+**What type of experience was this?**
+
+`Full-time` `Part-time` `Contract` `Freelance` `Internship` `Volunteer` `Other`
+
+Isso é cadastral. Depois começa a inteligência.
+
+### 2. Em vez de "What did you do?", descobrir o fingerprint daquela experiência
+
+O Kadima pergunta:
+
+**What best describes what you actually did at [Company]?**
+
+E apresenta opções adaptadas ao Profile.
+
+Por exemplo, para uma experiência comercial:
+
+`Account Management`
+`New Business`
+`Enterprise Sales`
+`Customer Success`
+`Partnerships`
+`Business Development`
+`Upsell / Cross-sell`
+`Renewals`
+`Negotiation`
+`Pipeline Management`
+`Something else`
+
+O usuário pode selecionar **quantas forem verdadeiras**.
+
+Aqui está uma diferença importante: **não devemos limitar artificialmente a quantidade**. O sistema posteriormente decide quais são relevantes para determinada vaga.
+
+### 3. Descobrir responsabilidade e senioridade real
+
+Cargo sozinho engana muito. Duas pessoas chamadas "Account Manager" podem ter experiências completamente diferentes.
+
+Perguntaria:
+
+**Who or what did you work with?**
+
+Por exemplo:
+
+`SMB customers` `Enterprise customers` `C-level` `Partners` `Technical teams` `International customers` etc.
+
+Depois:
+
+**What level of ownership did you have?**
+
+`Supported the work`
+`Owned part of it`
+`Owned it end-to-end`
+`Led other people`
+`Defined the strategy`
+
+Isso pode ser extremamente valioso para o score.
+
+### 4. Capturar resultados sem pedir que a pessoa escreva achievements
+
+Aqui podemos fazer algo bastante melhor que um formulário tradicional.
+
+**Did your work create measurable results?**
+
+`Revenue`
+`Customer growth`
+`Retention`
+`Cost reduction`
+`Efficiency`
+`Project delivery`
+`Customer satisfaction`
+`Product adoption`
+`Team performance`
+`Other`
+
+Ao selecionar `Revenue`, por exemplo:
+
+**Can you quantify it?**
+
+`Yes` / `Not exactly`
+
+Se sim:
+
+**Amount:** `[____]`
+**Currency:** `[BRL ▼]`
+**Period:** `[Annual ▼]`
+
+Para crescimento:
+
+`+ [___] %`
+
+Para carteira:
+
+`[___] customers/accounts`
+
+Ou seja, **o Kadima pergunta números somente quando eles fazem sentido**.
+
+### 5. Tecnologias, produtos e conhecimento adquiridos
+
+Depois:
+
+**What did you work with in this experience?**
+
+Aqui podem aparecer:
+
+`Salesforce` `Oracle` `SAP` `Python` `AWS` etc.
+
+Mas existe uma questão arquitetural importante: isso **não substitui a Tela 6 — Skills**.
+
+Experience responde:
+
+> **Onde e em qual contexto você utilizou determinada competência?**
+
+Skills posteriormente responde:
+
+> **Qual é o conjunto consolidado de competências do candidato?**
+
+Assim podemos saber não apenas que alguém conhece Salesforce, mas que utilizou Salesforce durante determinada experiência, em vendas B2B Enterprise.
+
+### 6. Career transition — aqui está um diferencial importante
+
+Como já identificamos no Profile os diferentes Career Paths, uma experiência antiga não deveria ser classificada simplesmente como "irrelevante".
+
+O Kadima poderia perguntar:
+
+**Could this experience strengthen another career path?**
+
+E sugerir automaticamente conexões.
+
+Por exemplo:
+
+**Commercial → Technology**
+
+`Customer requirements`
+`API discussions`
+`Solution design`
+`Technical presentations`
+`Software industry knowledge`
+
+Ou:
+
+**Technology → Commercial**
+
+`Technical credibility`
+`Requirements analysis`
+`Complex problem solving`
+`Project management`
+`Working with technical stakeholders`
+
+Isso cria o que eu chamaria internamente de **Transferable Experience Graph**.
+
+### 7. Live Preview
+
+Do lado direito, manteria exatamente o conceito que funcionou na Tela 3.
+
+**EXPERIENCE PREVIEW**
+
+**Company — Position**
+`2019–2023`
+
+**Functions**
+`Enterprise Sales` `Account Management` `New Business`
+
+**Environment**
+`B2B` `Enterprise` `Fintech`
+
+**Ownership**
+`End-to-end`
+
+**Impact**
+`Revenue Growth` `Customer Expansion`
+
+**Tools & Knowledge**
+`Salesforce` `APIs` `Payments`
+
+**Transferable Value**
+`Technical Background` `Solution Selling`
+
+Tudo editável: clicar, alterar, excluir ou adicionar.
+
+### E tem uma decisão de CX que considero fundamental
+
+**Não devemos obrigar o usuário a passar por 8 perguntas para cada emprego.**
+
+Imagine alguém com 12 experiências profissionais. Isso ficaria insuportável.
+
+O Kadima deve usar **progressive profiling**.
+
+Depois de cadastrar Company + Position + Dates, mostramos algo como:
+
+**How important is this experience to where you want to go next?**
+
+`Core experience`
+`Relevant background`
+`Supporting experience`
+
+E a profundidade muda automaticamente:
+
+**Core** → descoberta completa
+**Relevant** → 4–5 perguntas
+**Supporting** → 1–2 perguntas
+
+Além disso, conforme o Kadima aprende, deve **pré-selecionar respostas prováveis**:
+
+> **Based on your Profile, these seem relevant. Select everything that applies.**
+
+Assim o usuário confirma informações em vez de começar do zero.
+
+---
+
+Eu fecharia a arquitetura conceitual da Tela 4 desta maneira:
+
+**Experience Basics → Relevance → Functions → Context → Ownership → Impact → Tools/Knowledge → Transferable Value → Review**
+
+E cada experiência gera seu próprio **Experience Fingerprint**, que depois será combinado com Profile + Education + Skills para formar o fingerprint completo do candidato.
+
+Isso também resolve elegantemente tanto o profissional com 20 anos de carreira quanto o estudante com apenas estágio/projetos, e principalmente alguém em **mudança de carreira**, sem desperdiçar o valor do background anterior.
+
+Ótimo. O próximo passo é **desenhar visualmente a Tela 4 — Experience antes de gerar HTML/CSS/JS**, exatamente como fizemos nas etapas anteriores.
+
+Para manter consistência, eu faria a primeira visualização mostrando o **estado inicial da Tela 4**, com o mesmo shell das telas aprovadas: logo, Journey à esquerda, progresso no topo e área de trabalho à direita. O conteúdo inicial teria **“Let’s understand what you’ve actually done.”**, a explicação de que não será necessário escrever job descriptions, a escolha entre ter ou não experiência profissional e, após `Yes`, o primeiro card de experiência com Company, Job Title, Location, Dates e Experience Type.
+
+Depois da aprovação desse estado visual, desenhamos o **modo Discovery**, no qual o lado direito passa a mostrar o **Experience Preview** enquanto o Kadima conduz Functions → Context → Ownership → Impact → Tools/Knowledge → Transferable Value.
+
+Vou manter também a regra já consolidada de que **Skip journey aparece a partir desta etapa**, porque já estamos depois da criação das informações básicas da conta.
+
 

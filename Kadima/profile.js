@@ -1478,13 +1478,8 @@ function goToExperience() {
   }
 
   saveProfile();
-
-  /*
-    Screen 4 will be connected here.
-    window.location.href = "experience.html";
-  */
-
-  showToast(ui().profileSaved);
+  window.location.href = "experience.html";
+  
 }
 
 function showToast(message) {
