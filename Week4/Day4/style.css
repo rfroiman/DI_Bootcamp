@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background-color: #6556cd;
+
+    background-image: url("circuit-pattern.png");
+
+    min-height: 100vh;
+}
+
+
+/* HEADER */
+
+header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 40px;
+
+    padding: 25px 40px;
+
+    background-color: #6adf82;
+}
+
+
+h1 {
+
+    margin: 0;
+
+    font-family: 'SEGA LOGO FONT', sans-serif;
+
+    font-size: 32px;
+
+    font-weight: normal;
+
+    color: #30306b;
+}
+
+
+/* SEARCH */
+
+#searchBox {
+
+    width: 300px;
+
+    padding: 12px;
+
+    font-size: 16px;
+
+    border: 2px solid #30306b;
+
+    border-radius: 4px;
+
+    outline: none;
+}
+
+
+#searchBox:focus {
+
+    border-color: #6556cd;
+}
+
+
+/* ROBOT CONTAINER */
+
+#robotContainer {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    padding: 40px;
+}
+
+
+/* CARD */
+
+.robotCard {
+
+    width: 280px;
+
+    background-color: #4fc1b5;
+
+    background-image: url("circuit-pattern.png");
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+
+    transition: transform 0.2s;
+}
+
+
+.robotCard:hover {
+
+    transform: scale(1.05);
+}
+
+
+/* ROBOT IMAGE */
+
+.robotCard img {
+
+    width: 100%;
+
+    border-radius: 50%;
+
+    background-color: #30306b;
+}
+
+
+/* ROBOT INFORMATION */
+
+.robotCard h2 {
+
+    margin-bottom: 5px;
+
+    font-size: 21px;
+}
+
+
+.robotCard p {
+
+    margin-top: 5px;
+
+    font-size: 14px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    header {
+
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+
+    #searchBox {
+
+        width: 100%;
+    }
+}
