@@ -1695,4 +1695,709 @@ Depois da aprovação desse estado visual, desenhamos o **modo Discovery**, no q
 
 Vou manter também a regra já consolidada de que **Skip journey aparece a partir desta etapa**, porque já estamos depois da criação das informações básicas da conta.
 
+Sim. Com esse conceito novo, eu faria **um ajuste importante na Tela 3 antes de avançarmos**, porque a lógica atual de múltiplos Career Paths simultâneos entra em conflito com a nova regra de **um perfil profissional por vez**.
+
+Na Tela 3, eu mudaria o conceito de `Career Paths` plural para **um único Active Career Path** dentro daquele perfil. Se o usuário marcar “Changing careers”, a própria Tela 3 deve perguntar algo como: **“Which career should this profile represent?”** com duas opções claras: `My current career` ou `My future / target career`. A escolha passa a ser estruturante para todas as perguntas seguintes. Isso evita misturar, por exemplo, Account Management sênior com Full Stack júnior no mesmo fingerprint.
+
+O histórico anterior não deve desaparecer. Se ele escolher a carreira futura, experiências antigas continuam entrando na Tela 4, mas serão classificadas como **transferable evidence** para o caminho escolhido. Portanto, em vez de termos dois Career Paths concorrendo dentro de um mesmo perfil, teremos algo conceitualmente mais limpo:
+
+**Active Career Path → Professional Fingerprint → Supporting/Transferable Evidence**
+
+Isso também melhora muito o backend. Cada perfil passa a gerar um conjunto coerente de critérios de busca: localização + função alvo + senioridade + contexto + experiência relevante + skills + restrições. Depois, no dashboard, o mesmo usuário poderá ter, por exemplo, uma aba **Enterprise Account Manager** e outra **Junior Full Stack Developer**, cada uma com fingerprint, buscas, matches e candidaturas independentes.
+
+Eu manteria as cinco classificações atuais do Fingerprint por enquanto — `Identity`, `Career Path`, `Context`, `Direction` e `Transferable Value` — mas transformaria **Career Paths** em **Career Path** singular. Só abriria uma nova dimensão se durante Experience/Education/Skills encontrarmos informação que realmente não se encaixa de forma limpa nessas categorias.
+
+Há outro ajuste importante na Tela 3: depois que o usuário define o perfil alvo, o painel da direita deve deixar isso muito evidente. Algo como **“Profile: Account Management”** ou **“Profile: Full Stack Development”** acima do fingerprint. Isso reduz o risco de o usuário começar a inserir dados incompatíveis com o perfil que está construindo.
+
+Quanto à Tela 4, sua leitura está correta: o que temos hoje é principalmente o **cadastro básico das experiências**. A próxima etapa precisa ser o verdadeiro **Experience Discovery**. E agora ele deve ser orientado pelo Active Career Path escolhido na Tela 3. Isso significa que as perguntas não precisam ser iguais para todas as experiências.
+
+Por exemplo, para cada experiência o Kadima primeiro deveria determinar sua relação com o perfil atual: **Directly Relevant**, **Transferable**, ou **Background Only**. A partir dessa classificação decidimos a profundidade das perguntas. Uma experiência diretamente relevante recebe mais perguntas sobre função, ownership, resultados, clientes, escala, ferramentas e impacto. Uma experiência transferível recebe perguntas principalmente sobre capacidades reutilizáveis. Uma experiência apenas de background pode praticamente ficar só com os dados cadastrais.
+
+E sim: daqui em diante a coluna direita deve ser **o mesmo objeto lógico persistente** em Profile, Experience, Education e Skills. A tela muda, mas o fingerprint não “recomeça”. Cada resposta entra, é classificada e aparece imediatamente ali. E tudo permanece editável.
+
+Há ainda uma consequência arquitetural que eu considero muito positiva: precisamos separar três entidades nos dados:
+
+```text
+User
+ └── Career Profile
+      ├── Search Context (location, remote, geography...)
+      ├── Active Career Path
+      ├── Professional Fingerprint
+      ├── Experiences
+      ├── Education
+      └── Skills
+```
+
+No futuro o mesmo `User` poderá possuir:
+
+```text
+Career Profile 1 → Account Management
+Career Profile 2 → Full Stack Development
+Career Profile 3 → Customer Success
+```
+
+sem qualquer contaminação entre eles.
+
+Portanto, **sim, eu recomendo corrigirmos a Tela 3 antes de desenvolver a parte profunda da Tela 4**. É uma mudança conceitual pequena visualmente, mas muito importante para não construirmos Experience sobre uma estrutura que depois teremos que refazer.
+
+O próximo passo que eu faria é ajustar somente a Tela 3 para introduzir **Active Career Profile / Current vs Target Career**, substituir o conceito plural de Career Paths e adaptar o fingerprint sem mexer no restante já aprovado. Depois disso fazemos a parte realmente inteligente da Tela 4.
+
+Sim para idiomas; para voluntariado eu faria diferente.
+
+**Idiomas:** faz sentido capturá-los na **Tela 6 — Skills**, mas como uma categoria própria dentro dela, `Languages`, e não misturados com hard/soft skills. Para matching isso é extremamente relevante porque muitas vagas têm idioma como requisito eliminatório. Eu capturaria **idioma + nível** — por exemplo `Portuguese — Native`, `English — Professional`, `Hebrew — Intermediate`, `Spanish — Basic`. No backend, idiomas deveriam ser atributos estruturados e poder receber peso muito alto ou até funcionar como filtro obrigatório quando a vaga exigir determinado idioma.
+
+**Voluntariado:** eu manteria dentro da **Tela 4 — Experience**, já que atualmente `Volunteer` é um dos tipos de experiência. Não criaria uma tela específica. O ponto importante é não tratar automaticamente voluntariado como experiência profissional equivalente a emprego.
+
+A lógica poderia ser:
+
+```text
+Experience
+├── Full-time
+├── Part-time
+├── Contract
+├── Freelance
+├── Internship
+├── Volunteer
+└── Other
+```
+
+Se o usuário cadastrar voluntariado, fazemos a mesma pergunta fundamental: **quanto essa experiência contribui para o Active Career Path?** Se for relevante, fazemos o Experience Discovery e extraímos funções, responsabilidades, liderança, ferramentas, resultados e principalmente **Transferable Value**. Se não for relevante, guardamos apenas como background.
+
+Isso é interessante porque voluntariado pode ter enorme valor para determinados perfis. Alguém pode nunca ter sido Project Manager formalmente, mas ter coordenado 30 voluntários, orçamento e fornecedores em uma organização. Esses sinais devem entrar no Fingerprint mesmo que a origem continue corretamente classificada como `Volunteer`.
+
+Então eu manteria nossa arquitetura enxuta:
+
+**Tela 4 Experience** → experiência profissional + freelance + estágio + voluntariado
+**Tela 5 Education** → formação, cursos, certificações etc.
+**Tela 6 Skills** → technical/domain skills + soft/functional skills + **Languages**
+
+E todos continuam alimentando o mesmo **Fingerprint + Active Career Path** mostrado à direita. Não vejo necessidade, neste momento, de criar telas adicionais para idiomas ou voluntariado.
+
+Perfeito. Antes de mexer no código, eu fecharia a **nova especificação da Tela 3** desta forma, porque ela será a base lógica de Experience, Education e Skills.
+
+### O que permanece exatamente como está
+
+Não devemos redesenhar a Tela 3. Mantemos o shell, dados de contato, `Start Profile Discovery`, perguntas curtas, `Something else`, Live Fingerprint editável, idiomas EN/PT/ES, `Skip journey`, confirmação final e navegação. O que muda é **a lógica do Profile Discovery**.
+
+### Mudança principal: um perfil = um Career Path
+
+A primeira pergunta continua sendo:
+
+**Which situation best describes you today?**
+
+Experienced professional / Early-career professional / Student / Looking for my first job / Changing careers / Returning to the job market.
+
+Porém, não devemos mais permitir que essa jornada construa vários caminhos profissionais simultaneamente.
+
+Depois disso, precisamos descobrir **qual é o objetivo deste perfil**.
+
+Para `Changing careers`, eu colocaria explicitamente:
+
+**Which career should this profile focus on?**
+
+`My current career`
+`My future / target career`
+
+Depois:
+
+**What role or professional direction should this profile target?**
+
+Aqui podemos oferecer sugestões + `Something else`, mas permitir que o usuário defina o alvo com precisão, por exemplo:
+
+> Account Management
+
+ou
+
+> Full Stack Development
+
+A partir daí temos o objeto central:
+
+```text
+ACTIVE PROFILE
+Account Management
+
+Professional Fingerprint
+├── Identity
+├── Career Path
+├── Context
+├── Direction
+└── Transferable Value
+```
+
+### Um cuidado importante
+
+Eu **não transformaria Career Path simplesmente no cargo desejado**.
+
+Precisamos separar semanticamente:
+
+```text
+Active Profile
+    ↓
+Career Path
+    ↓
+Target Roles
+```
+
+Exemplo:
+
+```text
+Profile
+Commercial Technology
+
+Career Path
+Account Management
+
+Target Roles
+Account Manager
+Strategic Account Manager
+Enterprise Account Manager
+Customer Success Manager
+```
+
+Isso será muito melhor para a busca futura. Se procurarmos somente `"Account Manager"`, podemos perder vagas extremamente compatíveis com títulos diferentes.
+
+Portanto, apesar de existir **um Career Path**, podemos ter **vários Target Roles relacionados dentro dele**. Isso não viola a regra de um perfil por vez.
+
+### E o painel direito?
+
+Aqui eu faria a principal mudança visual.
+
+No topo do painel:
+
+```text
+ACTIVE PROFILE
+Account Management
+        Edit
+```
+
+E abaixo:
+
+```text
+PROFESSIONAL FINGERPRINT
+
+Identity
+[Experienced Professional]
+
+Career Path
+[Account Management]
+
+Context
+[B2B] [Technology] [Enterprise]
+
+Direction
+[Account Manager]
+[Strategic Account Manager]
+[Enterprise Account Manager]
+
+Transferable Value
+[Project Management]
+[Technical Background]
+
++ Add
+```
+
+Tudo continua **editável**, inclusive o próprio Active Profile.
+
+A partir da Tela 4, esse painel deve continuar aparecendo praticamente igual. Experience apenas acrescenta evidências e informações. Education acrescenta outras. Skills acrescenta outras.
+
+### O que acontece com informações fora do Career Path escolhido?
+
+Elas não devem ser descartadas.
+
+Imagine alguém escolhendo:
+
+**Active Profile → Full Stack Developer**
+
+e depois cadastrando 15 anos de experiência comercial.
+
+Não devemos colocar:
+
+`Sales Manager`
+
+dentro do Career Path.
+
+Mas podemos descobrir coisas como:
+
+`Customer-facing experience`
+`Business requirements`
+`Project Management`
+`Fintech domain knowledge`
+`Stakeholder Management`
+
+e classificá-las em **Transferable Value**, Context ou outra dimensão apropriada.
+
+Esse é justamente o trabalho inteligente que faremos na Tela 4.
+
+### Isso também resolve a profundidade das perguntas
+
+Quando chegarmos a Experience, cada experiência será analisada **em relação ao Active Profile**:
+
+```text
+Experience
+     ↓
+Relationship to Active Profile
+
+DIRECT
+     ↓
+Detailed discovery
+
+TRANSFERABLE
+     ↓
+Focused discovery
+
+BACKGROUND
+     ↓
+Minimal discovery
+```
+
+Isso vai reduzir bastante a jornada sem perder dados importantes.
+
+### Uma mudança adicional que eu faria agora
+
+Eu substituiria qualquer conceito visual/textual de **“Career Path Overview”** por algo como **“Active Career Profile”** ou simplesmente **“Career Profile”**.
+
+Porque “Overview” sugere vários caminhos possíveis. Agora queremos transmitir:
+
+> **Esta jornada está construindo ESTE perfil.**
+
+Mais tarde, no dashboard:
+
+```text
+MY CAREER PROFILES
+
+[ Account Management ]
+Matches · Applications · CVs · Search
+
+[ Full Stack Development ]
+Matches · Applications · CVs · Search
+
+[ + Create another profile ]
+```
+
+Cada um completamente independente.
+
+Portanto, **sim, há ajustes na Tela 3, mas não precisamos refazê-la**. Precisamos alterar principalmente o questionário e o modelo de dados para estabelecer `Active Profile → Career Path → Target Roles`, eliminar a lógica de múltiplos Career Paths simultâneos e manter o Fingerprint como objeto cumulativo e editável.
+
+Eu faria **essa correção da Tela 3 primeiro** e só depois voltaria para o Experience Discovery da Tela 4. Assim não construímos as perguntas de Experience sobre uma arquitetura que acabamos de abandonar.
+
+Exatamente. Nesse caso eu mudaria o conceito de **Career Path** para algo menos preso a profissão/cargo e mais próximo de um **Professional Profile** composto por atributos.
+
+A estrutura ficaria assim:
+
+```text
+USER
+└── PROFESSIONAL PROFILE
+    ├── Location & Work Constraints
+    ├── Professional Identity
+    ├── Skills
+    ├── Domain Knowledge
+    ├── Functional Capabilities
+    ├── Seniority / Ownership
+    ├── Business Context
+    ├── Achievements / Impact
+    ├── Transferable Value
+    └── Preferences / Direction
+```
+
+Ou seja, o sistema não busca “Account Manager”, “Customer Success Manager” ou “Business Development Manager”. Ele busca vagas cujo conteúdo tenha alta sobreposição com o fingerprint.
+
+Por exemplo, um perfil poderia ter:
+
+```text
+Professional Identity
+B2B technology professional
+
+Functional Capabilities
+Account management
+Consultative sales
+Customer retention
+Business development
+Project management
+
+Business Context
+Enterprise
+SMB
+SaaS
+Fintech
+Payments
+LATAM
+C-level stakeholders
+
+Skills
+Salesforce
+CRM
+Pipeline management
+Negotiation
+Discovery
+Cross-functional collaboration
+
+Ownership
+End-to-end customer ownership
+Commercial negotiation
+Strategic account planning
+
+Impact
+Revenue growth
+Retention
+Upsell
+Customer expansion
+
+Transferable Value
+Technical background
+Project management
+Business + technology bridge
+```
+
+Agora imagine uma vaga chamada:
+
+> **Strategic Customer Partner**
+
+O cargo nunca apareceu no perfil.
+
+Mas a vaga pede:
+
+```text
+Enterprise customers
+Account ownership
+Upsell
+Retention
+C-level relationships
+SaaS
+Commercial negotiation
+Cross-functional work
+```
+
+O Kadima pode concluir:
+
+```text
+MATCH 91%
+```
+
+mesmo que o usuário nunca tenha buscado pelo título **Strategic Customer Partner**.
+
+Isso é muito mais alinhado com o produto que estamos construindo.
+
+### Então o que substituiria o Career Path?
+
+Eu manteria uma dimensão de direção, mas não como cargo.
+
+Chamaria de algo como:
+
+**Career Direction**
+
+Ela define **que tipo de trabalho o usuário quer priorizar**, através de atributos.
+
+Por exemplo:
+
+```text
+CAREER DIRECTION
+
+I want work that involves:
+✓ Customer relationships
+✓ Technology
+✓ Commercial responsibility
+✓ Enterprise customers
+✓ Project ownership
+
+I want less emphasis on:
+○ Pure software development
+○ Operational support
+○ B2C sales
+```
+
+Assim o usuário continua dizendo para onde quer ir, mas sem ficar preso a um job title.
+
+### Isso resolve também a mudança de carreira
+
+Suponha que alguém tenha experiência comercial e esteja migrando para tecnologia.
+
+Na criação daquele perfil, ele escolhe algo como:
+
+> **What should this profile emphasize?**
+
+E não:
+
+> What job do you want?
+
+As respostas poderiam ser:
+
+```text
+Technical work
+Software development
+Data / AI
+Customer-facing technology
+Commercial / business
+Project / delivery
+Leadership
+Operations
+Other
+```
+
+Depois refinamos.
+
+Se escolher **Software development**, as próximas perguntas procuram evidências relacionadas a esse perfil.
+
+A experiência comercial continua armazenada, mas principalmente como:
+
+```text
+Transferable Value
+Business understanding
+Customer communication
+Requirements discovery
+Stakeholder management
+Project ownership
+```
+
+Ela não transforma o perfil novamente em “Sales”.
+
+### Eu mudaria inclusive o painel da direita
+
+Em vez de:
+
+```text
+Career Path
+Account Management
+```
+
+teríamos algo muito mais útil:
+
+```text
+PROFESSIONAL PROFILE
+
+Identity
+[B2B Technology] [Customer-facing]
+
+Capabilities
+[Account Management]
+[Consultative Sales]
+[Project Management]
+
+Context
+[Enterprise] [SaaS] [Fintech] [LATAM]
+
+Ownership
+[End-to-end]
+[Strategic]
+[Commercial]
+
+Impact
+[Revenue] [Retention] [Expansion]
+
+Transferable Value
+[Technical Background]
+
+Career Direction
+[Customer relationships]
+[Technology]
+[Enterprise]
+[Commercial ownership]
+```
+
+Aqui eu recomendo inclusive **revermos as cinco classificações atuais**. Com o conceito que você acabou de definir, elas estão um pouco genéricas demais.
+
+Eu tenderia a evoluir para algo como:
+
+```text
+Identity
+Capabilities
+Skills
+Context
+Ownership
+Impact
+Domain Knowledge
+Transferable Value
+Career Direction
+```
+
+Não significa que precisamos mostrar nove blocos enormes para o usuário. Visualmente podemos agrupá-los de forma inteligente. Mas **no modelo de dados**, essa separação será extremamente valiosa para o match.
+
+### E a busca no backend muda completamente
+
+Em vez de montar algo como:
+
+```text
+Search:
+"Account Manager Portuguese Israel"
+```
+
+o backend pode construir uma busca conceitual:
+
+```text
+Candidate signals:
+- B2B SaaS
+- enterprise customers
+- customer ownership
+- retention
+- upsell
+- project management
+- technical background
+- Portuguese
+- Israel / remote LATAM
+```
+
+Depois recuperamos um universo amplo de vagas e fazemos:
+
+```text
+Job description
+       ↓
+extract job fingerprint
+       ↓
+compare
+       ↓
+candidate fingerprint
+       ↓
+Match Score
+```
+
+Esse é, na minha visão, o ponto mais importante:
+
+**o título da vaga vira apenas um dado secundário, não o mecanismo principal de descoberta.**
+
+Inclusive isso pode ser um diferencial forte do Kadima em relação a buscadores convencionais, porque muitos profissionais deixam de encontrar vagas boas simplesmente porque procuram pelo nome do cargo que já conhecem.
+
+Portanto, eu faria uma mudança conceitual adicional na Tela 3: **pararia de tentar descobrir “qual carreira/cargo você quer” e passaria a descobrir “que tipo de perfil profissional estamos construindo e quais características queremos enfatizar”.**
+
+Isso é mais coerente com a visão inteira da plataforma.
+
+Perfeito. A mudança agora é estrutural: a Tela 3 deixa de “descobrir cargos” e passa a construir um **Professional Profile orientado por sinais**, que depois será comparado com os sinais extraídos das vagas.
+
+Para implementar isso sem quebrar o que já está aprovado, eu faria estas alterações na Tela 3:
+
+* manter todo o shell visual atual, contatos, idioma, `Skip journey`, favicon, `Something else`, edição direta e fluxo geral;
+* substituir `Career Paths` por uma estrutura mais ampla de perfil;
+* reorganizar o fingerprint para: `Identity`, `Capabilities`, `Context`, `Ownership`, `Impact`, `Domain Knowledge`, `Transferable Value` e `Career Direction`;
+* não perguntar cargo desejado;
+* perguntar **que tipo de trabalho, responsabilidades, contexto e capacidades o usuário quer que este perfil enfatize**;
+* permitir vários atributos dentro de `Career Direction`, porque isso não representa vários perfis, e sim as características desejadas para **um único perfil ativo**;
+* manter tudo editável;
+* preparar os dados para que Experience, Education e Skills apenas acrescentem evidências a esse mesmo perfil.
+
+Um exemplo de sequência da Tela 3 poderia ficar assim:
+
+```text
+Which situation best describes you today?
+
+What should this professional profile emphasize?
+[Customer relationships]
+[Technology]
+[Commercial responsibility]
+[Project delivery]
+[Software development]
+[Data / AI]
+[Operations]
+[Leadership]
+[Other]
+
+What kinds of work do you want to do more of?
+[Manage customers]
+[Solve technical problems]
+[Build software]
+[Lead projects]
+[Develop business]
+[Analyze data]
+[Implement solutions]
+[Advise customers]
+[...]
+
+Which environments best fit this profile?
+[B2B]
+[B2C]
+[Enterprise]
+[SMB]
+[Startup]
+[SaaS]
+[Fintech]
+[Healthcare]
+[...]
+
+What level of ownership should this profile emphasize?
+[Support]
+[Own part of the work]
+[Own end-to-end]
+[Lead people]
+[Define strategy]
+
+What outcomes should this profile be associated with?
+[Revenue]
+[Retention]
+[Delivery]
+[Efficiency]
+[Adoption]
+[Customer satisfaction]
+[Product development]
+[Technical reliability]
+[Other]
+```
+
+O mais importante é que **nenhuma dessas respostas é um cargo**. Elas viram sinais estruturados.
+
+No backend teremos então:
+
+```text
+USER PROFILE FINGERPRINT
+        ↓
+Capabilities + Context + Ownership + Impact + Skills + Direction
+        ↓
+JOB FINGERPRINT
+extraído da descrição da vaga
+        ↓
+SEMANTIC / STRUCTURED MATCH
+        ↓
+Match Score
+```
+
+O título da vaga pode ser armazenado e mostrado ao usuário, mas não deve comandar o match.
+
+Também mudaria o painel da direita para algo aproximadamente assim:
+
+```text
+PROFESSIONAL PROFILE
+
+Identity
+[Experienced Professional]
+
+Capabilities
+[Account Management]
+[Consultative Selling]
+[Project Management]
+
+Context
+[B2B]
+[Enterprise]
+[SaaS]
+
+Ownership
+[End-to-end]
+[Strategic]
+
+Impact
+[Revenue Growth]
+[Retention]
+
+Domain Knowledge
+[Fintech]
+[Payments]
+
+Transferable Value
+[Technical Background]
+
+Career Direction
+[Customer-facing]
+[Technology]
+[Commercial ownership]
+[Enterprise environment]
+```
+
+E esse **mesmo painel seguirá para Experience, Education e Skills**, sendo progressivamente enriquecido.
+
+Há apenas uma limitação prática antes de eu gerar o patch: os arquivos atuais da Tela 3 que produzimos anteriormente não estão acessíveis aqui como arquivos editáveis; encontrei referências conceituais, mas não o `profile.html`, `profile.css` e principalmente o seu **`profile.js` atual já corrigido**, que você pediu corretamente para não substituirmos por versões antigas.
+
+Então, para eu fazer isso com segurança e entregar apenas os arquivos realmente alterados, envie os **3 arquivos atuais da Tela 3**:
+
+`profile.html`
+`profile.css`
+`profile.js`
+
+Aí eu aplico exatamente essa arquitetura sobre a sua versão funcional atual, preservando tudo que já foi aprovado e devolvo somente o patch da Tela 3.
+
 
