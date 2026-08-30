@@ -6,231 +6,27 @@ const currentLanguage = ["en", "pt", "es"].includes(onboarding.language)
   : "en";
 
 const I18N = {
-  en: {
-    heroTitle:'Your journey<br>to the best<br><span>opportunities</span>',
-    heroDescription:'We want to get to know you better so we can connect you with opportunities that truly match your profile.',
-    benefits:[
-      ['AI that understands you','We analyze your skills and experience to find the right opportunities.'],
-      ['Smart matches','We compare your profile with job requirements and calculate your fit.'],
-      ['Your future, now','Save time and focus on the opportunities that matter.']
-    ],
-    welcome:'Welcome to Kadima!', welcomeSub:"Let's build your profile in 6 simple steps.",
-    progress:['Welcome','Personal','Profile','Experience','Education','Skills'], skip:'Skip journey',
-    profileEyebrow:'PROFILE · STEP 3',
-    profileTitle:"Let's discover your professional fingerprint.",
-    profileSubtitle:'Short, guided questions. No long forms. Kadima adapts the journey as it learns about you.',
-    backDetails:'Back to profile details',
-    contactTitle:'A few profile details first', contactSubtitle:'These are contact details, not part of your matching score.',
-    phone:'Phone', phonePlaceholder:'Phone number', emailOnly:'I prefer to be contacted by email only',
-    linkedin:'LinkedIn', github:'GitHub', otherLink:'Other professional link',
-    contactOptional:'All fields in this block are optional.', startDiscovery:'Start profile discovery',
-    dialSearch:'Search country or prefix', noCountry:'No country found',
-    learning:'Kadima is learning about you', previous:'Previous', continue:'Continue',
-    otherAnswer:'Add anything Kadima missed. You can add as many as you want, separated by commas.',
-    otherPlaceholder:'e.g. Fintech, Payments, Open Finance', add:'Add',
-    livePreview:'LIVE PREVIEW', fingerprintTitle:'Your Professional Fingerprint',
-    dimensions:{identity:'Identity',paths:'Career paths',context:'Context',direction:'Direction',transferable:'Transferable value'},
-    toBeDiscovered:'To be discovered', addChip:'+ Add',
-    editorAdd:'Add to', editorEdit:'Edit', editorItem:'Item', editorHint:'You can add multiple items separated by commas.',
-    delete:'Delete', cancel:'Cancel', save:'Save',
-    reviewEyebrow:'PROFILE FOUNDATION COMPLETE',
-    reviewTitle:"Here's what Kadima has discovered about you so far.",
-    reviewSubtitle:"This is your professional fingerprint so far. It captures how you see your career today and where you want to go next. We'll continue enriching it as you move through your journey.",
-    completionTitle:'Profile foundation completed',
-    completionText:'Your current professional direction has been saved. Kadima will keep enriching your fingerprint throughout the journey.',
-    careerPathEyebrow:'CAREER PATH OVERVIEW', careerPathTitle:'How Kadima currently sees your professional paths',
-    adjustTitle:'What would you like to adjust?', adjust:'Adjust something', looksRight:'Looks right',
-    footerTitle:'Your profile stays flexible', footerText:'You can edit or refine these details later.', back:'Back',
-    chooseAnswer:'Choose at least one option to continue.',
-    progressSaved:'Your progress has been saved.', basicRequired:'Complete your basic account information before skipping the journey.',
-    profileSaved:'Profile foundation saved. Ready for Experience.',
-    pathTypes:{established:'Established',emerging:'Emerging',exploring:'Exploring',bridge:'Transferable bridge',current:'Current direction'},
-    pathDescriptions:{
-      established:'Built from your current and previous professional background.',
-      emerging:'A direction you are learning, preparing for or actively expanding into.',
-      exploring:'A direction Kadima should keep open while your professional fingerprint evolves.',
-      bridge:'Background that may strengthen opportunities across different career paths.',
-      current:'Kadima will keep refining this as your journey continues.'
-    }
-  },
-  pt: {
-    heroTitle:'Sua jornada<br>para as melhores<br><span>oportunidades</span>',
-    heroDescription:'Queremos conhecer você melhor para conectá-lo a oportunidades que realmente combinam com o seu perfil.',
-    benefits:[
-      ['IA que entende você','Analisamos suas habilidades e experiências para encontrar as oportunidades certas.'],
-      ['Matches inteligentes','Comparamos seu perfil com os requisitos das vagas e calculamos sua compatibilidade.'],
-      ['Seu futuro, agora','Economize tempo e foque nas oportunidades que realmente importam.']
-    ],
-    welcome:'Bem-vindo ao Kadima!', welcomeSub:'Vamos construir seu perfil em 6 etapas simples.',
-    progress:['Boas-vindas','Pessoal','Perfil','Experiência','Educação','Habilidades'], skip:'Pular jornada',
-    profileEyebrow:'PERFIL · ETAPA 3',
-    profileTitle:'Vamos descobrir seu fingerprint profissional.',
-    profileSubtitle:'Perguntas curtas e orientadas. Nada de formulários longos. O Kadima adapta a jornada conforme conhece você.',
-    backDetails:'Voltar aos dados do perfil',
-    contactTitle:'Primeiro, alguns dados do perfil', contactSubtitle:'São dados de contato e não fazem parte do seu score de matching.',
-    phone:'Telefone', phonePlaceholder:'Número de telefone', emailOnly:'Prefiro ser contatado apenas por e-mail',
-    linkedin:'LinkedIn', github:'GitHub', otherLink:'Outro link profissional',
-    contactOptional:'Todos os campos deste bloco são opcionais.', startDiscovery:'Iniciar descoberta do perfil',
-    dialSearch:'Buscar país ou prefixo', noCountry:'Nenhum país encontrado',
-    learning:'Kadima está conhecendo você', previous:'Anterior', continue:'Continuar',
-    otherAnswer:'Adicione o que o Kadima não identificou. Você pode incluir quantos itens quiser, separados por vírgulas.',
-    otherPlaceholder:'ex.: Fintech, Pagamentos, Open Finance', add:'Adicionar',
-    livePreview:'PREVIEW AO VIVO', fingerprintTitle:'Seu Professional Fingerprint',
-    dimensions:{identity:'Identidade',paths:'Caminhos profissionais',context:'Contexto',direction:'Direção',transferable:'Valor transferível'},
-    toBeDiscovered:'A descobrir', addChip:'+ Adicionar',
-    editorAdd:'Adicionar a', editorEdit:'Editar', editorItem:'Item', editorHint:'Você pode adicionar vários itens separados por vírgulas.',
-    delete:'Excluir', cancel:'Cancelar', save:'Salvar',
-    reviewEyebrow:'BASE DO PERFIL CONCLUÍDA',
-    reviewTitle:'Veja o que o Kadima descobriu sobre você até agora.',
-    reviewSubtitle:'Este é o seu fingerprint profissional até aqui. Ele representa como você vê sua carreira hoje e para onde deseja seguir. Continuaremos enriquecendo-o ao longo da jornada.',
-    completionTitle:'Base do perfil concluída',
-    completionText:'Sua direção profissional atual foi salva. O Kadima continuará enriquecendo seu fingerprint ao longo da jornada.',
-    careerPathEyebrow:'VISÃO DOS CAMINHOS PROFISSIONAIS', careerPathTitle:'Como o Kadima enxerga atualmente seus caminhos profissionais',
-    adjustTitle:'O que você gostaria de ajustar?', adjust:'Ajustar algo', looksRight:'Está correto',
-    footerTitle:'Seu perfil continua flexível', footerText:'Você poderá editar ou refinar estas informações depois.', back:'Voltar',
-    chooseAnswer:'Escolha pelo menos uma opção para continuar.',
-    progressSaved:'Seu progresso foi salvo.', basicRequired:'Complete as informações básicas da sua conta antes de pular a jornada.',
-    profileSaved:'Base do perfil salva. Pronto para Experiência.',
-    pathTypes:{established:'Estabelecido',emerging:'Emergente',exploring:'Em exploração',bridge:'Ponte transferível',current:'Direção atual'},
-    pathDescriptions:{
-      established:'Construído a partir do seu background profissional atual e anterior.',
-      emerging:'Uma direção para a qual você está aprendendo, se preparando ou expandindo sua atuação.',
-      exploring:'Uma direção que o Kadima deve manter aberta enquanto seu fingerprint profissional evolui.',
-      bridge:'Background que pode fortalecer oportunidades em diferentes caminhos profissionais.',
-      current:'O Kadima continuará refinando este caminho ao longo da sua jornada.'
-    }
-  },
-  es: {
-    heroTitle:'Tu camino<br>hacia las mejores<br><span>oportunidades</span>',
-    heroDescription:'Queremos conocerte mejor para conectarte con oportunidades que realmente encajen con tu perfil.',
-    benefits:[
-      ['IA que te entiende','Analizamos tus habilidades y experiencia para encontrar las oportunidades adecuadas.'],
-      ['Matches inteligentes','Comparamos tu perfil con los requisitos de las vacantes y calculamos tu compatibilidad.'],
-      ['Tu futuro, ahora','Ahorra tiempo y concéntrate en las oportunidades que realmente importan.']
-    ],
-    welcome:'¡Bienvenido a Kadima!', welcomeSub:'Construyamos tu perfil en 6 pasos sencillos.',
-    progress:['Bienvenida','Personal','Perfil','Experiencia','Educación','Habilidades'], skip:'Saltar recorrido',
-    profileEyebrow:'PERFIL · PASO 3',
-    profileTitle:'Descubramos tu fingerprint profesional.',
-    profileSubtitle:'Preguntas breves y guiadas. Sin formularios largos. Kadima adapta el recorrido a medida que te conoce.',
-    backDetails:'Volver a los datos del perfil',
-    contactTitle:'Primero, algunos datos del perfil', contactSubtitle:'Son datos de contacto y no forman parte de tu score de matching.',
-    phone:'Teléfono', phonePlaceholder:'Número de teléfono', emailOnly:'Prefiero que me contacten solo por correo electrónico',
-    linkedin:'LinkedIn', github:'GitHub', otherLink:'Otro enlace profesional',
-    contactOptional:'Todos los campos de este bloque son opcionales.', startDiscovery:'Iniciar descubrimiento del perfil',
-    dialSearch:'Buscar país o prefijo', noCountry:'No se encontró ningún país',
-    learning:'Kadima está aprendiendo sobre ti', previous:'Anterior', continue:'Continuar',
-    otherAnswer:'Agrega lo que Kadima no haya identificado. Puedes incluir tantos elementos como quieras, separados por comas.',
-    otherPlaceholder:'ej.: Fintech, Pagos, Open Finance', add:'Agregar',
-    livePreview:'VISTA EN VIVO', fingerprintTitle:'Tu Professional Fingerprint',
-    dimensions:{identity:'Identidad',paths:'Caminos profesionales',context:'Contexto',direction:'Dirección',transferable:'Valor transferible'},
-    toBeDiscovered:'Por descubrir', addChip:'+ Agregar',
-    editorAdd:'Agregar a', editorEdit:'Editar', editorItem:'Elemento', editorHint:'Puedes agregar varios elementos separados por comas.',
-    delete:'Eliminar', cancel:'Cancelar', save:'Guardar',
-    reviewEyebrow:'BASE DEL PERFIL COMPLETADA',
-    reviewTitle:'Esto es lo que Kadima ha descubierto sobre ti hasta ahora.',
-    reviewSubtitle:'Este es tu fingerprint profesional hasta ahora. Representa cómo ves tu carrera hoy y hacia dónde quieres avanzar. Seguiremos enriqueciéndolo durante tu recorrido.',
-    completionTitle:'Base del perfil completada',
-    completionText:'Tu dirección profesional actual ha sido guardada. Kadima seguirá enriqueciendo tu fingerprint durante el recorrido.',
-    careerPathEyebrow:'VISIÓN DE CAMINOS PROFESIONALES', careerPathTitle:'Cómo ve Kadima actualmente tus caminos profesionales',
-    adjustTitle:'¿Qué te gustaría ajustar?', adjust:'Ajustar algo', looksRight:'Está correcto',
-    footerTitle:'Tu perfil sigue siendo flexible', footerText:'Podrás editar o perfeccionar estos datos más adelante.', back:'Volver',
-    chooseAnswer:'Elige al menos una opción para continuar.',
-    progressSaved:'Tu progreso ha sido guardado.', basicRequired:'Completa la información básica de tu cuenta antes de saltar el recorrido.',
-    profileSaved:'Base del perfil guardada. Lista para Experiencia.',
-    pathTypes:{established:'Establecido',emerging:'Emergente',exploring:'En exploración',bridge:'Puente transferible',current:'Dirección actual'},
-    pathDescriptions:{
-      established:'Construido a partir de tu experiencia profesional actual y anterior.',
-      emerging:'Una dirección para la que estás aprendiendo, preparándote o ampliando tu experiencia.',
-      exploring:'Una dirección que Kadima debe mantener abierta mientras evoluciona tu fingerprint profesional.',
-      bridge:'Experiencia que puede fortalecer oportunidades en diferentes caminos profesionales.',
-      current:'Kadima seguirá refinando este camino a medida que avance tu recorrido.'
-    }
-  }
+  en: {heroTitle:'Your journey<br>to the best<br><span>opportunities</span>',heroDescription:'We want to get to know you better so we can connect you with opportunities that truly match your profile.',benefits:[['AI that understands you','We analyze your skills and experience to find the right opportunities.'],['Smart matches','We compare your profile with job requirements and calculate your fit.'],['Your future, now','Save time and focus on the opportunities that matter.']],welcome:'Welcome to Kadima!',welcomeSub:"Let's build your profile in 6 simple steps.",progress:['Welcome','Personal','Profile','Experience','Education','Skills'],skip:'Skip journey',profileEyebrow:'PROFILE · STEP 3',profileTitle:"Let's build your professional fingerprint.",profileSubtitle:'Kadima maps what you can do, where you create value and what you want to emphasize — without locking you into job titles.',backDetails:'Back to profile details',contactTitle:'A few profile details first',contactSubtitle:'These are contact details, not part of your matching score.',phone:'Phone',phonePlaceholder:'Phone number',emailOnly:'I prefer to be contacted by email only',linkedin:'LinkedIn',github:'GitHub',otherLink:'Other professional link',contactOptional:'All fields in this block are optional.',startDiscovery:'Start profile discovery',dialSearch:'Search country or prefix',noCountry:'No country found',learning:'Kadima is mapping your profile',previous:'Previous',continue:'Continue',otherAnswer:'Add anything Kadima missed. You can add as many as you want, separated by commas.',otherPlaceholder:'',add:'Add',livePreview:'LIVE PROFILE',fingerprintTitle:'Your Professional Fingerprint',dimensions:{identity:'Identity',capabilities:'Capabilities',context:'Context',ownership:'Ownership',impact:'Impact',domain:'Domain knowledge',transferable:'Transferable value',direction:'Career direction'},toBeDiscovered:'To be discovered',addChip:'+ Add',editorAdd:'Add to',editorEdit:'Edit',editorItem:'Item',editorHint:'You can add multiple items separated by commas.',delete:'Delete',cancel:'Cancel',save:'Save',reviewEyebrow:'PROFILE FOUNDATION COMPLETE',reviewTitle:"Here's the profile Kadima has mapped so far.",reviewSubtitle:"This is one focused professional profile. Experience, Education and Skills will add evidence and depth without restricting matching to job titles.",completionTitle:'Profile foundation completed',completionText:'This profile focus has been saved. Kadima will keep enriching the same fingerprint throughout the journey.',careerPathEyebrow:'PROFILE FOCUS',careerPathTitle:'How this profile is being focused',adjustTitle:'What would you like to adjust?',adjust:'Adjust something',looksRight:'Looks right',footerTitle:'Your profile stays flexible',footerText:'Every fingerprint item remains editable as the journey evolves.',back:'Back',chooseAnswer:'Choose at least one option to continue.',progressSaved:'Your progress has been saved.',basicRequired:'Complete your basic account information before skipping the journey.',profileSaved:'Profile foundation saved. Ready for Experience.',focusType:'Current profile focus',focusDescription:'Kadima will match this combination of signals against job requirements — not against job titles.'},
+  pt: {heroTitle:'Sua jornada<br>para as melhores<br><span>oportunidades</span>',heroDescription:'Queremos conhecer você melhor para conectá-lo a oportunidades que realmente combinam com o seu perfil.',benefits:[['IA que entende você','Analisamos suas habilidades e experiências para encontrar as oportunidades certas.'],['Matches inteligentes','Comparamos seu perfil com os requisitos das vagas e calculamos sua compatibilidade.'],['Seu futuro, agora','Economize tempo e foque nas oportunidades que realmente importam.']],welcome:'Bem-vindo ao Kadima!',welcomeSub:'Vamos construir seu perfil em 6 etapas simples.',progress:['Boas-vindas','Pessoal','Perfil','Experiência','Educação','Habilidades'],skip:'Pular jornada',profileEyebrow:'PERFIL · ETAPA 3',profileTitle:'Vamos construir seu fingerprint profissional.',profileSubtitle:'O Kadima mapeia o que você sabe fazer, onde gera valor e o que deseja enfatizar — sem prender seu perfil a nomes de cargos.',backDetails:'Voltar aos dados do perfil',contactTitle:'Primeiro, alguns dados do perfil',contactSubtitle:'São dados de contato e não fazem parte do seu score de matching.',phone:'Telefone',phonePlaceholder:'Número de telefone',emailOnly:'Prefiro ser contatado apenas por e-mail',linkedin:'LinkedIn',github:'GitHub',otherLink:'Outro link profissional',contactOptional:'Todos os campos deste bloco são opcionais.',startDiscovery:'Iniciar descoberta do perfil',dialSearch:'Buscar país ou prefixo',noCountry:'Nenhum país encontrado',learning:'Kadima está mapeando seu perfil',previous:'Anterior',continue:'Continuar',otherAnswer:'Adicione o que o Kadima não identificou. Você pode incluir quantos itens quiser, separados por vírgulas.',otherPlaceholder:'',add:'Adicionar',livePreview:'PERFIL AO VIVO',fingerprintTitle:'Seu Professional Fingerprint',dimensions:{identity:'Identidade',capabilities:'Capacidades',context:'Contexto',ownership:'Nível de responsabilidade',impact:'Impacto',domain:'Conhecimento de domínio',transferable:'Valor transferível',direction:'Direção profissional'},toBeDiscovered:'A descobrir',addChip:'+ Adicionar',editorAdd:'Adicionar a',editorEdit:'Editar',editorItem:'Item',editorHint:'Você pode adicionar vários itens separados por vírgulas.',delete:'Excluir',cancel:'Cancelar',save:'Salvar',reviewEyebrow:'BASE DO PERFIL CONCLUÍDA',reviewTitle:'Veja o perfil que o Kadima mapeou até agora.',reviewSubtitle:'Este é um único perfil profissional focado. Experiência, Educação e Habilidades adicionarão evidências e profundidade sem limitar o matching a nomes de cargos.',completionTitle:'Base do perfil concluída',completionText:'O foco deste perfil foi salvo. O Kadima continuará enriquecendo o mesmo fingerprint durante a jornada.',careerPathEyebrow:'FOCO DO PERFIL',careerPathTitle:'Como este perfil está sendo direcionado',adjustTitle:'O que você gostaria de ajustar?',adjust:'Ajustar algo',looksRight:'Está correto',footerTitle:'Seu perfil continua flexível',footerText:'Todos os itens do fingerprint continuam editáveis ao longo da jornada.',back:'Voltar',chooseAnswer:'Escolha pelo menos uma opção para continuar.',progressSaved:'Seu progresso foi salvo.',basicRequired:'Complete as informações básicas da sua conta antes de pular a jornada.',profileSaved:'Base do perfil salva. Pronto para Experiência.',focusType:'Foco atual do perfil',focusDescription:'O Kadima comparará esta combinação de sinais com os requisitos das vagas — não com nomes de cargos.'},
+  es: {heroTitle:'Tu camino<br>hacia las mejores<br><span>oportunidades</span>',heroDescription:'Queremos conocerte mejor para conectarte con oportunidades que realmente encajen con tu perfil.',benefits:[['IA que te entiende','Analizamos tus habilidades y experiencia para encontrar las oportunidades adecuadas.'],['Matches inteligentes','Comparamos tu perfil con los requisitos de las vacantes y calculamos tu compatibilidad.'],['Tu futuro, ahora','Ahorra tiempo y concéntrate en las oportunidades que realmente importan.']],welcome:'¡Bienvenido a Kadima!',welcomeSub:'Construyamos tu perfil en 6 pasos sencillos.',progress:['Bienvenida','Personal','Perfil','Experiencia','Educación','Habilidades'],skip:'Saltar recorrido',profileEyebrow:'PERFIL · PASO 3',profileTitle:'Construyamos tu fingerprint profesional.',profileSubtitle:'Kadima mapea lo que sabes hacer, dónde generas valor y qué quieres enfatizar — sin limitar tu perfil a nombres de puestos.',backDetails:'Volver a los datos del perfil',contactTitle:'Primero, algunos datos del perfil',contactSubtitle:'Son datos de contacto y no forman parte de tu score de matching.',phone:'Teléfono',phonePlaceholder:'Número de teléfono',emailOnly:'Prefiero que me contacten solo por correo electrónico',linkedin:'LinkedIn',github:'GitHub',otherLink:'Otro enlace profesional',contactOptional:'Todos los campos de este bloque son opcionales.',startDiscovery:'Iniciar descubrimiento del perfil',dialSearch:'Buscar país o prefijo',noCountry:'No se encontró ningún país',learning:'Kadima está mapeando tu perfil',previous:'Anterior',continue:'Continuar',otherAnswer:'Agrega lo que Kadima no haya identificado. Puedes incluir tantos elementos como quieras, separados por comas.',otherPlaceholder:'',add:'Agregar',livePreview:'PERFIL EN VIVO',fingerprintTitle:'Tu Professional Fingerprint',dimensions:{identity:'Identidad',capabilities:'Capacidades',context:'Contexto',ownership:'Nivel de responsabilidad',impact:'Impacto',domain:'Conocimiento de dominio',transferable:'Valor transferible',direction:'Dirección profesional'},toBeDiscovered:'Por descubrir',addChip:'+ Agregar',editorAdd:'Agregar a',editorEdit:'Editar',editorItem:'Elemento',editorHint:'Puedes agregar varios elementos separados por comas.',delete:'Eliminar',cancel:'Cancelar',save:'Guardar',reviewEyebrow:'BASE DEL PERFIL COMPLETADA',reviewTitle:'Este es el perfil que Kadima ha mapeado hasta ahora.',reviewSubtitle:'Este es un único perfil profesional enfocado. Experiencia, Educación y Habilidades añadirán evidencia y profundidad sin limitar el matching a nombres de puestos.',completionTitle:'Base del perfil completada',completionText:'El enfoque de este perfil ha sido guardado. Kadima seguirá enriqueciendo el mismo fingerprint durante el recorrido.',careerPathEyebrow:'ENFOQUE DEL PERFIL',careerPathTitle:'Cómo se está orientando este perfil',adjustTitle:'¿Qué te gustaría ajustar?',adjust:'Ajustar algo',looksRight:'Está correcto',footerTitle:'Tu perfil sigue siendo flexible',footerText:'Todos los elementos del fingerprint siguen siendo editables durante el recorrido.',back:'Volver',chooseAnswer:'Elige al menos una opción para continuar.',progressSaved:'Tu progreso ha sido guardado.',basicRequired:'Completa la información básica de tu cuenta antes de saltar el recorrido.',profileSaved:'Base del perfil guardada. Lista para Experiencia.',focusType:'Enfoque actual del perfil',focusDescription:'Kadima comparará esta combinación de señales con los requisitos de las vacantes — no con nombres de puestos.'}
 };
 
 const OPTION_LABELS = {
-  en: {
-    experienced:'Experienced professional',early:'Early-career professional',student:'Student',firstjob:'Looking for my first job',changing:'Changing careers',returning:'Returning to the job market',
-    sales:'Sales & Business',technology:'Technology',finance:'Finance',operations:'Operations',marketing:'Marketing',healthcare:'Healthcare',engineering:'Engineering',education:'Education',creative:'Creative',legal:'Legal',hospitality:'Hospitality',other:'Something else',
-    newOnly:'Focus on my new field',both:'Keep both paths open',exploring:'I am still exploring',
-    enterpriseSales:'Enterprise / B2B Sales',accountManagement:'Account Management',businessDevelopment:'Business Development',customerSuccess:'Customer Success',presales:'Pre-Sales',partnerships:'Partnerships',salesOps:'Sales Operations',
-    software:'Software Development',dataAI:'Data & AI',cybersecurity:'Cybersecurity',product:'Product',support:'Technical Support',projectMgmt:'Project / Program Management',
-    enterprise:'Enterprise',smb:'SMB',b2b:'B2B',b2c:'B2C',startup:'Startup',multinational:'Multinational',regulated:'Regulated industry',public:'Public sector',
-    buildApps:'Build applications',dataWork:'Work with data',aiWork:'Work with AI',customerWork:'Work with customers',leadPeople:'Lead people',strategy:'Work on strategy',international:'Work internationally',complexDeals:'Handle complex deals',
-    technicalBase:'Technical background',businessBase:'Business understanding',customerBase:'Customer-facing experience',projectBase:'Project management',problemBase:'Problem solving',leadershipBase:'Leadership experience',
-    learning:'Currently learning / training',projects:'Building projects',internship:'Internship experience',professional:'Professional experience'
-  },
-  pt: {
-    experienced:'Profissional experiente',early:'Profissional em início de carreira',student:'Estudante',firstjob:'Buscando meu primeiro emprego',changing:'Mudando de carreira',returning:'Retornando ao mercado',
-    sales:'Vendas & Negócios',technology:'Tecnologia',finance:'Finanças',operations:'Operações',marketing:'Marketing',healthcare:'Saúde',engineering:'Engenharia',education:'Educação',creative:'Criativo',legal:'Jurídico',hospitality:'Hospitalidade',other:'Outra opção',
-    newOnly:'Focar apenas na nova área',both:'Manter os dois caminhos abertos',exploring:'Ainda estou explorando',
-    enterpriseSales:'Vendas Enterprise / B2B',accountManagement:'Gestão de Contas',businessDevelopment:'Business Development',customerSuccess:'Customer Success',presales:'Pré-Vendas',partnerships:'Parcerias',salesOps:'Sales Operations',
-    software:'Desenvolvimento de Software',dataAI:'Dados & IA',cybersecurity:'Cibersegurança',product:'Produto',support:'Suporte Técnico',projectMgmt:'Gestão de Projetos / Programas',
-    enterprise:'Enterprise',smb:'SMB',b2b:'B2B',b2c:'B2C',startup:'Startup',multinational:'Multinacional',regulated:'Indústria regulada',public:'Setor público',
-    buildApps:'Construir aplicações',dataWork:'Trabalhar com dados',aiWork:'Trabalhar com IA',customerWork:'Trabalhar com clientes',leadPeople:'Liderar pessoas',strategy:'Atuar com estratégia',international:'Trabalhar internacionalmente',complexDeals:'Conduzir negócios complexos',
-    technicalBase:'Background técnico',businessBase:'Visão de negócios',customerBase:'Experiência com clientes',projectBase:'Gestão de projetos',problemBase:'Resolução de problemas',leadershipBase:'Experiência em liderança',
-    learning:'Aprendendo / em capacitação',projects:'Construindo projetos',internship:'Experiência de estágio',professional:'Experiência profissional'
-  },
-  es: {
-    experienced:'Profesional con experiencia',early:'Profesional al inicio de su carrera',student:'Estudiante',firstjob:'Buscando mi primer empleo',changing:'Cambiando de carrera',returning:'Regresando al mercado laboral',
-    sales:'Ventas y Negocios',technology:'Tecnología',finance:'Finanzas',operations:'Operaciones',marketing:'Marketing',healthcare:'Salud',engineering:'Ingeniería',education:'Educación',creative:'Creativo',legal:'Legal',hospitality:'Hospitalidad',other:'Otra opción',
-    newOnly:'Enfocarme solo en mi nueva área',both:'Mantener ambos caminos abiertos',exploring:'Todavía estoy explorando',
-    enterpriseSales:'Ventas Enterprise / B2B',accountManagement:'Gestión de Cuentas',businessDevelopment:'Business Development',customerSuccess:'Customer Success',presales:'Pre-Ventas',partnerships:'Alianzas',salesOps:'Sales Operations',
-    software:'Desarrollo de Software',dataAI:'Datos e IA',cybersecurity:'Ciberseguridad',product:'Producto',support:'Soporte Técnico',projectMgmt:'Gestión de Proyectos / Programas',
-    enterprise:'Enterprise',smb:'SMB',b2b:'B2B',b2c:'B2C',startup:'Startup',multinational:'Multinacional',regulated:'Industria regulada',public:'Sector público',
-    buildApps:'Construir aplicaciones',dataWork:'Trabajar con datos',aiWork:'Trabajar con IA',customerWork:'Trabajar con clientes',leadPeople:'Liderar personas',strategy:'Trabajar con estrategia',international:'Trabajar internacionalmente',complexDeals:'Gestionar negocios complejos',
-    technicalBase:'Background técnico',businessBase:'Visión de negocio',customerBase:'Experiencia con clientes',projectBase:'Gestión de proyectos',problemBase:'Resolución de problemas',leadershipBase:'Experiencia en liderazgo',
-    learning:'Aprendiendo / capacitándome',projects:'Construyendo proyectos',internship:'Experiencia de prácticas',professional:'Experiencia profesional'
-  }
+ en:{experienced:'Experienced professional',early:'Early-career professional',student:'Student',firstjob:'Looking for my first job',changing:'Changing careers',returning:'Returning to the job market',customerRel:'Customer relationships',commercial:'Commercial responsibility',projectDelivery:'Project delivery',softwareDev:'Software development',dataAI:'Data & AI',technicalSolutions:'Technical solutions',operations:'Operations',leadership:'Leadership',advisory:'Advisory / consulting',other:'Something else',manageCustomers:'Manage customer relationships',solveProblems:'Solve technical problems',buildSoftware:'Build software or digital products',leadProjects:'Lead projects and delivery',developBusiness:'Develop business',analyzeData:'Analyze data',implementSolutions:'Implement solutions',adviseCustomers:'Advise customers',coordinateTeams:'Coordinate cross-functional teams',enterprise:'Enterprise',smb:'SMB',b2b:'B2B',b2c:'B2C',startup:'Startup',multinational:'Multinational',regulated:'Regulated industry',public:'Public sector',supportWork:'Support the work',ownPart:'Own part of the work',ownEnd:'Own end-to-end',leadPeople:'Lead people',defineStrategy:'Define strategy',revenue:'Revenue growth',retention:'Retention',delivery:'Project delivery',efficiency:'Efficiency',adoption:'Product adoption',satisfaction:'Customer satisfaction',productImpact:'Product development',reliability:'Technical reliability',fintech:'Fintech',payments:'Payments',saas:'SaaS',banking:'Banking',telecom:'Telecom',healthcare:'Healthcare',cyber:'Cybersecurity',ecommerce:'E-commerce',technicalBase:'Technical background',businessBase:'Business understanding',customerBase:'Customer-facing experience',projectBase:'Project management',problemBase:'Problem solving',leadershipBase:'Leadership experience'},
+ pt:{experienced:'Profissional experiente',early:'Profissional em início de carreira',student:'Estudante',firstjob:'Buscando meu primeiro emprego',changing:'Mudando de carreira',returning:'Retornando ao mercado',customerRel:'Relacionamento com clientes',commercial:'Responsabilidade comercial',projectDelivery:'Entrega de projetos',softwareDev:'Desenvolvimento de software',dataAI:'Dados & IA',technicalSolutions:'Soluções técnicas',operations:'Operações',leadership:'Liderança',advisory:'Consultoria',other:'Outra opção',manageCustomers:'Gerenciar relacionamento com clientes',solveProblems:'Resolver problemas técnicos',buildSoftware:'Construir software ou produtos digitais',leadProjects:'Liderar projetos e entregas',developBusiness:'Desenvolver negócios',analyzeData:'Analisar dados',implementSolutions:'Implementar soluções',adviseCustomers:'Assessorar clientes',coordinateTeams:'Coordenar times multifuncionais',enterprise:'Enterprise',smb:'SMB',b2b:'B2B',b2c:'B2C',startup:'Startup',multinational:'Multinacional',regulated:'Indústria regulada',public:'Setor público',supportWork:'Apoiar o trabalho',ownPart:'Ser responsável por parte do trabalho',ownEnd:'Responsabilidade ponta a ponta',leadPeople:'Liderar pessoas',defineStrategy:'Definir estratégia',revenue:'Crescimento de receita',retention:'Retenção',delivery:'Entrega de projetos',efficiency:'Eficiência',adoption:'Adoção de produto',satisfaction:'Satisfação do cliente',productImpact:'Desenvolvimento de produto',reliability:'Confiabilidade técnica',fintech:'Fintech',payments:'Pagamentos',saas:'SaaS',banking:'Bancos',telecom:'Telecom',healthcare:'Saúde',cyber:'Cibersegurança',ecommerce:'E-commerce',technicalBase:'Background técnico',businessBase:'Visão de negócios',customerBase:'Experiência com clientes',projectBase:'Gestão de projetos',problemBase:'Resolução de problemas',leadershipBase:'Experiência em liderança'},
+ es:{experienced:'Profesional con experiencia',early:'Profesional al inicio de su carrera',student:'Estudiante',firstjob:'Buscando mi primer empleo',changing:'Cambiando de carrera',returning:'Regresando al mercado laboral',customerRel:'Relaciones con clientes',commercial:'Responsabilidad comercial',projectDelivery:'Entrega de proyectos',softwareDev:'Desarrollo de software',dataAI:'Datos e IA',technicalSolutions:'Soluciones técnicas',operations:'Operaciones',leadership:'Liderazgo',advisory:'Consultoría',other:'Otra opción',manageCustomers:'Gestionar relaciones con clientes',solveProblems:'Resolver problemas técnicos',buildSoftware:'Construir software o productos digitales',leadProjects:'Liderar proyectos y entregas',developBusiness:'Desarrollar negocios',analyzeData:'Analizar datos',implementSolutions:'Implementar soluciones',adviseCustomers:'Asesorar clientes',coordinateTeams:'Coordinar equipos multifuncionales',enterprise:'Enterprise',smb:'SMB',b2b:'B2B',b2c:'B2C',startup:'Startup',multinational:'Multinacional',regulated:'Industria regulada',public:'Sector público',supportWork:'Apoyar el trabajo',ownPart:'Responsabilizarme de una parte',ownEnd:'Responsabilidad de principio a fin',leadPeople:'Liderar personas',defineStrategy:'Definir estrategia',revenue:'Crecimiento de ingresos',retention:'Retención',delivery:'Entrega de proyectos',efficiency:'Eficiencia',adoption:'Adopción de producto',satisfaction:'Satisfacción del cliente',productImpact:'Desarrollo de producto',reliability:'Confiabilidad técnica',fintech:'Fintech',payments:'Pagos',saas:'SaaS',banking:'Banca',telecom:'Telecom',healthcare:'Salud',cyber:'Ciberseguridad',ecommerce:'E-commerce',technicalBase:'Background técnico',businessBase:'Visión de negocio',customerBase:'Experiencia con clientes',projectBase:'Gestión de proyectos',problemBase:'Resolución de problemas',leadershipBase:'Experiencia en liderazgo'}
 };
 
 const QUESTION_TEXT = {
-  careerStage:{
-    en:['Which situation best describes you today?','This determines how Kadima adapts the rest of your Profile journey.'],
-    pt:['Qual situação melhor descreve você hoje?','Isso define como o Kadima adaptará o restante da sua jornada de Perfil.'],
-    es:['¿Qué situación te describe mejor hoy?','Esto define cómo Kadima adaptará el resto de tu recorrido de Perfil.']
-  },
-  existingDomains:{
-    en:['Which professional areas are part of your background?','Choose everything that genuinely represents your professional history.'],
-    pt:['Quais áreas profissionais fazem parte do seu background?','Escolha tudo que realmente representa sua trajetória profissional.'],
-    es:['¿Qué áreas profesionales forman parte de tu experiencia?','Elige todo lo que realmente represente tu trayectoria profesional.']
-  },
-  transitionIntent:{
-    en:['How do you want Kadima to treat your career transition?','A career change does not mean you must abandon your previous path.'],
-    pt:['Como você quer que o Kadima trate sua transição de carreira?','Uma mudança de carreira não significa que você precise abandonar sua trajetória anterior.'],
-    es:['¿Cómo quieres que Kadima trate tu transición profesional?','Cambiar de carrera no significa que debas abandonar tu trayectoria anterior.']
-  },
-  emergingPath:{
-    en:['Which new directions are you preparing for or exploring?','Select as many as needed. Kadima can maintain multiple opportunity paths.'],
-    pt:['Quais novas direções você está se preparando para seguir ou explorar?','Selecione quantas forem necessárias. O Kadima pode manter múltiplos caminhos de oportunidade.'],
-    es:['¿Qué nuevas direcciones estás preparando o explorando?','Selecciona todas las necesarias. Kadima puede mantener varios caminos de oportunidad.']
-  },
-  functionalIdentity:{
-    en:['What kind of work best represents what you actually do?','Focus on function, not job title.'],
-    pt:['Que tipo de trabalho melhor representa o que você realmente faz?','Pense na função real, não no nome do cargo.'],
-    es:['¿Qué tipo de trabajo representa mejor lo que realmente haces?','Piensa en la función real, no en el nombre del cargo.']
-  },
-  context:{
-    en:['In which environments have you built most of your experience?','Context can be as important as the function itself when matching opportunities.'],
-    pt:['Em quais ambientes você construiu a maior parte da sua experiência?','O contexto pode ser tão importante quanto a função no match de oportunidades.'],
-    es:['¿En qué entornos construiste la mayor parte de tu experiencia?','El contexto puede ser tan importante como la función al hacer matching.']
-  },
-  nextDirection:{
-    en:['What would you like to do more of in your next opportunity?','Kadima uses this to understand career-direction fit.'],
-    pt:['O que você gostaria de fazer mais na sua próxima oportunidade?','O Kadima usa isso para entender o alinhamento com sua direção de carreira.'],
-    es:['¿Qué te gustaría hacer más en tu próxima oportunidad?','Kadima usa esto para comprender el ajuste con tu dirección profesional.']
-  },
-  transferable:{
-    en:['Which parts of your background should strengthen your other career paths?','This is especially important when you are changing or expanding your career.'],
-    pt:['Quais partes do seu background devem fortalecer seus outros caminhos profissionais?','Isso é especialmente importante quando você está mudando ou expandindo sua carreira.'],
-    es:['¿Qué partes de tu experiencia deberían fortalecer tus otros caminos profesionales?','Esto es especialmente importante cuando cambias o amplías tu carrera.']
-  },
-  exposure:{
-    en:['What kind of practical exposure do you already have in this direction?','Formal employment is not the only valid evidence.'],
-    pt:['Que tipo de exposição prática você já possui nessa direção?','Emprego formal não é a única evidência válida.'],
-    es:['¿Qué tipo de experiencia práctica ya tienes en esta dirección?','El empleo formal no es la única evidencia válida.']
-  }
+ careerStage:{en:['Which situation best describes you today?','Kadima uses this only to adapt the discovery — not to assign you a job title.'],pt:['Qual situação melhor descreve você hoje?','O Kadima usa isso apenas para adaptar a descoberta — não para atribuir um cargo a você.'],es:['¿Qué situación te describe mejor hoy?','Kadima usa esto solo para adaptar el descubrimiento — no para asignarte un puesto.']},
+ profileEmphasis:{en:['What should this professional profile emphasize?','Choose the kinds of value and work you want this profile to represent.'],pt:['O que este perfil profissional deve enfatizar?','Escolha os tipos de valor e trabalho que você quer que este perfil represente.'],es:['¿Qué debe enfatizar este perfil profesional?','Elige los tipos de valor y trabajo que quieres que este perfil represente.']},
+ capabilities:{en:['What kinds of work do you want this profile to be matched for?','Think about capabilities and activities, not job titles.'],pt:['Para quais tipos de trabalho você quer que este perfil seja considerado?','Pense em capacidades e atividades, não em nomes de cargos.'],es:['¿Para qué tipos de trabajo quieres que se considere este perfil?','Piensa en capacidades y actividades, no en nombres de puestos.']},
+ context:{en:['Which work environments best fit this profile?','Context helps Kadima distinguish where the same capability creates the strongest match.'],pt:['Quais ambientes de trabalho melhor combinam com este perfil?','O contexto ajuda o Kadima a entender onde a mesma capacidade gera o melhor match.'],es:['¿Qué entornos de trabajo encajan mejor con este perfil?','El contexto ayuda a Kadima a entender dónde la misma capacidad genera el mejor match.']},
+ ownership:{en:['What level of ownership should this profile emphasize?','Select the responsibility levels that genuinely fit the profile you are building.'],pt:['Qual nível de responsabilidade este perfil deve enfatizar?','Selecione os níveis de responsabilidade que realmente combinam com o perfil que você está construindo.'],es:['¿Qué nivel de responsabilidad debe enfatizar este perfil?','Selecciona los niveles que realmente encajan con el perfil que estás construyendo.']},
+ impact:{en:['What kinds of outcomes should this profile be associated with?','We will look for evidence and measurable results during Experience.'],pt:['Com quais tipos de resultados este perfil deve estar associado?','Buscaremos evidências e resultados mensuráveis durante Experiência.'],es:['¿Con qué tipos de resultados debe asociarse este perfil?','Buscaremos evidencia y resultados medibles durante Experiencia.']},
+ domain:{en:['Which domains or industries should strengthen this profile?','Domain knowledge can materially improve a match even when the job title is different.'],pt:['Quais domínios ou setores devem fortalecer este perfil?','Conhecimento de domínio pode melhorar muito o match mesmo quando o nome do cargo é diferente.'],es:['¿Qué dominios o sectores deben fortalecer este perfil?','El conocimiento de dominio puede mejorar mucho el match aunque el nombre del puesto sea diferente.']},
+ transferable:{en:['Which strengths from your background should carry into this profile?','Especially useful for career changes: keep transferable evidence without mixing different profiles.'],pt:['Quais pontos fortes do seu background devem ser trazidos para este perfil?','Especialmente útil em mudanças de carreira: preserva evidências transferíveis sem misturar perfis diferentes.'],es:['¿Qué fortalezas de tu experiencia deben trasladarse a este perfil?','Especialmente útil en cambios de carrera: conserva evidencia transferible sin mezclar perfiles diferentes.']},
+ direction:{en:['What do you want more of in opportunities matched to this profile?','This guides prioritization without restricting discovery to a specific job title.'],pt:['O que você quer encontrar mais nas oportunidades compatíveis com este perfil?','Isso orienta a priorização sem restringir a descoberta a um cargo específico.'],es:['¿Qué quieres encontrar más en las oportunidades compatibles con este perfil?','Esto orienta la priorización sin restringir el descubrimiento a un puesto específico.']}
 };
 
 function ui() {
@@ -250,7 +46,7 @@ function questionCopy(questionId) {
 
 
 
-const DIMENSIONS = ["identity", "paths", "context", "direction", "transferable"];
+const DIMENSIONS = ["identity", "capabilities", "context", "ownership", "impact", "domain", "transferable", "direction"];
 
 const state = {
   accountId: onboarding.accountId || account?.accountId || "",
@@ -273,10 +69,13 @@ const state = {
   // Manual changes made directly in the Live Preview.
   manualFingerprint: {
     identity: [],
-    paths: [],
+    capabilities: [],
     context: [],
-    direction: [],
-    transferable: []
+    ownership: [],
+    impact: [],
+    domain: [],
+    transferable: [],
+    direction: []
   },
 
   // Overrides for items originally inferred from questions.
@@ -287,10 +86,13 @@ const state = {
 
   fingerprint: {
     identity: [],
-    paths: [],
+    capabilities: [],
     context: [],
-    direction: [],
-    transferable: []
+    ownership: [],
+    impact: [],
+    domain: [],
+    transferable: [],
+    direction: []
   }
 };
 
@@ -340,6 +142,7 @@ const toast = $("toast");
 
 let pendingSelection = [];
 let fingerprintEditorState = null;
+let discoveryNavigationMode = "journey";
 
 function safeParse(raw, fallback) {
   try {
@@ -509,145 +312,36 @@ const labels = {
 };
 
 const questions = {
-  careerStage: {
-    type: "single",
-    dimension: "identity",
-    text: "Which situation best describes you today?",
-    help: "This determines how Kadima adapts the rest of your Profile journey.",
-    options: ["experienced", "early", "student", "firstjob", "changing", "returning"]
-  },
-
-  existingDomains: {
-    type: "multi",
-    dimension: "paths",
-    text: "Which professional areas are part of your background?",
-    help: "Choose everything that genuinely represents your professional history.",
-    options: ["sales", "technology", "finance", "operations", "marketing", "healthcare", "engineering", "education", "creative", "legal", "hospitality", "other"]
-  },
-
-  transitionIntent: {
-    type: "single",
-    dimension: "direction",
-    text: "How do you want Kadima to treat your career transition?",
-    help: "A career change does not mean you must abandon your previous path.",
-    options: ["newOnly", "both", "exploring", "other"]
-  },
-
-  emergingPath: {
-    type: "multi",
-    dimension: "paths",
-    text: "Which new directions are you preparing for or exploring?",
-    help: "Select as many as needed. Kadima can maintain multiple opportunity paths.",
-    options: ["software", "dataAI", "cybersecurity", "product", "technology", "sales", "projectMgmt", "support", "other"]
-  },
-
-  functionalIdentity: {
-    type: "multi",
-    dimension: "identity",
-    text: "What kind of work best represents what you actually do?",
-    help: "Focus on function, not job title.",
-    options: ["enterpriseSales", "accountManagement", "businessDevelopment", "customerSuccess", "presales", "partnerships", "salesOps", "software", "dataAI", "projectMgmt", "support", "other"]
-  },
-
-  context: {
-    type: "multi",
-    dimension: "context",
-    text: "In which environments have you built most of your experience?",
-    help: "Context can be as important as the function itself when matching opportunities.",
-    options: ["enterprise", "smb", "b2b", "b2c", "startup", "multinational", "regulated", "public", "other"]
-  },
-
-  nextDirection: {
-    type: "multi",
-    dimension: "direction",
-    text: "What would you like to do more of in your next opportunity?",
-    help: "Kadima uses this to understand career-direction fit.",
-    options: ["buildApps", "dataWork", "aiWork", "customerWork", "leadPeople", "strategy", "international", "complexDeals", "other"]
-  },
-
-  transferable: {
-    type: "multi",
-    dimension: "transferable",
-    text: "Which parts of your background should strengthen your other career paths?",
-    help: "This is especially important when you are changing or expanding your career.",
-    options: ["technicalBase", "businessBase", "customerBase", "projectBase", "problemBase", "leadershipBase", "other"]
-  },
-
-  exposure: {
-    type: "multi",
-    dimension: "context",
-    text: "What kind of practical exposure do you already have in this direction?",
-    help: "Formal employment is not the only valid evidence.",
-    options: ["learning", "projects", "internship", "professional", "other"]
-  }
+  careerStage:{type:"single",dimension:"identity",options:["experienced","early","student","firstjob","changing","returning"]},
+  profileEmphasis:{type:"multi",dimension:"direction",options:["customerRel","commercial","projectDelivery","softwareDev","dataAI","technicalSolutions","operations","leadership","advisory","other"]},
+  capabilities:{type:"multi",dimension:"capabilities",options:["manageCustomers","solveProblems","buildSoftware","leadProjects","developBusiness","analyzeData","implementSolutions","adviseCustomers","coordinateTeams","other"]},
+  context:{type:"multi",dimension:"context",options:["enterprise","smb","b2b","b2c","startup","multinational","regulated","public","other"]},
+  ownership:{type:"multi",dimension:"ownership",options:["supportWork","ownPart","ownEnd","leadPeople","defineStrategy","other"]},
+  impact:{type:"multi",dimension:"impact",options:["revenue","retention","delivery","efficiency","adoption","satisfaction","productImpact","reliability","other"]},
+  domain:{type:"multi",dimension:"domain",options:["fintech","payments","saas","banking","telecom","healthcare","cyber","ecommerce","other"]},
+  transferable:{type:"multi",dimension:"transferable",options:["technicalBase","businessBase","customerBase","projectBase","problemBase","leadershipBase","other"]},
+  direction:{type:"multi",dimension:"direction",options:["customerRel","technicalSolutions","projectDelivery","softwareDev","dataAI","commercial","leadership","advisory","other"]}
 };
 
-function displayLabel(id) {
-  return optionLabel(id);
-}
-
+function displayLabel(id) { return optionLabel(id); }
 function semanticCareerStage() {
-  if (state.careerStage) {
-    return state.careerStage;
-  }
-
-  const answer = state.answers.careerStage;
-
-  if (typeof answer === "string" && !isCustomId(answer)) {
-    return answer;
-  }
-
-  return "other";
+  if (state.careerStage) return state.careerStage;
+  const answer=state.answers.careerStage;
+  return typeof answer === "string" && !isCustomId(answer) ? answer : "other";
+}
+function getQuestionSequence() {
+  const sequence=["careerStage","profileEmphasis","capabilities","context","ownership","impact","domain"];
+  if (["changing","returning"].includes(semanticCareerStage())) sequence.push("transferable");
+  sequence.push("direction");
+  return sequence;
 }
 
-function semanticTransitionIntent() {
-  const answer = state.answers.transitionIntent;
-
-  if (typeof answer === "string" && !isCustomId(answer)) {
-    return answer;
-  }
-
-  return "other";
+function hasSavedAnswer(questionId) {
+  return asArray(state.answers[questionId]).length > 0;
 }
 
 function chooseNextQuestion() {
-  const stage = semanticCareerStage();
-  const a = state.answers;
-
-  if (!a.careerStage) {
-    return "careerStage";
-  }
-
-  if (["changing", "returning"].includes(stage)) {
-    if (!a.existingDomains) return "existingDomains";
-    if (!a.transitionIntent) return "transitionIntent";
-
-    if (!a.emergingPath && semanticTransitionIntent() !== "newOnly") {
-      return "emergingPath";
-    }
-
-    if (!a.functionalIdentity) return "functionalIdentity";
-    if (!a.context) return "context";
-    if (!a.transferable) return "transferable";
-    if (!a.nextDirection) return "nextDirection";
-
-    return null;
-  }
-
-  if (["student", "firstjob"].includes(stage)) {
-    if (!a.emergingPath) return "emergingPath";
-    if (!a.exposure) return "exposure";
-    if (!a.nextDirection) return "nextDirection";
-
-    return null;
-  }
-
-  if (!a.existingDomains) return "existingDomains";
-  if (!a.functionalIdentity) return "functionalIdentity";
-  if (!a.context) return "context";
-  if (!a.nextDirection) return "nextDirection";
-
-  return null;
+  return getQuestionSequence().find((id)=>!hasSavedAnswer(id)) || null;
 }
 
 function syncContact() {
@@ -693,14 +387,15 @@ function restoreProfile() {
     Object.assign(state.contact, saved.contact);
   }
 
-  state.careerStage = saved.careerStage || "";
-  state.answers = saved.answers || {};
+  const legacyProfile = saved.fingerprint && Object.prototype.hasOwnProperty.call(saved.fingerprint, "paths");
+  state.careerStage = legacyProfile ? "" : (saved.careerStage || "");
+  state.answers = legacyProfile ? {} : (saved.answers || {});
   state.history = Array.isArray(saved.history) ? saved.history : [];
   state.currentQuestionId = saved.currentQuestionId || null;
   state.foundationReached = Boolean(saved.foundationReached);
   state.confirmed = Boolean(saved.confirmed);
 
-  if (saved.manualFingerprint) {
+  if (saved.manualFingerprint && !legacyProfile) {
     DIMENSIONS.forEach((dimension) => {
       state.manualFingerprint[dimension] = Array.isArray(saved.manualFingerprint[dimension])
         ? saved.manualFingerprint[dimension]
@@ -708,7 +403,7 @@ function restoreProfile() {
     });
   }
 
-  if (saved.fingerprintEdits) {
+  if (saved.fingerprintEdits && !legacyProfile) {
     state.fingerprintEdits.removed = Array.isArray(saved.fingerprintEdits.removed)
       ? saved.fingerprintEdits.removed
       : [];
@@ -794,13 +489,7 @@ function getFingerprintEntries() {
 function updateFingerprintState() {
   const entries = getFingerprintEntries();
 
-  state.fingerprint = {
-    identity: [],
-    paths: [],
-    context: [],
-    direction: [],
-    transferable: []
-  };
+  state.fingerprint = Object.fromEntries(DIMENSIONS.map((dimension) => [dimension, []]));
 
   entries.forEach((entry) => {
     state.fingerprint[entry.dimension].push(entry.label);
@@ -810,13 +499,7 @@ function updateFingerprintState() {
 }
 
 function renderFingerprint(entries = getFingerprintEntries()) {
-  const containers = {
-    identity: $("fpIdentity"),
-    paths: $("fpPaths"),
-    context: $("fpContext"),
-    direction: $("fpDirection"),
-    transferable: $("fpTransferable")
-  };
+  const containers = {identity:$("fpIdentity"),capabilities:$("fpCapabilities"),context:$("fpContext"),ownership:$("fpOwnership"),impact:$("fpImpact"),domain:$("fpDomain"),transferable:$("fpTransferable"),direction:$("fpDirection")};
 
   DIMENSIONS.forEach((dimension) => {
     const container = containers[dimension];
@@ -891,15 +574,7 @@ function closeFingerprintEditor() {
   fingerprintEditorState = null;
 }
 
-function dimensionLabel(dimension) {
-  return {
-    identity: ui().dimensions.identity,
-    paths: ui().dimensions.paths,
-    context: ui().dimensions.context,
-    direction: ui().dimensions.direction,
-    transferable: ui().dimensions.transferable
-  }[dimension] || dimension;
-}
+function dimensionLabel(dimension) { return ui().dimensions[dimension] || dimension; }
 
 function createManualFingerprintItems(dimension, values) {
   const existingLabels = new Set(
@@ -1002,7 +677,10 @@ function renderQuestion(questionId) {
   const [translatedQuestion, translatedHelp] = questionCopy(questionId);
   questionText.textContent = translatedQuestion;
   questionHelp.textContent = translatedHelp;
-  questionCounter.textContent = `${currentLanguage === "pt" ? "Pergunta" : currentLanguage === "es" ? "Pregunta" : "Question"} ${state.history.length + 1}`;
+  const sequence = getQuestionSequence();
+  const sequenceIndex = sequence.indexOf(questionId);
+  const questionNumber = sequenceIndex >= 0 ? sequenceIndex + 1 : 1;
+  questionCounter.textContent = `${currentLanguage === "pt" ? "Pergunta" : currentLanguage === "es" ? "Pregunta" : "Question"} ${questionNumber}/${sequence.length}`;
   answerOptions.innerHTML = "";
 
   otherAnswerInput.value = customValues.join(", ");
@@ -1016,7 +694,7 @@ function renderQuestion(questionId) {
 
     const visibleSelected =
       optionId === "other"
-        ? customValues.length > 0 || pendingSelection.includes("other")
+        ? customValues.length > 0
         : pendingSelection.includes(optionId);
 
     if (visibleSelected) {
@@ -1036,143 +714,196 @@ function renderQuestion(questionId) {
     answerOptions.appendChild(button);
   });
 
-  nextQuestionButton.disabled = pendingSelection.length === 0;
-  previousQuestionButton.disabled = state.history.length === 0;
+  // Always derive the pending answer from what is actually visible in the UI.
+  // This avoids stale pendingSelection values after Previous/Continue navigation.
+  syncPendingSelectionFromUI(false);
+  previousQuestionButton.disabled = getQuestionSequence().indexOf(questionId) <= 0;
 }
 
-function handleAnswerOptionClick(question, optionId, button) {
-  if (optionId === "other") {
-    const hasCustom = pendingSelection.some(isCustomId);
-    const currentlySelected = button.classList.contains("selected") || hasCustom;
+function collectSelectionFromUI() {
+  const question = questions[state.currentQuestionId];
 
-    if (currentlySelected) {
-      pendingSelection = pendingSelection.filter(
-        (value) => value !== "other" && !isCustomId(value)
-      );
+  if (!question) {
+    return [];
+  }
 
-      button.classList.remove("selected");
-      otherAnswerWrap.hidden = true;
-      otherAnswerInput.value = "";
+  const selection = [];
 
-      // If custom values were already committed, remove them immediately.
-      if (state.answers[state.currentQuestionId]) {
-        storePendingAnswer(false);
-        updateFingerprintState();
-        saveProfile();
-      }
-    } else {
-      if (question.type === "single") {
-        pendingSelection = [];
-        answerOptions
-          .querySelectorAll(".answer-option")
-          .forEach((option) => option.classList.remove("selected"));
-      }
-
-      button.classList.add("selected");
-      otherAnswerWrap.hidden = false;
-      otherAnswerInput.focus();
+  answerOptions.querySelectorAll('.answer-option.selected').forEach((button) => {
+    const optionId = button.dataset.option;
+    if (optionId && optionId !== 'other' && !selection.includes(optionId)) {
+      selection.push(optionId);
     }
-
-    nextQuestionButton.disabled = pendingSelection.length === 0;
-    return;
-  }
-
-  if (question.type === "single") {
-    pendingSelection = [optionId];
-
-    answerOptions
-      .querySelectorAll(".answer-option")
-      .forEach((option) => option.classList.remove("selected"));
-
-    button.classList.add("selected");
-    otherAnswerWrap.hidden = true;
-    otherAnswerInput.value = "";
-  } else {
-    button.classList.toggle("selected");
-
-    if (button.classList.contains("selected")) {
-      if (!pendingSelection.includes(optionId)) {
-        pendingSelection.push(optionId);
-      }
-    } else {
-      pendingSelection = pendingSelection.filter((value) => value !== optionId);
-    }
-  }
-
-  nextQuestionButton.disabled = pendingSelection.length === 0;
-}
-
-function addOtherAnswers() {
-  const values = splitCommaValues(otherAnswerInput.value);
-
-  if (!values.length) {
-    return;
-  }
-
-  // Remove any previous custom values from the current pending answer and
-  // rebuild them from the comma-separated field.
-  pendingSelection = pendingSelection.filter(
-    (value) => value !== "other" && !isCustomId(value)
-  );
-
-  values.forEach((value) => {
-    pendingSelection.push(customId(value));
   });
 
   const otherButton = answerOptions.querySelector('[data-option="other"]');
+  const customValues = splitCommaValues(otherAnswerInput.value);
 
-  if (otherButton) {
-    otherButton.classList.add("selected");
+  if (otherButton?.classList.contains('selected') || customValues.length) {
+    customValues.forEach((value) => {
+      const id = customId(value);
+      if (!selection.includes(id)) selection.push(id);
+    });
   }
 
-  nextQuestionButton.disabled = false;
+  // Single-choice questions must remain single-choice. If a custom value exists,
+  // it is the single answer; otherwise use the selected regular option.
+  if (question.type === 'single') {
+    const custom = selection.find(isCustomId);
+    if (custom) return [custom];
+    return selection.length ? [selection[0]] : [];
+  }
 
-  // Requirement: custom entries appear in Live Preview immediately on Add.
-  storePendingAnswer(false);
-  updateFingerprintState();
-  saveProfile();
+  return selection;
 }
 
-function storePendingAnswer(addToHistory = true) {
-  const questionId = state.currentQuestionId;
+function pruneInactiveQuestionAnswers() {
+  const active = new Set(getQuestionSequence());
+
+  Object.keys(state.answers).forEach((questionId) => {
+    if (questions[questionId] && !active.has(questionId)) {
+      delete state.answers[questionId];
+    }
+  });
+}
+
+function persistQuestionSelection(questionId, selection, { addToHistory = false, allowEmpty = true } = {}) {
   const question = questions[questionId];
 
-  if (!question || !pendingSelection.length) {
-    return false;
-  }
+  if (!question) return false;
 
-  const hasCustom = pendingSelection.some(isCustomId);
+  const cleanSelection = [...new Set(asArray(selection).filter((value) => value !== 'other'))];
+  if (!cleanSelection.length && !allowEmpty) return false;
 
-  if (question.type === "single" && !hasCustom) {
-    state.answers[questionId] = pendingSelection[0];
+  const previousValues = asArray(state.answers[questionId]);
+  const previousSet = new Set(previousValues);
+  const nextSet = new Set(cleanSelection);
+
+  // Question answers are the canonical source for question-derived fingerprint items.
+  // If the user changes an answer, stale editor overrides for that answer must not
+  // block the new explicit choice from appearing in the fingerprint.
+  const touchedIds = new Set([...previousValues, ...cleanSelection]);
+  touchedIds.forEach((answerId) => {
+    if (previousSet.has(answerId) !== nextSet.has(answerId)) {
+      const sourceKey = `${question.dimension}|${questionId}|${answerId}`;
+      state.fingerprintEdits.removed = state.fingerprintEdits.removed.filter((key) => key !== sourceKey);
+      delete state.fingerprintEdits.renamed[sourceKey];
+    }
+  });
+
+  if (!cleanSelection.length) {
+    delete state.answers[questionId];
   } else {
-    state.answers[questionId] = [...pendingSelection];
+    const hasCustom = cleanSelection.some(isCustomId);
+    state.answers[questionId] = question.type === 'single' && !hasCustom
+      ? cleanSelection[0]
+      : [...cleanSelection];
   }
 
-  if (questionId === "careerStage") {
-    const regular = pendingSelection.find(
-      (value) => !isCustomId(value) && value !== "other"
-    );
-
-    state.careerStage = regular || "other";
+  if (questionId === 'careerStage') {
+    const regular = cleanSelection.find((value) => !isCustomId(value));
+    state.careerStage = regular || (cleanSelection.some(isCustomId) ? 'other' : '');
+    pruneInactiveQuestionAnswers();
   }
 
   if (addToHistory && !state.history.includes(questionId)) {
     state.history.push(questionId);
   }
 
-  return true;
+  updateFingerprintState();
+  buildCareerPathOverview();
+  saveProfile();
+
+  return cleanSelection.length > 0 || allowEmpty;
+}
+
+function syncPendingSelectionFromUI(persist = true, options = {}) {
+  pendingSelection = collectSelectionFromUI();
+  nextQuestionButton.disabled = pendingSelection.length === 0;
+
+  if (persist) {
+    persistQuestionSelection(state.currentQuestionId, pendingSelection, options);
+  }
+
+  return pendingSelection;
+}
+
+function handleAnswerOptionClick(question, optionId, button) {
+  if (optionId === 'other') {
+    const currentlySelected = button.classList.contains('selected');
+
+    if (currentlySelected) {
+      button.classList.remove('selected');
+      otherAnswerWrap.hidden = true;
+      otherAnswerInput.value = '';
+    } else {
+      if (question.type === 'single') {
+        answerOptions.querySelectorAll('.answer-option')
+          .forEach((option) => option.classList.remove('selected'));
+      }
+
+      button.classList.add('selected');
+      otherAnswerWrap.hidden = false;
+      otherAnswerInput.focus();
+    }
+
+    syncPendingSelectionFromUI(true, { allowEmpty: true });
+    return;
+  }
+
+  if (question.type === 'single') {
+    answerOptions.querySelectorAll('.answer-option')
+      .forEach((option) => option.classList.remove('selected'));
+
+    button.classList.add('selected');
+    otherAnswerWrap.hidden = true;
+    otherAnswerInput.value = '';
+  } else {
+    button.classList.toggle('selected');
+  }
+
+  syncPendingSelectionFromUI(true, { allowEmpty: true });
+}
+
+function addOtherAnswers() {
+  const values = splitCommaValues(otherAnswerInput.value);
+  const otherButton = answerOptions.querySelector('[data-option="other"]');
+
+  if (!values.length) {
+    if (otherButton) otherButton.classList.remove('selected');
+    syncPendingSelectionFromUI(true, { allowEmpty: true });
+    return;
+  }
+
+  if (otherButton) otherButton.classList.add('selected');
+  // Normalize the visible value, but do not inject examples or assumptions.
+  otherAnswerInput.value = values.join(', ');
+  syncPendingSelectionFromUI(true, { allowEmpty: true });
+}
+
+function storePendingAnswer(addToHistory = true, allowEmpty = false) {
+  // Compatibility wrapper used by the rest of the screen. The source of truth is
+  // now the current DOM selection, not an old cached pendingSelection array.
+  syncPendingSelectionFromUI(false);
+  return persistQuestionSelection(
+    state.currentQuestionId,
+    pendingSelection,
+    { addToHistory, allowEmpty }
+  );
 }
 
 function commitCurrentAnswer() {
-  if (!storePendingAnswer(true)) {
+  syncPendingSelectionFromUI(false);
+
+  if (!pendingSelection.length) {
     return false;
   }
 
-  updateFingerprintState();
-  saveProfile();
-
-  return true;
+  return persistQuestionSelection(
+    state.currentQuestionId,
+    pendingSelection,
+    { addToHistory: true, allowEmpty: false }
+  );
 }
 
 function goForward() {
@@ -1181,31 +912,43 @@ function goForward() {
     return;
   }
 
-  const next = chooseNextQuestion();
+  if (discoveryNavigationMode === 'adjust') {
+    completeFoundation();
+    return;
+  }
 
-  if (next) {
-    renderQuestion(next);
+  const sequence = getQuestionSequence();
+  const currentIndex = sequence.indexOf(state.currentQuestionId);
+
+  if (currentIndex >= 0 && currentIndex < sequence.length - 1) {
+    renderQuestion(sequence[currentIndex + 1]);
   } else {
     completeFoundation();
   }
 }
 
 function goPrevious() {
-  if (!state.history.length) {
+  // Re-read the visible controls before moving. This is deliberately done even
+  // if the user only deselected values and never pressed Continue.
+  syncPendingSelectionFromUI(false);
+  persistQuestionSelection(
+    state.currentQuestionId,
+    pendingSelection,
+    { addToHistory: false, allowEmpty: true }
+  );
+
+  const sequence = getQuestionSequence();
+  const currentIndex = sequence.indexOf(state.currentQuestionId);
+
+  if (currentIndex <= 0) {
     return;
   }
 
-  const current = state.currentQuestionId;
-
-  if (state.history[state.history.length - 1] === current) {
-    state.history.pop();
-  }
-
-  const target = state.history.pop() || "careerStage";
-  renderQuestion(target);
+  renderQuestion(sequence[currentIndex - 1]);
 }
 
 function startDiscovery() {
+  discoveryNavigationMode = "journey";
   syncContact();
   contactPanel.hidden = true;
   discoveryPanel.hidden = false;
@@ -1285,115 +1028,24 @@ function visibleQuestionLabels(questionId) {
 }
 
 function buildCareerPathOverview() {
-  if (!careerPathCards) {
-    return;
-  }
-
-  careerPathCards.innerHTML = "";
-
-  const stage = semanticCareerStage();
-  const transition = semanticTransitionIntent();
-
-  const established = [
-    ...visibleQuestionLabels("existingDomains"),
-    ...visibleQuestionLabels("functionalIdentity")
-  ];
-
-  const emerging = visibleQuestionLabels("emergingPath");
-  const bridge = state.fingerprint.transferable;
-
-  function addCard(type, title, detail, cssClass) {
-    const card = document.createElement("div");
-    card.className = `career-path-card ${cssClass}`;
-
-    card.innerHTML = `
-      <span class="path-type">${escapeHtml(type)}</span>
-      <strong>${escapeHtml(title)}</strong>
-      <span>${escapeHtml(detail)}</span>
-    `;
-
-    careerPathCards.appendChild(card);
-  }
-
-  if (established.length && !["student", "firstjob"].includes(stage)) {
-    addCard(
-      ui().pathTypes.established,
-      [...new Set(established)].slice(0, 5).join(" → "),
-      ui().pathDescriptions.established,
-      "established"
-    );
-  }
-
-  if (emerging.length) {
-    if (transition === "exploring") {
-      addCard(
-        ui().pathTypes.exploring,
-        [...new Set(emerging)].slice(0, 5).join(" → "),
-        ui().pathDescriptions.exploring,
-        "exploring"
-      );
-    } else {
-      addCard(
-        ui().pathTypes.emerging,
-        [...new Set(emerging)].slice(0, 5).join(" → "),
-        ui().pathDescriptions.emerging,
-        "emerging"
-      );
-    }
-  }
-
-  if (bridge.length) {
-    addCard(
-      ui().pathTypes.bridge,
-      [...new Set(bridge)].slice(0, 5).join(" · "),
-      ui().pathDescriptions.bridge,
-      "emerging"
-    );
-  }
-
-  if (!careerPathCards.children.length) {
-    addCard(
-      ui().pathTypes.current,
-      state.fingerprint.paths.slice(0, 5).join(" → ") || ui().toBeDiscovered,
-      ui().pathDescriptions.current,
-      "exploring"
-    );
-  }
+  if (!careerPathCards) return;
+  careerPathCards.innerHTML="";
+  const signals=[...state.fingerprint.direction,...state.fingerprint.capabilities,...state.fingerprint.context].filter(Boolean);
+  const card=document.createElement("div");
+  card.className="career-path-card established";
+  card.innerHTML=`<span class="path-type">${escapeHtml(ui().focusType)}</span><strong>${escapeHtml([...new Set(signals)].slice(0,6).join(" · ") || ui().toBeDiscovered)}</strong><span>${escapeHtml(ui().focusDescription)}</span>`;
+  careerPathCards.appendChild(card);
 }
 
-function showAdjustMenu() {
-  adjustMenu.hidden = !adjustMenu.hidden;
-}
+function showAdjustMenu() { adjustMenu.hidden = !adjustMenu.hidden; }
 
 function questionForDimension(dimension) {
-  const stage = semanticCareerStage();
-
-  const map = {
-    identity:
-      ["student", "firstjob"].includes(stage)
-        ? "careerStage"
-        : "functionalIdentity",
-
-    paths:
-      ["changing", "returning", "student", "firstjob"].includes(stage)
-        ? "emergingPath"
-        : "existingDomains",
-
-    context:
-      ["student", "firstjob"].includes(stage)
-        ? "exposure"
-        : "context",
-
-    direction: "nextDirection",
-    transferable: "transferable"
-  };
-
-  return questions[map[dimension]]
-    ? map[dimension]
-    : "careerStage";
+  const map={identity:"careerStage",capabilities:"capabilities",context:"context",ownership:"ownership",impact:"impact",domain:"domain",transferable:"transferable",direction:"direction"};
+  return map[dimension] || "careerStage";
 }
 
 function adjustDimension(dimension) {
+  discoveryNavigationMode = "adjust";
   adjustMenu.hidden = true;
   reviewPanel.hidden = true;
   discoveryPanel.hidden = false;
@@ -1630,16 +1282,19 @@ function applyStaticLanguage() {
   setText("previousQuestionText", t.previous);
   setText("nextQuestionText", t.continue);
   setText("otherAnswerLabel", t.otherAnswer);
-  otherAnswerInput.placeholder = t.otherPlaceholder;
+  otherAnswerInput.placeholder = '';
   addOtherAnswerButton.textContent = t.add;
 
   setText("livePreviewLabel", t.livePreview);
   setText("fingerprintTitle", t.fingerprintTitle);
   setText("fpIdentityLabel", t.dimensions.identity);
-  setText("fpPathsLabel", t.dimensions.paths);
+  setText("fpCapabilitiesLabel", t.dimensions.capabilities);
   setText("fpContextLabel", t.dimensions.context);
-  setText("fpDirectionLabel", t.dimensions.direction);
+  setText("fpOwnershipLabel", t.dimensions.ownership);
+  setText("fpImpactLabel", t.dimensions.impact);
+  setText("fpDomainLabel", t.dimensions.domain);
   setText("fpTransferableLabel", t.dimensions.transferable);
+  setText("fpDirectionLabel", t.dimensions.direction);
 
   setText("fingerprintEditorLabel", t.editorItem);
   setText("fingerprintEditorHint", t.editorHint);
@@ -1657,10 +1312,13 @@ function applyStaticLanguage() {
 
   setText("adjustMenuTitle", t.adjustTitle);
   setText("adjustIdentity", t.dimensions.identity);
-  setText("adjustPaths", t.dimensions.paths);
+  setText("adjustCapabilities", t.dimensions.capabilities);
   setText("adjustContext", t.dimensions.context);
-  setText("adjustDirection", t.dimensions.direction);
+  setText("adjustOwnership", t.dimensions.ownership);
+  setText("adjustImpact", t.dimensions.impact);
+  setText("adjustDomain", t.dimensions.domain);
   setText("adjustTransferable", t.dimensions.transferable);
+  setText("adjustDirection", t.dimensions.direction);
   setText("adjustButtonText", t.adjust);
   setText("finishProfileText", t.looksRight);
 
@@ -1708,6 +1366,20 @@ startDiscoveryButton.addEventListener("click", startDiscovery);
 nextQuestionButton.addEventListener("click", goForward);
 previousQuestionButton.addEventListener("click", goPrevious);
 addOtherAnswerButton.addEventListener("click", addOtherAnswers);
+
+// "Something else" is saved from the text itself; the user does not have to
+// remember to press Add before navigating. Emptying the field removes the custom
+// contribution from the fingerprint immediately.
+otherAnswerInput.addEventListener("input", () => {
+  const otherButton = answerOptions.querySelector('[data-option="other"]');
+  const hasValues = splitCommaValues(otherAnswerInput.value).length > 0;
+  if (otherButton) otherButton.classList.toggle("selected", hasValues);
+  syncPendingSelectionFromUI(true, { allowEmpty: true });
+});
+
+otherAnswerInput.addEventListener("blur", () => {
+  addOtherAnswers();
+});
 
 backToDetailsButton.addEventListener("click", backToProfileDetails);
 backButton.addEventListener("click", () => {

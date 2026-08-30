@@ -980,3 +980,12 @@ body.profile-confirmed .profile-actions{
   letter-spacing:0;
   text-transform:none;
 }
+
+
+/* Screen 3 signal-based Professional Profile */
+.review-fingerprint{grid-template-columns:repeat(4,minmax(0,1fr));}
+.fingerprint-card{align-self:start;}
+.fingerprint-dimensions{max-height:560px;overflow-y:auto;padding-right:4px;}
+.fingerprint-dimensions::-webkit-scrollbar{width:5px}.fingerprint-dimensions::-webkit-scrollbar-thumb{background:#D6E2F2;border-radius:8px}
+@media(max-width:1180px){.review-fingerprint{grid-template-columns:repeat(2,minmax(0,1fr));}.fingerprint-dimensions{max-height:none;overflow:visible}}
+@media(max-width:800px){.review-fingerprint{grid-template-columns:1fr}}

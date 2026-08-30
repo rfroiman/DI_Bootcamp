@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kadima | Profile</title>
+  <link rel="icon" type="image/png" href="assets/kadima-favicon.png" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="profile.css" />
 </head>
@@ -99,10 +100,13 @@
 </div></div>
             <div class="fingerprint-dimensions">
               <div class="fingerprint-dimension"><span id="fpIdentityLabel">Identity</span><div id="fpIdentity" class="fingerprint-values empty"></div></div>
-              <div class="fingerprint-dimension"><span id="fpPathsLabel">Career paths</span><div id="fpPaths" class="fingerprint-values empty"></div></div>
+              <div class="fingerprint-dimension"><span id="fpCapabilitiesLabel">Capabilities</span><div id="fpCapabilities" class="fingerprint-values empty"></div></div>
               <div class="fingerprint-dimension"><span id="fpContextLabel">Context</span><div id="fpContext" class="fingerprint-values empty"></div></div>
-              <div class="fingerprint-dimension"><span id="fpDirectionLabel">Direction</span><div id="fpDirection" class="fingerprint-values empty"></div></div>
+              <div class="fingerprint-dimension"><span id="fpOwnershipLabel">Ownership</span><div id="fpOwnership" class="fingerprint-values empty"></div></div>
+              <div class="fingerprint-dimension"><span id="fpImpactLabel">Impact</span><div id="fpImpact" class="fingerprint-values empty"></div></div>
+              <div class="fingerprint-dimension"><span id="fpDomainLabel">Domain knowledge</span><div id="fpDomain" class="fingerprint-values empty"></div></div>
               <div class="fingerprint-dimension"><span id="fpTransferableLabel">Transferable value</span><div id="fpTransferable" class="fingerprint-values empty"></div></div>
+              <div class="fingerprint-dimension"><span id="fpDirectionLabel">Career direction</span><div id="fpDirection" class="fingerprint-values empty"></div></div>
             </div>
 
             <div id="fingerprintEditor" class="fingerprint-editor" hidden>
@@ -140,8 +144,8 @@
           <section id="careerPathOverview" class="career-path-overview">
             <div class="career-path-title-row">
               <div>
-                <span id="careerPathEyebrow" class="career-path-eyebrow">CAREER PATH OVERVIEW</span>
-                <h4 id="careerPathTitle">How Kadima currently sees your professional paths</h4>
+                <span id="careerPathEyebrow" class="career-path-eyebrow">PROFILE FOCUS</span>
+                <h4 id="careerPathTitle">How this profile is being focused</h4>
               </div>
             </div>
             <div id="careerPathCards" class="career-path-cards"></div>
@@ -152,10 +156,13 @@
             <strong id="adjustMenuTitle">What would you like to adjust?</strong>
             <div class="adjust-menu-options">
               <button type="button" data-adjust-dimension="identity" id="adjustIdentity">Identity</button>
-              <button type="button" data-adjust-dimension="paths" id="adjustPaths">Career Paths</button>
+              <button type="button" data-adjust-dimension="capabilities" id="adjustCapabilities">Capabilities</button>
               <button type="button" data-adjust-dimension="context" id="adjustContext">Context</button>
-              <button type="button" data-adjust-dimension="direction" id="adjustDirection">Direction</button>
+              <button type="button" data-adjust-dimension="ownership" id="adjustOwnership">Ownership</button>
+              <button type="button" data-adjust-dimension="impact" id="adjustImpact">Impact</button>
+              <button type="button" data-adjust-dimension="domain" id="adjustDomain">Domain Knowledge</button>
               <button type="button" data-adjust-dimension="transferable" id="adjustTransferable">Transferable Value</button>
+              <button type="button" data-adjust-dimension="direction" id="adjustDirection">Career Direction</button>
             </div>
           </div>
 
