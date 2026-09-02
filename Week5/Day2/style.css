@@ -1,0 +1,474 @@
+/* ==========================================
+   GENERAL
+   ========================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background-color: black;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    overflow: hidden;
+}
+
+
+
+/* ==========================================
+   STAR BACKGROUND
+   ========================================== */
+
+.stars {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    pointer-events: none;
+
+}
+
+
+
+/* SMALL STARS */
+
+.stars1 {
+
+    background-image:
+
+        radial-gradient(
+            white 1px,
+            transparent 1px
+        );
+
+    background-size:
+
+        45px 45px;
+
+    background-position:
+
+        10px 20px;
+
+    opacity: 0.8;
+
+    animation:
+
+        blinkStars1 2s infinite alternate;
+
+}
+
+
+
+/* MEDIUM STARS */
+
+.stars2 {
+
+    background-image:
+
+        radial-gradient(
+            #c7d7ff 1.5px,
+            transparent 1.5px
+        );
+
+    background-size:
+
+        90px 90px;
+
+    background-position:
+
+        40px 60px;
+
+    opacity: 0.5;
+
+    animation:
+
+        blinkStars2 3s infinite alternate;
+
+}
+
+
+
+/* BIG STARS */
+
+.stars3 {
+
+    background-image:
+
+        radial-gradient(
+            white 2px,
+            transparent 2px
+        );
+
+    background-size:
+
+        160px 160px;
+
+    background-position:
+
+        80px 120px;
+
+    opacity: 0.4;
+
+    animation:
+
+        blinkStars3 4s infinite alternate;
+
+}
+
+
+
+/* ==========================================
+   STAR ANIMATIONS
+   ========================================== */
+
+@keyframes blinkStars1 {
+
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 0.9;
+    }
+
+}
+
+
+@keyframes blinkStars2 {
+
+    from {
+        opacity: 0.1;
+    }
+
+    to {
+        opacity: 0.7;
+    }
+
+}
+
+
+@keyframes blinkStars3 {
+
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+
+/* ==========================================
+   MAIN CONTAINER
+   ========================================== */
+
+.container {
+
+    position: relative;
+
+    z-index: 10;
+
+    width: 600px;
+
+    text-align: center;
+
+}
+
+
+
+/* ==========================================
+   STAR WARS LOGO
+   ========================================== */
+
+.logo {
+
+    margin-bottom: 40px;
+
+    font-family:
+        Impact,
+        Arial Black,
+        sans-serif;
+
+    font-weight: bold;
+
+    color: black;
+
+    -webkit-text-stroke:
+
+        4px #ffe81f;
+
+    text-shadow:
+
+        0 0 5px #ffe81f;
+
+}
+
+
+.star {
+
+    font-size: 85px;
+
+    line-height: 0.75;
+
+    letter-spacing: 5px;
+
+}
+
+
+.wars {
+
+    font-size: 85px;
+
+    line-height: 0.75;
+
+    letter-spacing: 2px;
+
+}
+
+
+
+/* ==========================================
+   CHARACTER BOX
+   ========================================== */
+
+#characterBox {
+
+    min-height: 300px;
+
+    padding: 30px;
+
+    border:
+
+        3px solid #ffe81f;
+
+    border-radius:
+
+        15px;
+
+    background-color:
+
+        rgba(0, 0, 0, 0.65);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow:
+
+        0 0 10px rgba(255, 232, 31, 0.4);
+
+}
+
+
+
+/* ==========================================
+   CHARACTER INFORMATION
+   ========================================== */
+
+#characterInfo h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 25px;
+
+    font-size: 32px;
+
+    color: #ffe81f;
+
+}
+
+
+#characterInfo p {
+
+    margin: 12px;
+
+    font-size: 20px;
+
+}
+
+
+
+/* ==========================================
+   LOADING
+   ========================================== */
+
+#loading {
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+}
+
+
+#loading i {
+
+    font-size: 55px;
+
+    margin-bottom: 15px;
+
+    color: white;
+
+}
+
+
+
+/* ==========================================
+   ERROR
+   ========================================== */
+
+#error {
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+}
+
+
+#error i {
+
+    margin-bottom: 15px;
+
+    font-size: 50px;
+
+    color: #ffe81f;
+
+}
+
+
+
+/* ==========================================
+   BUTTON
+   ========================================== */
+
+#findButton {
+
+    margin-top: 18px;
+
+    padding:
+
+        10px 25px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    color: black;
+
+    background-color: white;
+
+    border:
+
+        3px solid #ffe81f;
+
+    border-radius:
+
+        10px;
+
+    cursor: pointer;
+
+    transition:
+
+        0.2s;
+
+}
+
+
+#findButton:hover {
+
+    background-color:
+
+        #ffe81f;
+
+    transform:
+
+        scale(1.05);
+
+}
+
+
+
+/* ==========================================
+   HIDDEN
+   ========================================== */
+
+.hidden {
+
+    display: none;
+
+}
+
+
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 650px) {
+
+    .container {
+
+        width: 90%;
+
+    }
+
+
+    .star,
+    .wars {
+
+        font-size: 60px;
+
+    }
+
+
+    #characterBox {
+
+        min-height: 280px;
+
+        padding: 20px;
+
+    }
+
+
+    #characterInfo h2 {
+
+        font-size: 26px;
+
+    }
+
+
+    #characterInfo p {
+
+        font-size: 17px;
+
+    }
+
+}
