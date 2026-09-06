@@ -23,3 +23,5 @@ desktop.ini
 # Installers / binaries
 *.exe
 *.msi
+
+node_modules/
