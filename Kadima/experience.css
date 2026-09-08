@@ -1225,3 +1225,172 @@
   color:#FFFFFF;
   background:var(--blue);
 }
+
+
+/* ===== Sequential Experience Discovery flow ===== */
+.experience-completed-banner{display:flex;align-items:center;gap:11px;margin-bottom:16px;padding:12px 14px;border:1px solid #CDEDE3;border-radius:11px;background:#F1FBF8;color:#315F54}.experience-completed-banner[hidden]{display:none}.experience-completed-check{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:50%;color:#FFF;background:var(--green);font-size:13px;font-weight:900}.experience-completed-banner strong,.experience-completed-banner span{display:block}.experience-completed-banner strong{color:#08755E;font-size:10px}.experience-completed-banner div>span{margin-top:3px;color:#60756F;font-size:8px;line-height:1.4}.experience-evidence-mini{margin-top:18px;padding:12px;border:1px solid #DDE8F5;border-radius:10px;background:#F8FBFF}.experience-evidence-mini strong,.experience-evidence-mini span{display:block}.experience-evidence-mini strong{color:#315477;font-size:9px}.experience-evidence-mini span{margin-top:4px;color:#718096;font-size:8px;line-height:1.45}.discovery-custom-option{padding-right:30px}.discovery-custom-option::after{content:"×";position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#6E7D91;font-size:12px}.experience-choice-card.flow-locked{display:none}
+
+/* ===== Screen 4 layout refinement: Discovery beside compact live fingerprint ===== */
+.experience-layout{
+  align-items:start;
+}
+
+/* Discovery now lives inside the left column, keeping the fingerprint visible. */
+.experience-main > .experience-discovery-section{
+  margin-top:0;
+}
+
+.experience-layout.discovery-mode{
+  grid-template-columns:minmax(0,1.48fr) minmax(300px,.78fr);
+  gap:20px;
+}
+
+.experience-layout.discovery-mode .experience-discovery-section{
+  margin-top:0;
+  padding:20px 22px;
+}
+
+/* Compact sticky fingerprint during discovery so changes remain visible without page scrolling. */
+.fingerprint-panel{
+  align-self:start;
+  top:10px;
+}
+
+.experience-layout.discovery-mode .fingerprint-panel{
+  padding:16px 16px 14px;
+  max-height:calc(100vh - 150px);
+  overflow:auto;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+}
+
+.experience-layout.discovery-mode .preview-header{
+  padding-bottom:10px;
+}
+
+.experience-layout.discovery-mode .preview-header > div > span{
+  font-size:7px;
+}
+
+.experience-layout.discovery-mode .preview-header h3{
+  margin-top:3px;
+  font-size:12px;
+}
+
+.experience-layout.discovery-mode .live-badge{
+  padding:4px 7px;
+  font-size:7px;
+}
+
+.fingerprint-update-status{
+  margin-top:9px;
+  padding:7px 9px;
+  border:1px solid #CFEFE5;
+  border-radius:8px;
+  color:#08755E;
+  background:#F0FBF7;
+  font-size:8px;
+  font-weight:800;
+  line-height:1.3;
+}
+
+.fingerprint-update-status.pulse{
+  animation:fingerprintStatusPulse .9s ease-out;
+}
+
+@keyframes fingerprintStatusPulse{
+  0%{transform:scale(.985);box-shadow:0 0 0 0 rgba(0,200,150,.22)}
+  45%{transform:scale(1);box-shadow:0 0 0 5px rgba(0,200,150,.07)}
+  100%{box-shadow:0 0 0 0 rgba(0,200,150,0)}
+}
+
+.experience-layout.discovery-mode .fingerprint-summary{
+  gap:6px;
+  margin-top:9px;
+}
+
+.experience-layout.discovery-mode .fingerprint-group{
+  padding:6px 0 7px;
+}
+
+.experience-layout.discovery-mode .fingerprint-group:first-child{
+  padding-top:2px;
+}
+
+.experience-layout.discovery-mode .fingerprint-group > span{
+  margin-bottom:4px;
+  font-size:7px;
+  letter-spacing:.02em;
+}
+
+/* Empty dimensions add no value while answering a specific experience. */
+.experience-layout.discovery-mode .fingerprint-group.is-empty{
+  display:none;
+}
+
+.experience-layout.discovery-mode .preview-values{
+  gap:4px;
+}
+
+.experience-layout.discovery-mode .fp-chip,
+.experience-layout.discovery-mode .fp-add-button{
+  padding:4px 6px;
+  border-radius:8px;
+  font-size:7px;
+}
+
+.experience-layout.discovery-mode .fingerprint-group.just-updated{
+  margin:0 -7px;
+  padding-left:7px;
+  padding-right:7px;
+  border-radius:8px;
+  background:#F2FCF8;
+  transition:background .25s ease;
+}
+
+/* Nonessential fixed explanation cards were removed from the panel. */
+.experience-evidence-mini,
+.preview-note{
+  display:none !important;
+}
+
+/* Make the question card slightly tighter so the first answers stay above the fold. */
+.experience-layout.discovery-mode .discovery-heading p{
+  max-width:590px;
+}
+
+.experience-layout.discovery-mode .discovery-experience-context{
+  margin-top:12px;
+  padding:9px 12px;
+}
+
+.experience-layout.discovery-mode .discovery-question-card{
+  margin-top:12px;
+  padding:18px;
+}
+
+.experience-layout.discovery-mode .discovery-answer-options{
+  margin-top:13px;
+  gap:7px;
+}
+
+.experience-layout.discovery-mode .question-actions{
+  margin-top:16px;
+}
+
+@media(max-width:1180px){
+  .experience-layout.discovery-mode{
+    grid-template-columns:1fr;
+  }
+
+  .experience-layout.discovery-mode .fingerprint-panel{
+    position:relative;
+    top:auto;
+    max-height:none;
+    overflow:visible;
+  }
+
+  .experience-layout.discovery-mode .fingerprint-group.is-empty{
+    display:block;
+  }
+}

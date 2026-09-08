@@ -207,32 +207,6 @@
                 </div>
               </div>
 
-              <div class="relevance-block">
-                <div class="field-label-row">
-                  <div>
-                    <strong id="relevanceTitle">How important is this experience to where you want to go next?</strong>
-                    <span id="relevanceHelp">This helps Kadima decide how deeply to explore it.</span>
-                  </div>
-                </div>
-
-                <div id="relevanceOptions" class="relevance-options">
-                  <button type="button" data-relevance="core">
-                    <strong id="relevanceCoreTitle">Core experience</strong>
-                    <span id="relevanceCoreText">Explore this experience in depth</span>
-                  </button>
-
-                  <button type="button" data-relevance="relevant">
-                    <strong id="relevanceRelevantTitle">Relevant background</strong>
-                    <span id="relevanceRelevantText">Capture the most useful parts</span>
-                  </button>
-
-                  <button type="button" data-relevance="supporting">
-                    <strong id="relevanceSupportingTitle">Supporting experience</strong>
-                    <span id="relevanceSupportingText">Keep it concise</span>
-                  </button>
-                </div>
-              </div>
-
               <div class="experience-form-actions">
                 <button id="clearExperienceButton" class="secondary-inline" type="button">
                   <span id="clearExperienceText">Clear</span>
@@ -245,6 +219,10 @@
             </section>
 
             <section id="savedExperiencesSection" class="saved-experiences-section" hidden>
+              <div id="experienceCompletedBanner" class="experience-completed-banner" hidden>
+                <span class="experience-completed-check">✓</span>
+                <div><strong id="experienceCompletedTitle">Experience completed</strong><span id="experienceCompletedText">Its evidence has been added to your Professional Fingerprint.</span></div>
+              </div>
               <div class="saved-experiences-header">
                 <div>
                   <span id="savedExperiencesEyebrow" class="section-eyebrow">YOUR EXPERIENCE</span>
@@ -263,79 +241,9 @@
               <h3 id="noExperienceTitle">That's completely fine.</h3>
               <p id="noExperienceText">Kadima will use your education, projects and skills to build the rest of your fingerprint.</p>
             </section>
-          </section>
 
-          <aside class="experience-preview-card fingerprint-panel">
-            <div class="preview-header">
-              <div>
-                <span id="previewEyebrow">LIVE PROFESSIONAL FINGERPRINT</span>
-                <h3 id="previewTitle">Your Professional Fingerprint</h3>
-              </div>
-              <span class="live-badge">● <span id="liveText">Live</span></span>
-            </div>
-
-            <div class="fingerprint-summary">
-              <div class="fingerprint-group">
-                <span id="fpIdentityLabel">Identity</span>
-                <div id="fpIdentityValues" class="preview-values"></div>
-              </div>
-
-              <div class="fingerprint-group">
-                <span id="fpPathsLabel">Career paths</span>
-                <div id="fpPathsValues" class="preview-values"></div>
-              </div>
-
-              <div class="fingerprint-group">
-                <span id="fpContextLabel">Context</span>
-                <div id="fpContextValues" class="preview-values"></div>
-              </div>
-
-              <div class="fingerprint-group">
-                <span id="fpDirectionLabel">Direction</span>
-                <div id="fpDirectionValues" class="preview-values"></div>
-              </div>
-
-              <div class="fingerprint-group">
-                <span id="fpTransferableLabel">Transferable value</span>
-                <div id="fpTransferableValues" class="preview-values"></div>
-              </div>
-            </div>
-
-            <div id="fingerprintEditor" class="fingerprint-editor" hidden>
-              <div class="fingerprint-editor-head">
-                <strong id="fingerprintEditorTitle">Edit fingerprint item</strong>
-                <button id="closeFingerprintEditorButton" type="button" aria-label="Close">×</button>
-              </div>
-
-              <label id="fingerprintEditorLabel" for="fingerprintEditorInput">Item</label>
-              <input id="fingerprintEditorInput" type="text" maxlength="500" />
-
-              <p id="fingerprintEditorHint">You can add multiple items separated by commas.</p>
-
-              <div class="fingerprint-editor-actions">
-                <button id="deleteFingerprintItemButton" class="fingerprint-delete-button" type="button">Delete</button>
-
-                <div>
-                  <button id="cancelFingerprintEditorButton" class="fingerprint-cancel-button" type="button">Cancel</button>
-                  <button id="saveFingerprintItemButton" class="fingerprint-save-button" type="button">Save</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="career-path-mini">
-              <strong id="careerPathMiniTitle">Career Path Evolution</strong>
-              <div id="careerPathMiniCards"></div>
-            </div>
-
-            <div class="preview-note">
-              <strong id="previewNoteTitle">Growing with every answer</strong>
-              <span id="previewNoteText">Your experience will enrich the fingerprint you built in Profile.</span>
-            </div>
-          </aside>
-        </div>
-
-
-        <section id="experienceDiscoverySection" class="experience-discovery-section" hidden>
+            <!-- Discovery stays in the left column so the live fingerprint remains visible beside every question. -->
+            <section id="experienceDiscoverySection" class="experience-discovery-section" hidden>
           <div class="discovery-heading">
             <div>
               <span id="discoveryEyebrow" class="section-eyebrow">EXPERIENCE DISCOVERY</span>
@@ -370,7 +278,56 @@
               <button id="discoveryNextButton" class="primary-inline" type="button" disabled><span id="discoveryNextText">Continue</span> →</button>
             </div>
           </div>
-        </section>
+            </section>
+
+          </section>
+
+          <aside class="experience-preview-card fingerprint-panel">
+            <div class="preview-header">
+              <div>
+                <span id="previewEyebrow">LIVE PROFESSIONAL FINGERPRINT</span>
+                <h3 id="previewTitle">Your Professional Fingerprint</h3>
+              </div>
+              <span class="live-badge">● <span id="liveText">Live</span></span>
+            </div>
+
+            <div id="fingerprintUpdateStatus" class="fingerprint-update-status" hidden></div>
+
+            <div class="fingerprint-summary">
+              <div class="fingerprint-group"><span id="fpIdentityLabel">Identity</span><div id="fpIdentityValues" class="preview-values"></div></div>
+              <div class="fingerprint-group"><span id="fpCapabilitiesLabel">Capabilities</span><div id="fpCapabilitiesValues" class="preview-values"></div></div>
+              <div class="fingerprint-group"><span id="fpContextLabel">Context</span><div id="fpContextValues" class="preview-values"></div></div>
+              <div class="fingerprint-group"><span id="fpOwnershipLabel">Ownership</span><div id="fpOwnershipValues" class="preview-values"></div></div>
+              <div class="fingerprint-group"><span id="fpImpactLabel">Impact</span><div id="fpImpactValues" class="preview-values"></div></div>
+              <div class="fingerprint-group"><span id="fpDomainLabel">Domain knowledge</span><div id="fpDomainValues" class="preview-values"></div></div>
+              <div class="fingerprint-group"><span id="fpTransferableLabel">Transferable value</span><div id="fpTransferableValues" class="preview-values"></div></div>
+              <div class="fingerprint-group"><span id="fpDirectionLabel">Career direction</span><div id="fpDirectionValues" class="preview-values"></div></div>
+            </div>
+
+            <div id="fingerprintEditor" class="fingerprint-editor" hidden>
+              <div class="fingerprint-editor-head">
+                <strong id="fingerprintEditorTitle">Edit fingerprint item</strong>
+                <button id="closeFingerprintEditorButton" type="button" aria-label="Close">×</button>
+              </div>
+
+              <label id="fingerprintEditorLabel" for="fingerprintEditorInput">Item</label>
+              <input id="fingerprintEditorInput" type="text" maxlength="500" />
+
+              <p id="fingerprintEditorHint">You can add multiple items separated by commas.</p>
+
+              <div class="fingerprint-editor-actions">
+                <button id="deleteFingerprintItemButton" class="fingerprint-delete-button" type="button">Delete</button>
+
+                <div>
+                  <button id="cancelFingerprintEditorButton" class="fingerprint-cancel-button" type="button">Cancel</button>
+                  <button id="saveFingerprintItemButton" class="fingerprint-save-button" type="button">Save</button>
+                </div>
+              </div>
+            </div>
+
+          </aside>
+        </div>
+
 
         <footer class="experience-footer">
           <div class="experience-footer-note">
