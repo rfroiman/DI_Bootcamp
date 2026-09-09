@@ -386,25 +386,6 @@ async function searchRecipes(): Promise<void> {
 
         // ======================================
         // RECIPE CANDIDATE SCORE
-        //
-        // Instead of only storing recipe IDs,
-        // we count how many ingredient searches
-        // returned each recipe.
-        //
-        // Example:
-        //
-        // Recipe A found for:
-        // chicken
-        // rice
-        // onion
-        // tomato
-        //
-        // candidate score = 4
-        //
-        // Recipe B found only for:
-        // chicken
-        //
-        // candidate score = 1
         // ======================================
 
         const candidateScores =
@@ -477,9 +458,6 @@ async function searchRecipes(): Promise<void> {
 
         // ======================================
         // RANK CANDIDATES
-        //
-        // Recipes appearing in more ingredient
-        // searches are inspected first.
         // ======================================
 
         const rankedCandidates =
@@ -494,13 +472,6 @@ async function searchRecipes(): Promise<void> {
 
         // ======================================
         // INSPECT TOP 30 CANDIDATES
-        //
-        // Previously we simply inspected
-        // the first 15 recipes returned.
-        //
-        // Now we inspect the 30 recipes
-        // that matched the largest number
-        // of ingredients.
         // ======================================
 
         const candidateIds =
@@ -914,17 +885,6 @@ function calculateMatchScores(): void {
 
         // ======================================
         // MATCH SCORE
-        //
-        // Preparation time DOES NOT
-        // change the Match Score.
-        //
-        // 0 missing = 100%
-        // 1 missing = 95%
-        // 2 missing = 90%
-        // 3 missing = 85%
-        // 4 missing = 80%
-        // 5 missing = 75%
-        // etc.
         // ======================================
 
         let ingredientScore =
@@ -1722,10 +1682,6 @@ function sortRecipes(
 
     // ======================================
     // BEST MATCH
-    //
-    // 1. Fewer missing ingredients
-    // 2. Shorter preparation time
-    // 3. Higher Match
     // ======================================
 
     if (

@@ -1,8 +1,6 @@
 "use strict";
 // ==========================================
 // FRIDGE RESCUE
-// TheMealDB Version
-// Search Algorithm V3
 // ==========================================
 // ==========================================
 // API CONFIGURATION
@@ -156,25 +154,6 @@ async function searchRecipes() {
     try {
         // ======================================
         // RECIPE CANDIDATE SCORE
-        //
-        // Instead of only storing recipe IDs,
-        // we count how many ingredient searches
-        // returned each recipe.
-        //
-        // Example:
-        //
-        // Recipe A found for:
-        // chicken
-        // rice
-        // onion
-        // tomato
-        //
-        // candidate score = 4
-        //
-        // Recipe B found only for:
-        // chicken
-        //
-        // candidate score = 1
         // ======================================
         const candidateScores = new Map();
         // ======================================
@@ -203,21 +182,11 @@ async function searchRecipes() {
         }
         // ======================================
         // RANK CANDIDATES
-        //
-        // Recipes appearing in more ingredient
-        // searches are inspected first.
         // ======================================
         const rankedCandidates = Array.from(candidateScores.entries())
             .sort((a, b) => b[1] - a[1]);
         // ======================================
         // INSPECT TOP 30 CANDIDATES
-        //
-        // Previously we simply inspected
-        // the first 15 recipes returned.
-        //
-        // Now we inspect the 30 recipes
-        // that matched the largest number
-        // of ingredients.
         // ======================================
         const candidateIds = rankedCandidates
             .slice(0, 30)
@@ -384,17 +353,6 @@ function calculateMatchScores() {
             missingIngredients;
         // ======================================
         // MATCH SCORE
-        //
-        // Preparation time DOES NOT
-        // change the Match Score.
-        //
-        // 0 missing = 100%
-        // 1 missing = 95%
-        // 2 missing = 90%
-        // 3 missing = 85%
-        // 4 missing = 80%
-        // 5 missing = 75%
-        // etc.
         // ======================================
         let ingredientScore = 100
             -
@@ -847,10 +805,6 @@ function displaySelectedIngredients() {
 function sortRecipes(option) {
     // ======================================
     // BEST MATCH
-    //
-    // 1. Fewer missing ingredients
-    // 2. Shorter preparation time
-    // 3. Higher Match
     // ======================================
     if (option === "match") {
         recipes.sort((a, b) => {
