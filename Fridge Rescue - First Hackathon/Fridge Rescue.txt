@@ -1,0 +1,15 @@
+Fridge Rescue
+
+My project idea is to create a web application called Fridge Rescue, designed to help people decide what to cook using ingredients they already have at home.
+
+The user enters the ingredients available in their fridge, such as chicken, tomato, onion, and rice. The application uses a public recipe API to find possible recipes and displays them with images, ingredients, and cooking instructions.
+
+The application sends the ingredients available in the user's fridge to a recipe API. The API returns recipes together with ingredient information and preparation time. Fridge Rescue then applies its own ranking algorithm, prioritizing recipes that require fewer additional ingredients and less preparation time.
+
+Users will also be able to open the full recipe and save their favorite recipes using LocalStorage, so their favorites remain available after refreshing or reopening the application.
+
+I am developing the project using HTML, CSS, TypeScript, DOM manipulation, Fetch API, Async/Await, JSON, a public API, and LocalStorage.
+
+The goal of Fridge Rescue is simple: reduce food waste, save money, and turn ingredients people already have into meal ideas.
+
+Slogan: “Turn what you have into what you can cook.”

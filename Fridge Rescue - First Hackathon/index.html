@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Fridge Rescue</title>
+
+
+    <!-- =====================================
+         FRIDGE RESCUE FAVICON
+    ====================================== -->
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="./favicon.svg"
+    >
+
+
+    <!-- =====================================
+         CSS
+    ====================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- =====================================
+         FONT AWESOME
+    ====================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <header class="header">
+
+        <div class="logo-area">
+
+            <div class="logo-icon">
+
+                <i class="fa-solid fa-kitchen-set"></i>
+
+            </div>
+
+
+            <div>
+
+                <h1>
+                    Fridge <span>Rescue</span>
+                </h1>
+
+                <p>
+                    Turn what you have into what you can cook.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a
+                href="#"
+                class="active"
+            >
+
+                <i class="fa-solid fa-house"></i>
+
+                Home
+
+            </a>
+
+
+            <a href="#favorites">
+
+                <i class="fa-regular fa-heart"></i>
+
+                Favorites
+
+            </a>
+
+
+            <a href="#about">
+
+                <i class="fa-solid fa-leaf"></i>
+
+                About
+
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================
+         HERO
+    ====================================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+
+            <div class="hero-left">
+
+
+                <p class="green-message">
+
+                    <i class="fa-solid fa-leaf"></i>
+
+                    Good food. Less waste. A happier you.
+
+                </p>
+
+
+                <h2>
+
+                    What's hiding<br>
+
+                    in your <span>fridge?</span>
+
+                </h2>
+
+
+                <p class="hero-description">
+
+                    Enter the ingredients you have and discover
+                    delicious recipes you can make today.
+
+                </p>
+
+
+
+                <!-- SEARCH -->
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+
+                    <input
+                        type="text"
+                        id="ingredientInput"
+                        placeholder="e.g. chicken, tomato, onion, rice"
+                    >
+
+
+                    <button id="searchButton">
+
+                        <i class="fa-solid fa-utensils"></i>
+
+                        FIND MY DINNER
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- VISUAL SUGGESTIONS -->
+
+                <div class="quick-search">
+
+                    <strong>
+                        Try these:
+                    </strong>
+
+                    <span class="quickIngredient">
+                        chicken
+                    </span>
+
+                    <span class="quickIngredient">
+                        tomato
+                    </span>
+
+                    <span class="quickIngredient">
+                        onion
+                    </span>
+
+                    <span class="quickIngredient">
+                        rice
+                    </span>
+
+                    <span class="quickIngredient">
+                        garlic
+                    </span>
+
+                    <span class="quickIngredient">
+                        cheese
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HERO RIGHT -->
+
+            <div class="hero-right">
+
+                <div class="hero-message">
+
+                    Same<br>
+
+                    ingredients.<br>
+
+                    <strong>
+                        New possibilities.
+                    </strong>
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         INGREDIENT VISUAL BAR
+    ====================================== -->
+
+    <section
+        class="ingredient-bar"
+        id="ingredientBar"
+    >
+
+        <div class="ingredient-item">
+
+            <img
+                src="https://www.themealdb.com/images/ingredients/Chicken.png"
+                alt="Chicken"
+            >
+
+            <span>Chicken</span>
+
+        </div>
+
+
+        <div class="ingredient-item">
+
+            <img
+                src="https://www.themealdb.com/images/ingredients/Tomato.png"
+                alt="Tomato"
+            >
+
+            <span>Tomato</span>
+
+        </div>
+
+
+        <div class="ingredient-item">
+
+            <img
+                src="https://www.themealdb.com/images/ingredients/Onion.png"
+                alt="Onion"
+            >
+
+            <span>Onion</span>
+
+        </div>
+
+
+        <div class="ingredient-item">
+
+            <img
+                src="https://www.themealdb.com/images/ingredients/Garlic.png"
+                alt="Garlic"
+            >
+
+            <span>Garlic</span>
+
+        </div>
+
+
+        <div class="ingredient-item">
+
+            <img
+                src="https://www.themealdb.com/images/ingredients/Rice.png"
+                alt="Rice"
+            >
+
+            <span>Rice</span>
+
+        </div>
+
+
+        <div class="ingredient-item">
+
+            <img
+                src="https://www.themealdb.com/images/ingredients/Cheese.png"
+                alt="Cheese"
+            >
+
+            <span>Cheese</span>
+
+        </div>
+
+
+        <div class="ingredient-item">
+
+            <img
+                src="https://www.themealdb.com/images/ingredients/Egg.png"
+                alt="Egg"
+            >
+
+            <span>Egg</span>
+
+        </div>
+
+
+        <div class="ingredient-item">
+
+            <img
+                src="https://www.themealdb.com/images/ingredients/Potatoes.png"
+                alt="Potato"
+            >
+
+            <span>Potato</span>
+
+        </div>
+
+
+        <div class="ingredient-item">
+
+            <img
+                src="https://www.themealdb.com/images/ingredients/Carrots.png"
+                alt="Carrot"
+            >
+
+            <span>Carrot</span>
+
+        </div>
+
+
+        <div class="ingredient-item">
+
+            <img
+                src="https://www.themealdb.com/images/ingredients/Broccoli.png"
+                alt="Broccoli"
+            >
+
+            <span>Broccoli</span>
+
+        </div>
+
+
+        <div class="ingredient-item">
+
+            <img
+                src="https://www.themealdb.com/images/ingredients/Mushrooms.png"
+                alt="Mushroom"
+            >
+
+            <span>Mushroom</span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main class="main-container">
+
+
+        <section class="results-section">
+
+
+            <div class="results-header">
+
+
+                <div>
+
+                    <h2>
+
+                        <i class="fa-solid fa-utensils"></i>
+
+                        Recipe Results
+
+                    </h2>
+
+
+                    <p>
+
+                        Recipes ranked by ingredients needed
+                        and estimated preparation time.
+
+                    </p>
+
+                </div>
+
+
+                <select id="sortSelect">
+
+                    <option value="match">
+                        Best Match
+                    </option>
+
+                    <option value="time">
+                        Shortest Prep Time
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="statusMessage"
+                class="status-message"
+            >
+
+                Add some ingredients to discover your dinner.
+
+            </div>
+
+
+            <div
+                id="recipeGrid"
+                class="recipe-grid"
+            ></div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SIDEBAR
+        ====================================== -->
+
+        <aside class="sidebar">
+
+
+            <div class="sidebar-card">
+
+
+                <div class="sidebar-title">
+
+                    <h3>
+
+                        <i class="fa-solid fa-leaf"></i>
+
+                        Your Ingredients
+
+                    </h3>
+
+                </div>
+
+
+                <div
+                    id="selectedIngredients"
+                    class="selected-ingredients"
+                >
+
+                    <span class="empty-text">
+
+                        No ingredients selected.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="sidebar-card"
+                id="favorites"
+            >
+
+
+                <div class="sidebar-title">
+
+                    <h3>
+
+                        <i class="fa-solid fa-heart heart"></i>
+
+                        Favorites
+
+                    </h3>
+
+                </div>
+
+
+                <div id="favoritesList">
+
+                    <span class="empty-text">
+
+                        No favorites yet.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="eco-card">
+
+                <i class="fa-solid fa-leaf eco-icon"></i>
+
+
+                <div>
+
+                    <h3>
+                        Cooking smarter together.
+                    </h3>
+
+                    <p>
+
+                        Reduce food waste.<br>
+
+                        Save money.<br>
+
+                        Discover new flavors.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+
+
+    <!-- =====================================
+         ABOUT
+    ====================================== -->
+
+    <section
+        id="about"
+        class="about"
+    >
+
+        <h2>
+            Good food doesn't have to be complicated.
+        </h2>
+
+        <p>
+
+            Fridge Rescue helps you turn ingredients you already
+            have into delicious possibilities.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer>
+
+        <div>
+
+            <strong>
+                Fridge Rescue
+            </strong>
+
+            <p>
+                Turn what you have into what you can cook.
+            </p>
+
+        </div>
+
+
+        <p>
+            Made with ❤️ for a more sustainable tomorrow.
+        </p>
+
+    </footer>
+
+
+
+    <!-- =====================================
+         RECIPE MODAL
+    ====================================== -->
+
+    <div
+        id="recipeModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-content">
+
+
+            <button
+                id="closeModal"
+                class="close-modal"
+            >
+                ×
+            </button>
+
+
+            <div id="modalBody"></div>
+
+        </div>
+
+    </div>
+
+
+    <script src="app.js"></script>
+
+
+</body>
+
+</html>
