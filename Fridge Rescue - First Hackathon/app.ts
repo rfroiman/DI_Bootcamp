@@ -29,7 +29,7 @@ const CACHE_VERSION =
 interface MealApiResponse {
     meals: any[] | null;
 }
-
+// Mostrar 1
 interface Recipe {
     id: string;
     name: string;
@@ -282,7 +282,7 @@ function getCachedRecipes(
 
 
 // ==========================================
-// SAVE RECIPES TO CACHE
+// SAVE RECIPES TO CACHE - mostrar 6
 // ==========================================
 
 function saveRecipesToCache(
@@ -385,7 +385,7 @@ async function searchRecipes(): Promise<void> {
     try {
 
         // ======================================
-        // RECIPE CANDIDATE SCORE
+        // RECIPE CANDIDATE SCORE - mostrar 3
         // ======================================
 
         const candidateScores =
@@ -400,7 +400,7 @@ async function searchRecipes(): Promise<void> {
             const ingredient
             of selectedIngredients
         ) {
-
+//mostrar 2
             const response =
                 await fetch(
                     `${API_URL}/filter.php?i=${encodeURIComponent(
@@ -831,7 +831,7 @@ function userHasIngredient(
 
 
 // ==========================================
-// CALCULATE FRIDGE RESCUE MATCH
+// CALCULATE FRIDGE RESCUE MATCH - mostrar 4
 // ==========================================
 
 function calculateMatchScores(): void {
@@ -1673,7 +1673,7 @@ function displaySelectedIngredients(): void {
 
 
 // ==========================================
-// SORT RECIPES
+// SORT RECIPES - mostar 5
 // ==========================================
 
 function sortRecipes(
