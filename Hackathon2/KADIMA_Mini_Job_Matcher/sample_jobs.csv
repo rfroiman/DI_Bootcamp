@@ -1,0 +1,167 @@
+job_id,title,description
+1,Enterprise Account Executive,"
+        The Enterprise Account Executive is responsible for managing
+        strategic enterprise customers and developing new business
+        opportunities across the technology sector. The role involves
+        selling cloud infrastructure, SaaS platforms, and enterprise
+        software solutions to large organizations. Responsibilities
+        include prospecting, qualifying leads, conducting discovery
+        meetings, developing sales pipelines, delivering commercial
+        presentations, and negotiating complex contracts. The candidate
+        must collaborate with technical teams, understand customer
+        business requirements, manage CRM records, and maintain accurate
+        revenue forecasts. Strong communication, relationship management,
+        consultative selling, and negotiation skills are essential.
+        Experience in B2B technology sales and enterprise account
+        management is highly desirable.
+        "
+2,Customer Success Manager,"
+        The Customer Success Manager manages relationships with existing
+        customers to ensure successful product adoption and long-term
+        satisfaction. Responsibilities include customer onboarding,
+        conducting regular business reviews, monitoring account health,
+        identifying customer needs, and developing retention strategies.
+        The professional works closely with sales, support, and product
+        teams to resolve issues and improve the customer experience.
+        Additional responsibilities include identifying upselling and
+        cross-selling opportunities, reducing customer churn, tracking
+        customer satisfaction metrics, and managing renewal processes.
+        Candidates should have experience with SaaS platforms, CRM
+        systems, customer relationship management, and business
+        communication. Strong analytical, problem-solving, and
+        interpersonal skills are required.
+        "
+3,Python Backend Developer,"
+        The Python Backend Developer designs, develops, and maintains
+        server-side applications supporting modern web platforms.
+        Responsibilities include building REST APIs, implementing
+        business logic, integrating external services, and managing
+        relational databases such as PostgreSQL. The developer
+        collaborates with frontend engineers, product managers, and
+        quality assurance teams to deliver reliable software.
+        Additional tasks include writing automated tests, debugging
+        applications, optimizing performance, reviewing code, and
+        maintaining technical documentation. Experience with Python,
+        FastAPI or Django, SQL, Git, Docker, and cloud infrastructure
+        is desirable. Candidates should understand software
+        architecture, security practices, version control, and
+        agile development methodologies.
+        "
+4,Sales Operations Analyst,"
+        The Sales Operations Analyst supports commercial teams by
+        improving sales processes, reporting, and operational
+        efficiency. Responsibilities include maintaining CRM data,
+        analyzing pipeline performance, monitoring revenue forecasts,
+        and developing dashboards for sales management. The analyst
+        identifies process bottlenecks, evaluates conversion rates,
+        supports territory planning, and prepares business reports.
+        Collaboration with sales leadership, finance, and marketing
+        teams is essential to ensure consistent performance metrics.
+        Candidates should have strong analytical skills and experience
+        with Excel, CRM platforms, reporting tools, and business
+        intelligence dashboards. Knowledge of Salesforce, SQL,
+        sales forecasting, and process automation is advantageous.
+        "
+5,Data Scientist,"
+        The Data Scientist analyzes structured and unstructured
+        datasets to identify patterns, generate insights, and support
+        business decisions. Responsibilities include data cleaning,
+        exploratory analysis, feature engineering, statistical
+        modeling, and machine learning development. The professional
+        collaborates with business stakeholders to define analytical
+        problems and translate findings into actionable recommendations.
+        Additional responsibilities include evaluating model
+        performance, creating visualizations, documenting experiments,
+        and presenting results to technical and nontechnical audiences.
+        Candidates should have experience with Python, pandas,
+        NumPy, scikit-learn, SQL, and statistical methods.
+        Familiarity with predictive analytics, cloud platforms,
+        and data visualization tools is beneficial.
+        "
+6,Business Development Manager,"
+        The Business Development Manager identifies new commercial
+        opportunities and develops strategies to expand the company's
+        market presence. Responsibilities include researching target
+        markets, prospecting potential customers, establishing
+        strategic partnerships, and negotiating business agreements.
+        The professional manages relationships with prospective
+        clients, develops go-to-market strategies, and collaborates
+        with sales and marketing teams to generate qualified leads.
+        Additional responsibilities include evaluating competitors,
+        identifying emerging market trends, maintaining sales
+        forecasts, and presenting growth opportunities to management.
+        Candidates should demonstrate strong communication,
+        negotiation, relationship-building, and strategic planning
+        skills. Experience in B2B sales, technology solutions,
+        and international business development is advantageous.
+        "
+7,Cybersecurity Engineer,"
+        The Cybersecurity Engineer protects enterprise systems,
+        applications, and networks against security threats.
+        Responsibilities include implementing security controls,
+        monitoring vulnerabilities, analyzing security incidents,
+        and supporting incident response activities. The engineer
+        evaluates infrastructure configurations, conducts security
+        assessments, and collaborates with IT teams to reduce
+        organizational risks. Additional tasks include maintaining
+        security documentation, reviewing access permissions,
+        supporting compliance requirements, and recommending
+        improvements to cloud and network security.
+        Candidates should understand network protocols, identity
+        management, encryption, firewalls, vulnerability scanning,
+        and security monitoring tools. Experience with cloud
+        security, Python scripting, and security frameworks
+        is desirable.
+        "
+8,Technical Project Manager,"
+        The Technical Project Manager leads technology initiatives
+        from planning through implementation and delivery.
+        Responsibilities include defining project scope, developing
+        schedules, managing budgets, coordinating cross-functional
+        teams, and monitoring project risks. The professional
+        communicates with stakeholders, tracks milestones, resolves
+        delivery issues, and ensures that technical solutions meet
+        business requirements. Additional responsibilities include
+        managing vendors, preparing project reports, facilitating
+        meetings, and maintaining project documentation.
+        Candidates should have experience with software
+        implementation, systems integration, agile methodologies,
+        and project management tools. Strong leadership,
+        communication, organization, and problem-solving skills
+        are required. Knowledge of Scrum, Jira, and PMP
+        methodologies is beneficial.
+        "
+9,UX/UI Designer,"
+        The UX/UI Designer creates intuitive and visually consistent
+        digital experiences for web and mobile applications.
+        Responsibilities include researching user needs, designing
+        wireframes, building interactive prototypes, and developing
+        interface layouts. The designer collaborates with product
+        managers, developers, and stakeholders to translate business
+        requirements into user-friendly solutions. Additional tasks
+        include conducting usability testing, analyzing user
+        feedback, maintaining design systems, and improving
+        accessibility across digital products. Candidates should
+        understand user-centered design principles, information
+        architecture, responsive design, and visual communication.
+        Experience with Figma, prototyping tools, and collaborative
+        product development is desirable.
+        "
+10,Solutions Consultant,"
+        The Solutions Consultant supports enterprise sales by
+        translating customer business requirements into appropriate
+        technology solutions. Responsibilities include conducting
+        discovery sessions, delivering technical demonstrations,
+        preparing proof-of-concept presentations, and explaining
+        software capabilities to prospective customers.
+        The consultant collaborates with account executives,
+        product specialists, and engineering teams throughout
+        the sales cycle. Additional responsibilities include
+        responding to technical questions, supporting proposals,
+        documenting solution requirements, and identifying
+        integration opportunities. Candidates should possess
+        strong communication, analytical, and presentation skills.
+        Experience with enterprise software, SaaS platforms,
+        APIs, cloud technologies, and consultative selling
+        is highly desirable.
+        "
