@@ -1,0 +1,13 @@
+﻿Available tools:
+ - add
+
+Available resources:
+
+Resource templates:
+ - greeting://{name}
+
+Greeting result:
+Hello, hello!
+
+Add tool result:
+8
